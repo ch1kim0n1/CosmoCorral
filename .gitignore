@@ -1,0 +1,50 @@
+# Rust build artifacts
+target/
+**/target/
+Cargo.lock
+
+# Debug artifacts
+*.pdb
+*.exe
+*.dll
+*.so
+*.dylib
+
+# Release builds
+**/release/
+**/debug/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Node.js (for landing/dashboard)
+node_modules/
+**/node_modules/
+dist/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+package-lock.json
+
+# Environment files
+.env
+.env.local
+.env.*.local
+
+# Test output
+*.test
+coverage/
+
+# Temporary files
+*.tmp
+*.temp
+.cache/

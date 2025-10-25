@@ -1,0 +1,59 @@
+[package]
+name = "eyecore_mvp"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+tokio = { version = "1", features = ["full"] }
+axum = "0.7"
+tower = "0.4"
+chrono = { version = "0.4", features = ["serde"] }
+uuid = { version = "1.0", features = ["v4", "serde"] }
+sha2 = "0.10"
+rand = "0.8"
+log = "0.4"
+env_logger = "0.11"
+sysinfo = "0.30"
+
+# Windows-specific APIs
+windows = { version = "0.52", features = [
+    "Win32_Foundation",
+    "Win32_System_Diagnostics_ToolHelp",
+    "Win32_System_Threading",
+    "Win32_UI_WindowsAndMessaging",
+    "Win32_Security",
+    "Win32_System_Power",
+    "Win32_Storage_FileSystem",
+    "Win32_System_SystemInformation"
+] }
+
+# Audio capture for voice data
+cpal = "0.15"
+
+# Camera/video capture
+nokhwa = { version = "0.10", features = ["input-native"] }
+
+# Input hooks (keyboard/mouse dynamics)
+rdev = "0.5"
+
+# File system monitoring
+notify = "6.0"
+
+# Network packet analysis
+pnet = "0.34"
+
+# Machine learning / sentiment analysis (lightweight)
+rust-bert = { version = "0.21", optional = true }
+
+# Data persistence and file I/O
+tokio-util = "0.7"
+
+# ElevenLabs API integration
+reqwest = { version = "0.11", features = ["json", "stream"] }
+base64 = "0.21"
+
+# Audio processing
+hound = "3.4"
+dasp = "0.11"
