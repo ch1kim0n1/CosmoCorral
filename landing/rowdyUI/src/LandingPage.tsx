@@ -4,6 +4,8 @@ import './LandingPage.css';
 function LandingPage() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [isDarkTheme, setIsDarkTheme] = useState(true);
+  const [showStickyButton, setShowStickyButton] = useState(false);
+  const heroButtonRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -249,6 +251,20 @@ function LandingPage() {
     };
   }, [isDarkTheme]);
 
+  // Sticky button visibility on scroll
+  useEffect(() => {
+    const handleScroll = () => {
+      if (heroButtonRef.current) {
+        const rect = heroButtonRef.current.getBoundingClientRect();
+        // Show sticky button when hero button is out of view
+        setShowStickyButton(rect.bottom < 0);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   return (
     <div className={`landing-page ${isDarkTheme ? 'dark-theme' : 'light-theme'}`}>
       <canvas ref={canvasRef} className="starry-background" />
@@ -271,6 +287,14 @@ function LandingPage() {
       >
         {isDarkTheme ? '☀️' : '🌙'}
       </button>
+
+      {/* Sticky Get Started Button */}
+      <button 
+        className={`sticky-get-started ${showStickyButton ? 'visible' : ''}`}
+        aria-label="Get Started"
+      >
+        Get Started
+      </button>
       
       <div className="content">
         <section className="hero">
@@ -279,7 +303,7 @@ function LandingPage() {
             <h1 className="hero-line line-2 animate-slide-in">Welcome to a new era of trust</h1>
           </div>
           
-          <button className="glass-button">
+          <button ref={heroButtonRef} className="glass-button">
             <span>Get Started</span>
           </button>
         </section>

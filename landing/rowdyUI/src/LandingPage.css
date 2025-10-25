@@ -150,6 +150,40 @@
   box-shadow: 0 6px 30px rgba(138, 43, 226, 0.5);
 }
 
+/* Sticky Get Started Button */
+.sticky-get-started {
+  position: fixed;
+  top: 2rem;
+  left: 50%;
+  transform: translateX(-50%) translateY(-100px);
+  z-index: 100;
+  padding: 0.8rem 2rem;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #fff;
+  background: rgba(138, 43, 226, 0.9);
+  border: 2px solid rgba(138, 43, 226, 1);
+  border-radius: 50px;
+  cursor: pointer;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 20px rgba(138, 43, 226, 0.4);
+  transition: all 0.3s ease;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.sticky-get-started.visible {
+  transform: translateX(-50%) translateY(0);
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.sticky-get-started:hover {
+  background: rgba(138, 43, 226, 1);
+  transform: translateX(-50%) translateY(-2px);
+  box-shadow: 0 6px 30px rgba(138, 43, 226, 0.6);
+}
+
 /* Hero Section */
 .hero {
   min-height: 100vh;
