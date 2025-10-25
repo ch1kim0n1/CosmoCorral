@@ -1,0 +1,18 @@
+{
+  "id": "af7b70f2-6258-4bec-b65f-80ac36e360d0",
+  "timestamp": "2025-10-25T21:51:56.688050900Z",
+  "session_id": "0e4025d6-a878-4b41-a6d5-6f94a1cd16a8",
+  "flag_type": {
+    "type": "ProductivityAlert"
+  },
+  "severity": "Medium",
+  "title": "Low Focus Level",
+  "description": "Focus level at 0.28 is below threshold of 0.30",
+  "data_source": "focus_metrics",
+  "metrics": {
+    "context_switches": 15,
+    "focus_level": 0.2800000011920929,
+    "threshold": 0.30000001192092896
+  },
+  "confidence": 0.8
+}

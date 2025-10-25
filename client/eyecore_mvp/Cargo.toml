@@ -46,3 +46,14 @@ pnet = "0.34"
 
 # Machine learning / sentiment analysis (lightweight)
 rust-bert = { version = "0.21", optional = true }
+
+# Data persistence and file I/O
+tokio-util = "0.7"
+
+# ElevenLabs API integration
+reqwest = { version = "0.11", features = ["json", "stream"] }
+base64 = "0.21"
+
+# Audio processing
+hound = "3.4"
+dasp = "0.11"

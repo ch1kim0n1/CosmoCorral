@@ -1,0 +1,17 @@
+{
+  "id": "46ed6119-a6e2-45c4-970e-b98bb66cb059",
+  "timestamp": "2025-10-25T21:52:23.419230800Z",
+  "session_id": "0e4025d6-a878-4b41-a6d5-6f94a1cd16a8",
+  "flag_type": {
+    "type": "PerformanceIssue"
+  },
+  "severity": "High",
+  "title": "High Memory Usage",
+  "description": "Memory usage at 86.0% exceeds threshold of 85.0%",
+  "data_source": "system_metrics",
+  "metrics": {
+    "memory_usage": 86.00128936767578,
+    "threshold": 85.0
+  },
+  "confidence": 0.95
+}

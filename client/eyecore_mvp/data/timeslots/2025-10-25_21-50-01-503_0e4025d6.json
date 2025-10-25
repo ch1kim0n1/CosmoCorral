@@ -1,0 +1,135 @@
+{
+  "data": {
+    "camera_data": null,
+    "file_metadata": null,
+    "focus_metrics": {
+      "context_switches": 3,
+      "focus_level": 0.05999999865889549,
+      "productive_app_time": 186,
+      "timestamp": "2025-10-25T21:50:01.555982400Z"
+    },
+    "input_metrics": {
+      "idle_duration_seconds": 25,
+      "keyboard_events": 13,
+      "mouse_clicks": 5,
+      "timestamp": "2025-10-25T21:50:01.555982Z"
+    },
+    "keystroke_dynamics": null,
+    "mouse_dynamics": {
+      "acceleration_avg": 32.509071350097656,
+      "click_pattern_regularity": 0.9120925664901733,
+      "fatigue_indicator": 0.19832450151443481,
+      "focus_indicator": 0.6335444450378418,
+      "hesitation_count": 12,
+      "movement_speed_avg": 231.1072998046875,
+      "movement_speed_variance": 0.6212645769119263,
+      "path_smoothness": 0.7653118968009949,
+      "timestamp": "2025-10-25T21:50:01.555985500Z",
+      "total_distance_px": 700
+    },
+    "network_activity_metadata": {
+      "active_connections": 29,
+      "activity_context": "meeting",
+      "bandwidth_usage_mbps": 1.498518943786621,
+      "bytes_received": 874273,
+      "bytes_sent": 624246,
+      "connection_stability": 0.997936487197876,
+      "latency_avg_ms": 45.38059997558594,
+      "packet_loss_rate": 0.0006659626960754395,
+      "timestamp": "2025-10-25T21:50:01.555986Z",
+      "traffic_type": "video_conference"
+    },
+    "network_metrics": {
+      "active_connections": 29,
+      "bytes_received": 874273,
+      "bytes_sent": 624246,
+      "timestamp": "2025-10-25T21:50:01.555982300Z"
+    },
+    "process_data": {
+      "active_process": "HWND(592810)",
+      "active_window_title": "Windows PowerShell",
+      "process_count": 271,
+      "timestamp": "2025-10-25T21:50:01.555400900Z"
+    },
+    "screen_interactions": {
+      "click_count": 22,
+      "double_click_count": 1,
+      "interaction_speed": 102.56476593017578,
+      "mouse_travel_distance_px": 64619,
+      "right_click_count": 4,
+      "screen_region_heatmap": [
+        [
+          0,
+          0,
+          5
+        ],
+        [
+          2,
+          1,
+          8
+        ],
+        [
+          1,
+          1,
+          5
+        ],
+        [
+          2,
+          2,
+          5
+        ],
+        [
+          2,
+          0,
+          4
+        ]
+      ],
+      "scroll_events": 95,
+      "timestamp": "2025-10-25T21:50:01.555984Z",
+      "ui_element_types": [
+        "menu",
+        "textbox"
+      ],
+      "workflow_friction_score": 0.8518434762954712
+    },
+    "session_id": "0e4025d6-a878-4b41-a6d5-6f94a1cd16a8",
+    "system_events": {
+      "active_session_duration_seconds": 0,
+      "break_duration_seconds": 0,
+      "daily_rhythm_score": 0.5620669722557068,
+      "event_subtype": "dock",
+      "event_type": "sleep",
+      "session_end": null,
+      "session_start": null,
+      "timestamp": "2025-10-25T21:50:01.555984700Z"
+    },
+    "system_metrics": {
+      "cpu_usage": 16.22258949279785,
+      "disk_usage": 0.27681589126586914,
+      "memory_usage": 80.90141296386719,
+      "timestamp": "2025-10-25T21:50:01.525397Z"
+    },
+    "timestamp": "2025-10-25T21:50:01.503148600Z",
+    "voice_data": null
+  },
+  "metadata": {
+    "data_types_available": {
+      "camera_data": false,
+      "file_metadata": false,
+      "focus_metrics": true,
+      "input_metrics": true,
+      "keystroke_dynamics": false,
+      "mouse_dynamics": true,
+      "network_activity_metadata": true,
+      "network_metrics": true,
+      "process_data": true,
+      "screen_interactions": true,
+      "system_events": true,
+      "system_metrics": true,
+      "voice_data": false
+    },
+    "saved_at": "2025-10-25T21:50:01.556131100+00:00",
+    "session_id": "0e4025d6-a878-4b41-a6d5-6f94a1cd16a8",
+    "timestamp": "2025-10-25T21:50:01.503148600+00:00"
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "id": "3ccbf0ee-3603-4f36-8617-526f078c3bd9",
+  "timestamp": "2025-10-25T21:52:07.555720100Z",
+  "session_id": "0e4025d6-a878-4b41-a6d5-6f94a1cd16a8",
+  "flag_type": {
+    "type": "ProductivityAlert"
+  },
+  "severity": "Medium",
+  "title": "High Workflow Friction",
+  "description": "Workflow friction score of 0.77 indicates UI/UX issues",
+  "data_source": "screen_interactions",
+  "metrics": {
+    "click_count": 8,
+    "workflow_friction_score": 0.7674040198326111
+  },
+  "confidence": 0.7
+}

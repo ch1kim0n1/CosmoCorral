@@ -1,0 +1,17 @@
+{
+  "id": "bba33918-dbd0-4fc3-a8a6-f0bf556e1828",
+  "timestamp": "2025-10-25T21:52:01.775799200Z",
+  "session_id": "0e4025d6-a878-4b41-a6d5-6f94a1cd16a8",
+  "flag_type": {
+    "type": "BehaviorAnomaly"
+  },
+  "severity": "Low",
+  "title": "Erratic Mouse Movement",
+  "description": "Mouse movement patterns are irregular with many hesitations",
+  "data_source": "mouse_dynamics",
+  "metrics": {
+    "hesitation_count": 16,
+    "path_smoothness": 0.13660120964050293
+  },
+  "confidence": 0.65
+}

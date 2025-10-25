@@ -1,0 +1,18 @@
+{
+  "id": "ad6dc547-492d-4510-95aa-56aa4063b186",
+  "timestamp": "2025-10-25T21:51:29.969710300Z",
+  "session_id": "0e4025d6-a878-4b41-a6d5-6f94a1cd16a8",
+  "flag_type": {
+    "type": "HealthConcern"
+  },
+  "severity": "Medium",
+  "title": "Negative Emotional State",
+  "description": "Voice sentiment at -0.76 indicates negative emotional state",
+  "data_source": "voice_data",
+  "metrics": {
+    "emotion_detected": "stressed",
+    "sentiment_score": -0.7600486278533936,
+    "vocal_tone_score": 0.40911829471588135
+  },
+  "confidence": 0.75
+}

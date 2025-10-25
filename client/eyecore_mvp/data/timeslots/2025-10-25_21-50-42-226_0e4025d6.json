@@ -1,0 +1,146 @@
+{
+  "data": {
+    "camera_data": null,
+    "file_metadata": null,
+    "focus_metrics": {
+      "context_switches": 8,
+      "focus_level": 0.14000000059604645,
+      "productive_app_time": 352,
+      "timestamp": "2025-10-25T21:50:42.270056300Z"
+    },
+    "input_metrics": {
+      "idle_duration_seconds": 38,
+      "keyboard_events": 12,
+      "mouse_clicks": 3,
+      "timestamp": "2025-10-25T21:50:42.270056Z"
+    },
+    "keystroke_dynamics": null,
+    "mouse_dynamics": {
+      "acceleration_avg": 61.41865921020508,
+      "click_pattern_regularity": 0.21819674968719482,
+      "fatigue_indicator": 0.9532743692398071,
+      "focus_indicator": 0.719861626625061,
+      "hesitation_count": 8,
+      "movement_speed_avg": 415.4102783203125,
+      "movement_speed_variance": 0.31090593338012695,
+      "path_smoothness": 0.662304162979126,
+      "timestamp": "2025-10-25T21:50:42.270060200Z",
+      "total_distance_px": 1500
+    },
+    "network_activity_metadata": {
+      "active_connections": 41,
+      "activity_context": "meeting",
+      "bandwidth_usage_mbps": 2.0579259395599365,
+      "bytes_received": 2026981,
+      "bytes_sent": 30945,
+      "connection_stability": 0.9917421340942383,
+      "latency_avg_ms": 76.95576477050781,
+      "packet_loss_rate": 0.016979053616523743,
+      "timestamp": "2025-10-25T21:50:42.270060600Z",
+      "traffic_type": "gaming"
+    },
+    "network_metrics": {
+      "active_connections": 41,
+      "bytes_received": 2026981,
+      "bytes_sent": 30945,
+      "timestamp": "2025-10-25T21:50:42.270056200Z"
+    },
+    "process_data": {
+      "active_process": "HWND(592810)",
+      "active_window_title": "Windows PowerShell",
+      "process_count": 264,
+      "timestamp": "2025-10-25T21:50:42.269611700Z"
+    },
+    "screen_interactions": {
+      "click_count": 40,
+      "double_click_count": 2,
+      "interaction_speed": 67.81705474853516,
+      "mouse_travel_distance_px": 31165,
+      "right_click_count": 3,
+      "screen_region_heatmap": [
+        [
+          1,
+          2,
+          8
+        ],
+        [
+          2,
+          1,
+          8
+        ],
+        [
+          1,
+          2,
+          2
+        ],
+        [
+          0,
+          2,
+          6
+        ],
+        [
+          1,
+          0,
+          0
+        ]
+      ],
+      "scroll_events": 68,
+      "timestamp": "2025-10-25T21:50:42.270059Z",
+      "ui_element_types": [
+        "input",
+        "dropdown",
+        "textbox",
+        "menu"
+      ],
+      "workflow_friction_score": 0.9380658268928528
+    },
+    "session_id": "0e4025d6-a878-4b41-a6d5-6f94a1cd16a8",
+    "system_events": {
+      "active_session_duration_seconds": 0,
+      "break_duration_seconds": 0,
+      "daily_rhythm_score": 0.9180886149406433,
+      "event_subtype": "monitor",
+      "event_type": "peripheral_connect",
+      "session_end": null,
+      "session_start": null,
+      "timestamp": "2025-10-25T21:50:42.270059700Z"
+    },
+    "system_metrics": {
+      "cpu_usage": 32.8747444152832,
+      "disk_usage": 6.512176990509033,
+      "memory_usage": 76.3601303100586,
+      "timestamp": "2025-10-25T21:50:42.247342300Z"
+    },
+    "timestamp": "2025-10-25T21:50:42.226184800Z",
+    "voice_data": {
+      "emotion_detected": "neutral",
+      "enabled": true,
+      "sentiment_score": 0.7846994400024414,
+      "silence_duration_ms": 11723,
+      "speaking_duration_ms": 18711,
+      "timestamp": "2025-10-25T21:50:42.270057200Z",
+      "vocal_tone_score": 0.16226357221603394,
+      "volume_level": 0.40712404251098633
+    }
+  },
+  "metadata": {
+    "data_types_available": {
+      "camera_data": false,
+      "file_metadata": false,
+      "focus_metrics": true,
+      "input_metrics": true,
+      "keystroke_dynamics": false,
+      "mouse_dynamics": true,
+      "network_activity_metadata": true,
+      "network_metrics": true,
+      "process_data": true,
+      "screen_interactions": true,
+      "system_events": true,
+      "system_metrics": true,
+      "voice_data": true
+    },
+    "saved_at": "2025-10-25T21:50:42.270201600+00:00",
+    "session_id": "0e4025d6-a878-4b41-a6d5-6f94a1cd16a8",
+    "timestamp": "2025-10-25T21:50:42.226184800+00:00"
+  }
+}

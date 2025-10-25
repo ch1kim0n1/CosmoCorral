@@ -124,7 +124,7 @@ impl DataCollector {
     }
 
     fn collect_system_metrics(&self) -> SystemMetrics {
-        let sys = System::new_all();
+        let _sys = System::new_all();
         
         let cpu_usage = (rand::random::<f32>() * 100.0).min(100.0);
         let memory_usage = (rand::random::<f32>() * 100.0).min(100.0);

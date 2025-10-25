@@ -1,0 +1,17 @@
+{
+  "id": "a354e15e-69fe-4398-8c10-c26ba9a770d1",
+  "timestamp": "2025-10-25T21:51:14.074940800Z",
+  "session_id": "0e4025d6-a878-4b41-a6d5-6f94a1cd16a8",
+  "flag_type": {
+    "type": "PerformanceIssue"
+  },
+  "severity": "High",
+  "title": "High CPU Usage",
+  "description": "CPU usage at 95.0% exceeds threshold of 90.0%",
+  "data_source": "system_metrics",
+  "metrics": {
+    "cpu_usage": 94.96858978271484,
+    "threshold": 90.0
+  },
+  "confidence": 0.95
+}

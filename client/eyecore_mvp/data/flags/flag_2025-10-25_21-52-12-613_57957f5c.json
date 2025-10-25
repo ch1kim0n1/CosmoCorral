@@ -1,0 +1,18 @@
+{
+  "id": "57957f5c-50e3-4e3c-a6fa-16f2a1b133bb",
+  "timestamp": "2025-10-25T21:52:12.612929800Z",
+  "session_id": "0e4025d6-a878-4b41-a6d5-6f94a1cd16a8",
+  "flag_type": {
+    "type": "HealthConcern"
+  },
+  "severity": "Medium",
+  "title": "Mouse Movement Fatigue",
+  "description": "Mouse patterns indicate fatigue level of 0.96",
+  "data_source": "mouse_dynamics",
+  "metrics": {
+    "fatigue_indicator": 0.95746910572052,
+    "hesitation_count": 14,
+    "path_smoothness": 0.5322555899620056
+  },
+  "confidence": 0.7
+}

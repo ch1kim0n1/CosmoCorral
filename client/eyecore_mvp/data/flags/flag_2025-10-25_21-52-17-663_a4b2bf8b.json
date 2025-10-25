@@ -1,0 +1,17 @@
+{
+  "id": "a4b2bf8b-5ee1-4e91-ab5b-da3e867caa35",
+  "timestamp": "2025-10-25T21:52:17.662679800Z",
+  "session_id": "0e4025d6-a878-4b41-a6d5-6f94a1cd16a8",
+  "flag_type": {
+    "type": "HealthConcern"
+  },
+  "severity": "Medium",
+  "title": "Stress Detected in Voice",
+  "description": "Voice analysis detected emotion: stressed",
+  "data_source": "voice_data",
+  "metrics": {
+    "emotion_detected": "stressed",
+    "vocal_tone_score": 0.9150311350822449
+  },
+  "confidence": 0.8
+}
