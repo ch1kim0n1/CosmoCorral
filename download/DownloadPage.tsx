@@ -237,52 +237,58 @@ function DownloadPage() {
       </button>
       
       <div className="content">
-        <div className="download-container">
-          <div className="download-card">
-            <div className="card-header">
-              <div className="file-icon">
-                <svg width="80" height="80" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M13 2H6C5.46957 2 4.96086 2.21071 4.58579 2.58579C4.21071 2.96086 4 3.46957 4 4V20C4 20.5304 4.21071 21.0391 4.58579 21.4142C4.96086 21.7893 5.46957 22 6 22H18C18.5304 22 19.0391 21.7893 19.4142 21.4142C19.7893 21.0391 20 20.5304 20 20V9L13 2Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                  <path d="M13 2V9H20" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                </svg>
-              </div>
-              <h1 className="download-title">Your Download is Ready</h1>
-              <p className="download-subtitle">Click the button below to download your file</p>
+        <div className="download-hero">
+          <div className="version-badge">
+            <span>Version 3.1 • Latest Release</span>
+          </div>
+          
+          <h1 className="hero-title">CheaterBuster Pro</h1>
+          
+          <p className="hero-description">
+            Advanced educational monitoring solution for classrooms and institutions. Seamlessly monitor 
+            student devices, prevent academic dishonesty, and ensure focused learning environments 
+            with real-time oversight capabilities.
+          </p>
+          
+          <div className="feature-badges">
+            <div className="badge">
+              <svg className="badge-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M1 12S4 4 12 4S23 12 23 12S20 20 12 20S1 12 1 12Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                <circle cx="12" cy="12" r="3" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+              <span>Real-time Monitoring</span>
             </div>
             
-            <div className="file-info">
-              <div className="info-item">
-                <span className="info-label">File Name:</span>
-                <span className="info-value">download.zip</span>
-              </div>
-              <div className="info-item">
-                <span className="info-label">File Size:</span>
-                <span className="info-value">~1 KB</span>
-              </div>
-              <div className="info-item">
-                <span className="info-label">File Type:</span>
-                <span className="info-value">ZIP Archive</span>
-              </div>
-            </div>
-
-            <button className="download-button" onClick={handleDownload}>
-              <svg className="download-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M12 3V16M12 16L7 11M12 16L17 11" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                <path d="M3 17V19C3 20.1046 3.89543 21 5 21H19C20.1046 21 21 20.1046 21 19V17" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+            <div className="badge">
+              <svg className="badge-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                <path d="M9 12L11 14L15 10" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
               </svg>
-              <span>Download Now</span>
-            </button>
-
-            <div className="download-footer">
-              <p className="security-note">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                  <path d="M9 12L11 14L15 10" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                </svg>
-                Secure download • Virus-free
-              </p>
+              <span>Secure & Private</span>
+            </div>
+            
+            <div className="badge">
+              <svg className="badge-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="3" y="4" width="18" height="18" rx="2" ry="2" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                <line x1="16" y1="2" x2="16" y2="6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                <line x1="8" y1="2" x2="8" y2="6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                <line x1="3" y1="10" x2="21" y2="10" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+              <span>Classroom Ready</span>
             </div>
           </div>
+          
+          <button className="download-button" onClick={handleDownload}>
+            <svg className="download-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 3V16M12 16L7 11M12 16L17 11" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
+              <path d="M3 17V19C3 20.1046 3.89543 21 5 21H19C20.1046 21 21 20.1046 21 19V17" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"/>
+            </svg>
+            <span>Download Monitoring Suite</span>
+          </button>
+          
+          <p className="download-info">
+            Windows 10/11 • 125 MB • Educational License
+          </p>
         </div>
       </div>
     </div>
