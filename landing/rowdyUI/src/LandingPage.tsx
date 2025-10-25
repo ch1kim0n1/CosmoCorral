@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import './LandingPage.css';
+import horseyImg from '../assets/horsey.png';
 
 function LandingPage() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -61,14 +62,19 @@ function LandingPage() {
       });
     }
 
-    // Cowboys with horses
-    const cowboys: { x: number; y: number; vx: number; size: number }[] = [];
+    // Load horsey image
+    const horseyImage = new Image();
+    horseyImage.src = horseyImg;
+    
+    // Horses with varied sizes and positions
+    const horses: { x: number; y: number; vx: number; size: number; opacity: number }[] = [];
     for (let i = 0; i < 5; i++) {
-      cowboys.push({
+      horses.push({
         x: Math.random() * canvas.width,
-        y: canvas.height - 150 - Math.random() * 100,
-        vx: Math.random() * 0.3 + 0.1,
-        size: 40 + Math.random() * 20,
+        y: canvas.height - 100 - Math.random() * 80,
+        vx: Math.random() * 0.4 + 0.2,
+        size: 60 + Math.random() * 40,
+        opacity: isDarkTheme ? 0.85 : 0.75,
       });
     }
 
@@ -202,207 +208,35 @@ function LandingPage() {
         });
       }
 
-      // Draw enhanced cowboys and horses
-      cowboys.forEach((cowboy) => {
-        const x = cowboy.x;
-        const y = cowboy.y;
-        const s = cowboy.size;
-        
-        const horseBody = isDarkTheme ? 'rgba(110, 75, 50, 0.95)' : 'rgba(90, 60, 40, 0.8)';
-        const horseDark = isDarkTheme ? 'rgba(80, 50, 30, 0.95)' : 'rgba(70, 45, 25, 0.8)';
-        const cowboyShirt = isDarkTheme ? 'rgba(60, 45, 30, 0.95)' : 'rgba(80, 60, 40, 0.8)';
-        const cowboyPants = isDarkTheme ? 'rgba(40, 50, 70, 0.95)' : 'rgba(50, 60, 80, 0.8)';
-        const hatColor = isDarkTheme ? 'rgba(90, 60, 30, 0.95)' : 'rgba(110, 80, 50, 0.8)';
-        const skinTone = isDarkTheme ? 'rgba(210, 180, 140, 0.95)' : 'rgba(230, 200, 160, 0.8)';
-        
-        // Save context for shadows
-        ctx.save();
-        
-        // Horse back legs
-        ctx.fillStyle = horseDark;
-        ctx.beginPath();
-        ctx.ellipse(x + s * 0.35, y + s * 1.0, s * 0.08, s * 0.25, 0, 0, Math.PI * 2);
-        ctx.fill();
-        ctx.beginPath();
-        ctx.ellipse(x + s * 1.05, y + s * 1.0, s * 0.08, s * 0.25, 0, 0, Math.PI * 2);
-        ctx.fill();
-        
-        // Horse body with gradient
-        const bodyGradient = ctx.createRadialGradient(x + s * 0.7, y + s * 0.65, 0, x + s * 0.7, y + s * 0.75, s * 0.6);
-        bodyGradient.addColorStop(0, horseBody);
-        bodyGradient.addColorStop(1, horseDark);
-        ctx.fillStyle = bodyGradient;
-        ctx.beginPath();
-        ctx.ellipse(x + s * 0.7, y + s * 0.75, s * 0.65, s * 0.4, 0, 0, Math.PI * 2);
-        ctx.fill();
-        
-        // Horse front legs
-        ctx.fillStyle = horseBody;
-        ctx.beginPath();
-        ctx.ellipse(x + s * 0.55, y + s * 1.0, s * 0.08, s * 0.25, 0, 0, Math.PI * 2);
-        ctx.fill();
-        ctx.beginPath();
-        ctx.ellipse(x + s * 1.25, y + s * 1.0, s * 0.08, s * 0.25, 0, 0, Math.PI * 2);
-        ctx.fill();
-        
-        // Horse hooves
-        ctx.fillStyle = horseDark;
-        [0.35, 0.55, 1.05, 1.25].forEach(offset => {
-          ctx.fillRect(x + s * offset - s * 0.04, y + s * 1.22, s * 0.08, s * 0.06);
-        });
-        
-        // Horse neck with curve
-        ctx.fillStyle = horseBody;
-        ctx.beginPath();
-        ctx.moveTo(x + s * 1.1, y + s * 0.6);
-        ctx.quadraticCurveTo(x + s * 1.35, y + s * 0.25, x + s * 1.5, y + s * 0.4);
-        ctx.quadraticCurveTo(x + s * 1.45, y + s * 0.6, x + s * 1.25, y + s * 0.75);
-        ctx.closePath();
-        ctx.fill();
-        
-        // Horse head with detail
-        const headGradient = ctx.createRadialGradient(x + s * 1.58, y + s * 0.45, 0, x + s * 1.58, y + s * 0.45, s * 0.25);
-        headGradient.addColorStop(0, horseBody);
-        headGradient.addColorStop(1, horseDark);
-        ctx.fillStyle = headGradient;
-        ctx.beginPath();
-        ctx.ellipse(x + s * 1.58, y + s * 0.45, s * 0.18, s * 0.22, 0.2, 0, Math.PI * 2);
-        ctx.fill();
-        
-        // Horse muzzle
-        ctx.fillStyle = horseDark;
-        ctx.beginPath();
-        ctx.ellipse(x + s * 1.7, y + s * 0.52, s * 0.08, s * 0.1, 0.3, 0, Math.PI * 2);
-        ctx.fill();
-        
-        // Horse eye
-        ctx.fillStyle = 'rgba(255, 255, 255, 0.8)';
-        ctx.beginPath();
-        ctx.arc(x + s * 1.55, y + s * 0.38, s * 0.03, 0, Math.PI * 2);
-        ctx.fill();
-        ctx.fillStyle = 'rgba(0, 0, 0, 0.9)';
-        ctx.beginPath();
-        ctx.arc(x + s * 1.56, y + s * 0.38, s * 0.02, 0, Math.PI * 2);
-        ctx.fill();
-        
-        // Horse ears
-        ctx.fillStyle = horseBody;
-        ctx.beginPath();
-        ctx.moveTo(x + s * 1.5, y + s * 0.28);
-        ctx.lineTo(x + s * 1.55, y + s * 0.22);
-        ctx.lineTo(x + s * 1.58, y + s * 0.28);
-        ctx.closePath();
-        ctx.fill();
-        ctx.beginPath();
-        ctx.moveTo(x + s * 1.58, y + s * 0.3);
-        ctx.lineTo(x + s * 1.62, y + s * 0.25);
-        ctx.lineTo(x + s * 1.64, y + s * 0.32);
-        ctx.closePath();
-        ctx.fill();
-        
-        // Horse mane
-        ctx.strokeStyle = horseDark;
-        ctx.lineWidth = s * 0.04;
-        for (let i = 0; i < 5; i++) {
-          ctx.beginPath();
-          ctx.moveTo(x + s * (1.15 + i * 0.08), y + s * 0.35);
-          ctx.quadraticCurveTo(
-            x + s * (1.13 + i * 0.08), y + s * 0.5,
-            x + s * (1.15 + i * 0.08), y + s * 0.6
+      // Draw horses using the image
+      horses.forEach((horse) => {
+        if (horseyImage.complete) {
+          ctx.save();
+          ctx.globalAlpha = horse.opacity;
+          
+          // Add subtle shadow for depth
+          ctx.shadowColor = 'rgba(0, 0, 0, 0.3)';
+          ctx.shadowBlur = 10;
+          ctx.shadowOffsetX = 5;
+          ctx.shadowOffsetY = 5;
+          
+          // Draw the horse image
+          ctx.drawImage(
+            horseyImage,
+            horse.x,
+            horse.y,
+            horse.size,
+            horse.size * (horseyImage.height / horseyImage.width)
           );
-          ctx.stroke();
+          
+          ctx.restore();
         }
-        
-        // Horse tail with flow
-        ctx.strokeStyle = horseDark;
-        ctx.lineWidth = s * 0.06;
-        ctx.beginPath();
-        ctx.moveTo(x + s * 0.08, y + s * 0.7);
-        ctx.quadraticCurveTo(x - s * 0.05, y + s * 0.85, x + s * 0.05, y + s * 1.05);
-        ctx.stroke();
-        ctx.lineWidth = s * 0.04;
-        ctx.beginPath();
-        ctx.moveTo(x + s * 0.1, y + s * 0.72);
-        ctx.quadraticCurveTo(x - s * 0.02, y + s * 0.9, x + s * 0.08, y + s * 1.1);
-        ctx.stroke();
-        ctx.lineWidth = 1;
-        
-        // Saddle
-        ctx.fillStyle = horseDark;
-        ctx.beginPath();
-        ctx.ellipse(x + s * 0.7, y + s * 0.65, s * 0.25, s * 0.15, 0, 0, Math.PI * 2);
-        ctx.fill();
-        
-        // Cowboy legs with boots
-        ctx.fillStyle = cowboyPants;
-        ctx.fillRect(x + s * 0.6, y + s * 0.7, s * 0.15, s * 0.35);
-        ctx.fillRect(x + s * 0.8, y + s * 0.7, s * 0.15, s * 0.35);
-        
-        // Boots
-        ctx.fillStyle = hatColor;
-        ctx.fillRect(x + s * 0.58, y + s * 1.0, s * 0.18, s * 0.12);
-        ctx.fillRect(x + s * 0.78, y + s * 1.0, s * 0.18, s * 0.12);
-        
-        // Cowboy torso
-        ctx.fillStyle = cowboyShirt;
-        ctx.fillRect(x + s * 0.62, y + s * 0.35, s * 0.3, s * 0.38);
-        
-        // Vest detail
-        ctx.fillStyle = horseDark;
-        ctx.fillRect(x + s * 0.65, y + s * 0.38, s * 0.1, s * 0.3);
-        ctx.fillRect(x + s * 0.79, y + s * 0.38, s * 0.1, s * 0.3);
-        
-        // Cowboy arm (extended forward)
-        ctx.fillStyle = cowboyShirt;
-        ctx.beginPath();
-        ctx.ellipse(x + s * 1.05, y + s * 0.45, s * 0.08, s * 0.25, 0.3, 0, Math.PI * 2);
-        ctx.fill();
-        
-        // Hand holding reins
-        ctx.fillStyle = skinTone;
-        ctx.beginPath();
-        ctx.arc(x + s * 1.15, y + s * 0.55, s * 0.06, 0, Math.PI * 2);
-        ctx.fill();
-        
-        // Reins
-        ctx.strokeStyle = horseDark;
-        ctx.lineWidth = s * 0.02;
-        ctx.beginPath();
-        ctx.moveTo(x + s * 1.15, y + s * 0.55);
-        ctx.quadraticCurveTo(x + s * 1.35, y + s * 0.48, x + s * 1.5, y + s * 0.5);
-        ctx.stroke();
-        ctx.lineWidth = 1;
-        
-        // Cowboy head
-        ctx.fillStyle = skinTone;
-        ctx.beginPath();
-        ctx.arc(x + s * 0.77, y + s * 0.25, s * 0.13, 0, Math.PI * 2);
-        ctx.fill();
-        
-        // Cowboy hat
-        ctx.fillStyle = hatColor;
-        // Crown
-        ctx.beginPath();
-        ctx.ellipse(x + s * 0.77, y + s * 0.14, s * 0.11, s * 0.12, 0, 0, Math.PI * 2);
-        ctx.fill();
-        // Brim
-        ctx.beginPath();
-        ctx.ellipse(x + s * 0.77, y + s * 0.22, s * 0.22, s * 0.08, 0, 0, Math.PI * 2);
-        ctx.fill();
-        
-        // Hat shadow
-        ctx.fillStyle = 'rgba(0, 0, 0, 0.3)';
-        ctx.beginPath();
-        ctx.ellipse(x + s * 0.77, y + s * 0.22, s * 0.2, s * 0.06, 0, 0, Math.PI);
-        ctx.fill();
-        
-        ctx.restore();
 
-        cowboy.x += cowboy.vx;
+        horse.x += horse.vx;
 
-        if (cowboy.x > canvas.width) {
-          cowboy.x = -cowboy.size * 2;
-          cowboy.y = canvas.height - 150 - Math.random() * 100;
+        if (horse.x > canvas.width) {
+          horse.x = -horse.size;
+          horse.y = canvas.height - 100 - Math.random() * 80;
         }
       });
 
