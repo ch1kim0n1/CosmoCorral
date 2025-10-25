@@ -18,78 +18,55 @@ impl VoiceCollector {
         }
     }
 
-    /// Collect audio from microphone (Windows-specific using CPAL)
+    /// Generate test audio WAV files
     pub async fn collect_audio_chunk(&self, duration_ms: u64) -> Result<Vec<u8>, String> {
-        debug!("Starting audio collection for {} ms", duration_ms);
+        debug!("Generating audio for {} ms", duration_ms);
         
-        // Initialize CPAL audio recording
-        let host = cpal::default_host();
-        let device = host
-            .default_input_device()
-            .ok_or("Failed to get input device")?;
-
-        let config = device.default_input_config()
-            .map_err(|e| format!("Failed to get input config: {}", e))?;
-        debug!("Audio config: {:?}", config);
-
-        let channels = config.channels() as usize;
-        let sample_rate = config.sample_rate().0 as usize;
-        let expected_samples = (sample_rate * channels * duration_ms as usize) / 1000;
-
-        let ring_buffer = Arc::new(Mutex::new(Vec::with_capacity(expected_samples)));
-        let ring_buffer_clone = Arc::clone(&ring_buffer);
-
-        // Create audio stream in a scope to ensure it's dropped before await
-        {
-            let stream = match config.sample_format() {
-                cpal::SampleFormat::F32 => {
-                    device.build_input_stream(
-                        &config.into(),
-                        move |_data: &[f32], _: &cpal::InputCallbackInfo| {
-                            let _buf = ring_buffer_clone.blocking_lock();
-                            // In real implementation, would accumulate f32 samples
-                            // For MVP, we'll simulate with placeholder
-                        },
-                        err_fn,
-                        None,
-                    ).map_err(|e| format!("Failed to build input stream: {}", e))?
-                }
-                cpal::SampleFormat::I16 => {
-                    device.build_input_stream(
-                        &config.into(),
-                        move |_data: &[i16], _: &cpal::InputCallbackInfo| {
-                            // Accumulate i16 samples
-                        },
-                        err_fn,
-                        None,
-                    ).map_err(|e| format!("Failed to build input stream: {}", e))?
-                }
-                cpal::SampleFormat::U16 => {
-                    device.build_input_stream(
-                        &config.into(),
-                        move |_data: &[u16], _: &cpal::InputCallbackInfo| {
-                            // Accumulate u16 samples
-                        },
-                        err_fn,
-                        None,
-                    ).map_err(|e| format!("Failed to build input stream: {}", e))?
-                }
-                _ => {
-                    return Err("Unsupported sample format".to_string());
-                }
-            };
-
-            stream.play().map_err(|e| format!("Failed to play stream: {}", e))?;
-            // Stream dropped here when scope ends
+        // Generate synthetic WAV audio for testing
+        let sample_rate = 16000; // 16kHz
+        let channels = 1; // Mono
+        let num_samples = (sample_rate as u64 * duration_ms) / 1000;
+        
+        // Generate PCM samples (sine wave as test data)
+        let mut samples: Vec<i16> = Vec::new();
+        for i in 0..num_samples {
+            let t = i as f32 / sample_rate as f32;
+            let frequency = 440.0; // 440 Hz tone
+            let sample = ((t * frequency * 2.0 * std::f32::consts::PI).sin() * 0.3 * i16::MAX as f32) as i16;
+            samples.push(sample);
         }
         
-        tokio::time::sleep(tokio::time::Duration::from_millis(duration_ms)).await;
-
-        let audio_data = ring_buffer.lock().await;
-        info!("✓ Collected {} bytes of audio", audio_data.len());
+        // Encode to WAV format
+        let mut wav_data = Vec::new();
         
-        // Return as WAV or raw bytes (simplified for MVP)
-        Ok(audio_data.clone())
+        // WAV header
+        wav_data.extend_from_slice(b"RIFF");
+        let file_size = 36 + samples.len() * 2;
+        wav_data.extend_from_slice(&(file_size as u32).to_le_bytes());
+        wav_data.extend_from_slice(b"WAVE");
+        
+        // fmt subchunk
+        wav_data.extend_from_slice(b"fmt ");
+        wav_data.extend_from_slice(&16u32.to_le_bytes()); // Subchunk1Size
+        wav_data.extend_from_slice(&1u16.to_le_bytes());   // AudioFormat
+        wav_data.extend_from_slice(&(channels as u16).to_le_bytes());
+        wav_data.extend_from_slice(&(sample_rate as u32).to_le_bytes());
+        let byte_rate = sample_rate * channels * 2;
+        wav_data.extend_from_slice(&(byte_rate as u32).to_le_bytes());
+        wav_data.extend_from_slice(&(channels as u16 * 2).to_le_bytes());
+        wav_data.extend_from_slice(&16u16.to_le_bytes());
+        
+        // data subchunk
+        wav_data.extend_from_slice(b"data");
+        wav_data.extend_from_slice(&(samples.len() * 2).to_le_bytes());
+        
+        // PCM samples
+        for sample in samples {
+            wav_data.extend_from_slice(&sample.to_le_bytes());
+        }
+        
+        info!("✓ Generated {} bytes of WAV audio data", wav_data.len());
+        Ok(wav_data)
     }
 
     /// Send audio to ElevenLabs for transcription and analysis

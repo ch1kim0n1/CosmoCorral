@@ -14,6 +14,56 @@ use std::sync::Arc;
 use tokio::sync::{RwLock, mpsc};
 use log::info;
 use std::path::PathBuf;
+use models::EyeCoreData;
+use serde_json::json;
+
+/// Detect system anomalies from collected data
+fn detect_system_anomalies(data: &EyeCoreData) -> Vec<serde_json::Value> {
+    let mut anomalies = Vec::new();
+    
+    // Check system metrics
+    if data.system_metrics.cpu_usage > 90.0 {
+        anomalies.push(json!({
+            "type": "high_cpu",
+            "value": data.system_metrics.cpu_usage,
+            "threshold": 90.0,
+            "timestamp": data.system_metrics.timestamp
+        }));
+    }
+    
+    if data.system_metrics.memory_usage > 85.0 {
+        anomalies.push(json!({
+            "type": "high_memory",
+            "value": data.system_metrics.memory_usage,
+            "threshold": 85.0,
+            "timestamp": data.system_metrics.timestamp
+        }));
+    }
+    
+    // Check focus metrics
+    if data.focus_metrics.focus_level < 0.3 {
+        anomalies.push(json!({
+            "type": "low_focus",
+            "value": data.focus_metrics.focus_level,
+            "threshold": 0.3,
+            "timestamp": data.focus_metrics.timestamp
+        }));
+    }
+    
+    // Check voice anomalies
+    if let Some(voice) = &data.voice_data {
+        if voice.sentiment_score < -0.5 {
+            anomalies.push(json!({
+                "type": "negative_emotion",
+                "sentiment": voice.sentiment_score,
+                "emotion": voice.emotion_detected,
+                "timestamp": voice.timestamp
+            }));
+        }
+    }
+    
+    anomalies
+}
 
 #[tokio::main]
 async fn main() {
@@ -42,6 +92,19 @@ async fn main() {
             if let Some(data) = collector_clone.read().await.get_latest_data() {
                 if let Err(e) = storage_clone.save_data_snapshot(&data).await {
                     log::error!("Failed to save data snapshot: {}", e);
+                }
+                
+                // Save session log with metadata
+                if let Err(e) = storage_clone.save_session_log(&data).await {
+                    log::error!("Failed to save session log: {}", e);
+                }
+                
+                // Run anomaly detection on collected metrics
+                let anomalies = detect_system_anomalies(&data);
+                if !anomalies.is_empty() {
+                    if let Err(e) = storage_clone.save_anomalies(&data.session_id, &anomalies).await {
+                        log::error!("Failed to save anomalies: {}", e);
+                    }
                 }
             }
             

@@ -200,4 +200,51 @@ impl DataStorage {
 
         Ok(files)
     }
+    
+    /// Save session log with metadata
+    pub async fn save_session_log(&self, data: &EyeCoreData) -> std::io::Result<PathBuf> {
+        let timestamp = data.timestamp.format("%Y-%m-%d_%H-%M-%S");
+        let filename = format!("session_{}_{}.json", timestamp, &data.session_id[0..8]);
+        let filepath = self.data_dir.join("session_logs").join(&filename);
+        
+        let session_log = json!({
+            "session_id": data.session_id,
+            "timestamp": data.timestamp.to_rfc3339(),
+            "active_process": data.process_data.active_process,
+            "active_window_title": data.process_data.active_window_title,
+            "cpu_usage": data.system_metrics.cpu_usage,
+            "memory_usage": data.system_metrics.memory_usage,
+            "focus_level": data.focus_metrics.focus_level,
+            "voice_enabled": data.voice_data.as_ref().map(|v| v.enabled).unwrap_or(false),
+            "recording_started_at": Utc::now().to_rfc3339(),
+        });
+        
+        let json_str = to_string_pretty(&session_log)?;
+        fs::write(&filepath, json_str).await?;
+        info!("✓ Session log saved: {}", filename);
+        Ok(filepath)
+    }
+    
+    /// Save detected anomalies
+    pub async fn save_anomalies(
+        &self,
+        session_id: &str,
+        anomalies: &[serde_json::Value],
+    ) -> std::io::Result<PathBuf> {
+        let timestamp = Utc::now().format("%Y-%m-%d_%H-%M-%S-%3f");
+        let filename = format!("anomalies_{}_{}.json", timestamp, &session_id[0..8]);
+        let filepath = self.data_dir.join("anomalies").join(&filename);
+        
+        let anomaly_data = json!({
+            "session_id": session_id,
+            "timestamp": Utc::now().to_rfc3339(),
+            "anomaly_count": anomalies.len(),
+            "anomalies": anomalies,
+        });
+        
+        let json_str = to_string_pretty(&anomaly_data)?;
+        fs::write(&filepath, json_str).await?;
+        info!("🚨 {} anomalies detected and saved", anomalies.len());
+        Ok(filepath)
+    }
 }
