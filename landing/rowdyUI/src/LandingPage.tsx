@@ -5,6 +5,7 @@ function LandingPage() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [isDarkTheme, setIsDarkTheme] = useState(true);
   const [showStickyButton, setShowStickyButton] = useState(false);
+  const [showLogo, setShowLogo] = useState(true);
   const heroButtonRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
@@ -17,40 +18,46 @@ function LandingPage() {
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
 
-    // Mountain peaks for light theme
-    const mountains: { peaks: { x: number; y: number }[]; color: string; offset: number; speed: number }[] = [];
+    // Mountain peaks for light theme with more detail
+    const mountains: { peaks: { x: number; y: number }[]; baseColor: string; shadowColor: string; offset: number; speed: number }[] = [];
     
-    // Create 3 mountain layers
-    for (let layer = 0; layer < 3; layer++) {
+    // Create 4 mountain layers for more depth
+    for (let layer = 0; layer < 4; layer++) {
       const peaks: { x: number; y: number }[] = [];
-      const peakCount = 8 + layer * 2;
-      const baseHeight = canvas.height * (0.5 + layer * 0.15);
+      const peakCount = 6 + layer * 3;
+      const baseHeight = canvas.height * (0.4 + layer * 0.15);
       
-      for (let i = 0; i < peakCount; i++) {
+      for (let i = 0; i <= peakCount; i++) {
+        const variance = Math.random() * 120 - 60;
         peaks.push({
           x: (canvas.width / peakCount) * i,
-          y: baseHeight - Math.random() * 150 - layer * 50,
+          y: baseHeight - Math.random() * 180 - layer * 40 + variance,
         });
       }
       
-      const lightness = 75 + layer * 8;
+      const hue = 200 + layer * 5;
+      const saturation = 35 - layer * 5;
+      const lightness = 65 + layer * 10;
       mountains.push({
         peaks,
-        color: `hsl(200, 30%, ${lightness}%)`,
+        baseColor: `hsla(${hue}, ${saturation}%, ${lightness}%, 0.85)`,
+        shadowColor: `hsla(${hue}, ${saturation + 10}%, ${lightness - 15}%, 0.6)`,
         offset: 0,
-        speed: 0.05 + layer * 0.02,
+        speed: 0.03 + layer * 0.015,
       });
     }
 
-    // Stars
-    const stars: { x: number; y: number; radius: number; vx: number; vy: number }[] = [];
-    for (let i = 0; i < 200; i++) {
+    // Stars with varied sizes and brightness
+    const stars: { x: number; y: number; radius: number; vx: number; vy: number; brightness: number; twinkle: number }[] = [];
+    for (let i = 0; i < 300; i++) {
       stars.push({
         x: Math.random() * canvas.width,
         y: Math.random() * canvas.height,
-        radius: Math.random() * 2,
-        vx: Math.random() * 0.5 - 0.25,
-        vy: Math.random() * 0.5 - 0.25,
+        radius: Math.random() * 2.5 + 0.5,
+        vx: Math.random() * 0.3 - 0.15,
+        vy: Math.random() * 0.3 - 0.15,
+        brightness: Math.random(),
+        twinkle: Math.random() * Math.PI * 2,
       });
     }
 
@@ -72,16 +79,42 @@ function LandingPage() {
 
       // Always clear first, then draw appropriate background
       if (isDarkTheme) {
-        ctx.fillStyle = 'rgba(10, 10, 30, 0.3)';
+        // Dark theme: Deep space gradient
+        const gradient = ctx.createLinearGradient(0, 0, 0, canvas.height);
+        gradient.addColorStop(0, 'rgba(5, 5, 20, 0.4)');
+        gradient.addColorStop(0.5, 'rgba(15, 10, 30, 0.3)');
+        gradient.addColorStop(1, 'rgba(25, 15, 40, 0.2)');
+        ctx.fillStyle = gradient;
         ctx.fillRect(0, 0, canvas.width, canvas.height);
       } else {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        // Light theme: Sky gradient
+        const gradient = ctx.createLinearGradient(0, 0, 0, canvas.height);
+        gradient.addColorStop(0, 'rgba(180, 210, 240, 0.3)');
+        gradient.addColorStop(0.5, 'rgba(200, 220, 245, 0.2)');
+        gradient.addColorStop(1, 'rgba(220, 235, 250, 0.1)');
+        ctx.fillStyle = gradient;
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
       }
 
       if (isDarkTheme) {
-        // Draw stars
+        // Draw stars with twinkling effect
         stars.forEach((star) => {
-          ctx.fillStyle = 'white';
+          star.twinkle += 0.02;
+          const twinkleAlpha = 0.5 + Math.sin(star.twinkle) * 0.5;
+          const brightness = star.brightness * twinkleAlpha;
+          
+          // Star glow
+          const gradient = ctx.createRadialGradient(star.x, star.y, 0, star.x, star.y, star.radius * 3);
+          gradient.addColorStop(0, `rgba(255, 255, 255, ${brightness})`);
+          gradient.addColorStop(0.3, `rgba(200, 220, 255, ${brightness * 0.5})`);
+          gradient.addColorStop(1, 'rgba(138, 43, 226, 0)');
+          ctx.fillStyle = gradient;
+          ctx.beginPath();
+          ctx.arc(star.x, star.y, star.radius * 3, 0, Math.PI * 2);
+          ctx.fill();
+          
+          // Star core
+          ctx.fillStyle = `rgba(255, 255, 255, ${brightness})`;
           ctx.beginPath();
           ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
           ctx.fill();
@@ -95,41 +128,71 @@ function LandingPage() {
           if (star.y > canvas.height) star.y = 0;
         });
       } else {
-        // Draw mountains
-        mountains.forEach((mountain) => {
+        // Draw mountains with enhanced details
+        mountains.forEach((mountain, mountainIndex) => {
+          // Main mountain body
           ctx.beginPath();
-          ctx.moveTo(0, canvas.height);
+          ctx.moveTo(-50, canvas.height);
           
-          // Draw mountain range
-          for (let i = 0; i < mountain.peaks.length; i++) {
+          // Draw smooth mountain range using curves
+          for (let i = 0; i < mountain.peaks.length - 1; i++) {
             const peak = mountain.peaks[i];
-            const nextPeak = mountain.peaks[i + 1] || { x: canvas.width, y: canvas.height };
+            const nextPeak = mountain.peaks[i + 1];
             
-            // Peak point
-            ctx.lineTo(peak.x + mountain.offset, peak.y);
+            const x = peak.x + mountain.offset;
+            const nextX = nextPeak.x + mountain.offset;
+            const midX = (x + nextX) / 2;
+            const midY = (peak.y + nextPeak.y) / 2 + 30;
             
-            // Valley between peaks
-            const midX = (peak.x + nextPeak.x) / 2 + mountain.offset;
-            const midY = Math.max(peak.y, nextPeak.y) + 50;
-            ctx.lineTo(midX, midY);
+            ctx.lineTo(x, peak.y);
+            ctx.quadraticCurveTo(midX, midY, nextX, nextPeak.y);
           }
           
-          ctx.lineTo(canvas.width, canvas.height);
+          ctx.lineTo(canvas.width + 50, canvas.height);
           ctx.closePath();
           
-          ctx.fillStyle = mountain.color;
+          // Mountain gradient fill
+          const gradient = ctx.createLinearGradient(0, canvas.height * 0.3, 0, canvas.height);
+          gradient.addColorStop(0, mountain.baseColor);
+          gradient.addColorStop(1, mountain.shadowColor);
+          ctx.fillStyle = gradient;
           ctx.fill();
           
-          // Add snow caps to peaks
-          mountain.peaks.forEach((peak) => {
-            ctx.beginPath();
-            ctx.moveTo(peak.x + mountain.offset - 20, peak.y + 30);
-            ctx.lineTo(peak.x + mountain.offset, peak.y);
-            ctx.lineTo(peak.x + mountain.offset + 20, peak.y + 30);
-            ctx.closePath();
-            ctx.fillStyle = 'rgba(255, 255, 255, 0.9)';
-            ctx.fill();
+          // Add shading on the right side of peaks
+          mountain.peaks.forEach((peak, i) => {
+            if (i < mountain.peaks.length - 1) {
+              const x = peak.x + mountain.offset;
+              ctx.beginPath();
+              ctx.moveTo(x, peak.y);
+              ctx.lineTo(x + 40, peak.y + 60);
+              ctx.lineTo(x, peak.y + 60);
+              ctx.closePath();
+              ctx.fillStyle = mountain.shadowColor;
+              ctx.fill();
+            }
           });
+          
+          // Add snow caps to peaks (only on front mountains)
+          if (mountainIndex < 2) {
+            mountain.peaks.forEach((peak, i) => {
+              if (i % 2 === 0 && peak.y < canvas.height * 0.6) {
+                const x = peak.x + mountain.offset;
+                
+                // Snow gradient
+                const snowGradient = ctx.createLinearGradient(x, peak.y, x, peak.y + 40);
+                snowGradient.addColorStop(0, 'rgba(255, 255, 255, 0.95)');
+                snowGradient.addColorStop(1, 'rgba(240, 248, 255, 0.7)');
+                
+                ctx.beginPath();
+                ctx.moveTo(x - 25, peak.y + 35);
+                ctx.lineTo(x, peak.y);
+                ctx.lineTo(x + 25, peak.y + 35);
+                ctx.closePath();
+                ctx.fillStyle = snowGradient;
+                ctx.fill();
+              }
+            });
+          }
           
           // Parallax effect
           mountain.offset -= mountain.speed;
@@ -139,87 +202,201 @@ function LandingPage() {
         });
       }
 
-      // Draw cowboys (for both themes, but different colors)
+      // Draw enhanced cowboys and horses
       cowboys.forEach((cowboy) => {
         const x = cowboy.x;
         const y = cowboy.y;
         const s = cowboy.size;
         
-        const horseColor = isDarkTheme ? 'rgba(90, 60, 40, 0.9)' : 'rgba(70, 50, 30, 0.7)';
-        const cowboyColor = isDarkTheme ? 'rgba(40, 30, 20, 0.9)' : 'rgba(50, 40, 30, 0.7)';
-        const hatColor = isDarkTheme ? 'rgba(60, 40, 20, 0.9)' : 'rgba(80, 60, 40, 0.7)';
+        const horseBody = isDarkTheme ? 'rgba(110, 75, 50, 0.95)' : 'rgba(90, 60, 40, 0.8)';
+        const horseDark = isDarkTheme ? 'rgba(80, 50, 30, 0.95)' : 'rgba(70, 45, 25, 0.8)';
+        const cowboyShirt = isDarkTheme ? 'rgba(60, 45, 30, 0.95)' : 'rgba(80, 60, 40, 0.8)';
+        const cowboyPants = isDarkTheme ? 'rgba(40, 50, 70, 0.95)' : 'rgba(50, 60, 80, 0.8)';
+        const hatColor = isDarkTheme ? 'rgba(90, 60, 30, 0.95)' : 'rgba(110, 80, 50, 0.8)';
+        const skinTone = isDarkTheme ? 'rgba(210, 180, 140, 0.95)' : 'rgba(230, 200, 160, 0.8)';
         
-        // Horse legs (back)
-        ctx.fillStyle = horseColor;
-        ctx.fillRect(x + s * 0.3, y + s * 0.9, s * 0.12, s * 0.4);
-        ctx.fillRect(x + s * 1.1, y + s * 0.9, s * 0.12, s * 0.4);
+        // Save context for shadows
+        ctx.save();
         
-        // Horse body (rounded)
+        // Horse back legs
+        ctx.fillStyle = horseDark;
         ctx.beginPath();
-        ctx.ellipse(x + s * 0.75, y + s * 0.75, s * 0.6, s * 0.35, 0, 0, Math.PI * 2);
+        ctx.ellipse(x + s * 0.35, y + s * 1.0, s * 0.08, s * 0.25, 0, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.beginPath();
+        ctx.ellipse(x + s * 1.05, y + s * 1.0, s * 0.08, s * 0.25, 0, 0, Math.PI * 2);
         ctx.fill();
         
-        // Horse legs (front)
-        ctx.fillRect(x + s * 0.5, y + s * 0.9, s * 0.12, s * 0.4);
-        ctx.fillRect(x + s * 1.3, y + s * 0.9, s * 0.12, s * 0.4);
-        
-        // Horse neck
+        // Horse body with gradient
+        const bodyGradient = ctx.createRadialGradient(x + s * 0.7, y + s * 0.65, 0, x + s * 0.7, y + s * 0.75, s * 0.6);
+        bodyGradient.addColorStop(0, horseBody);
+        bodyGradient.addColorStop(1, horseDark);
+        ctx.fillStyle = bodyGradient;
         ctx.beginPath();
-        ctx.moveTo(x + s * 1.2, y + s * 0.6);
-        ctx.lineTo(x + s * 1.5, y + s * 0.35);
-        ctx.lineTo(x + s * 1.55, y + s * 0.5);
-        ctx.lineTo(x + s * 1.3, y + s * 0.75);
+        ctx.ellipse(x + s * 0.7, y + s * 0.75, s * 0.65, s * 0.4, 0, 0, Math.PI * 2);
+        ctx.fill();
+        
+        // Horse front legs
+        ctx.fillStyle = horseBody;
+        ctx.beginPath();
+        ctx.ellipse(x + s * 0.55, y + s * 1.0, s * 0.08, s * 0.25, 0, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.beginPath();
+        ctx.ellipse(x + s * 1.25, y + s * 1.0, s * 0.08, s * 0.25, 0, 0, Math.PI * 2);
+        ctx.fill();
+        
+        // Horse hooves
+        ctx.fillStyle = horseDark;
+        [0.35, 0.55, 1.05, 1.25].forEach(offset => {
+          ctx.fillRect(x + s * offset - s * 0.04, y + s * 1.22, s * 0.08, s * 0.06);
+        });
+        
+        // Horse neck with curve
+        ctx.fillStyle = horseBody;
+        ctx.beginPath();
+        ctx.moveTo(x + s * 1.1, y + s * 0.6);
+        ctx.quadraticCurveTo(x + s * 1.35, y + s * 0.25, x + s * 1.5, y + s * 0.4);
+        ctx.quadraticCurveTo(x + s * 1.45, y + s * 0.6, x + s * 1.25, y + s * 0.75);
         ctx.closePath();
         ctx.fill();
         
-        // Horse head
+        // Horse head with detail
+        const headGradient = ctx.createRadialGradient(x + s * 1.58, y + s * 0.45, 0, x + s * 1.58, y + s * 0.45, s * 0.25);
+        headGradient.addColorStop(0, horseBody);
+        headGradient.addColorStop(1, horseDark);
+        ctx.fillStyle = headGradient;
         ctx.beginPath();
-        ctx.ellipse(x + s * 1.6, y + s * 0.42, s * 0.15, s * 0.2, 0.3, 0, Math.PI * 2);
+        ctx.ellipse(x + s * 1.58, y + s * 0.45, s * 0.18, s * 0.22, 0.2, 0, Math.PI * 2);
         ctx.fill();
         
-        // Horse ear
+        // Horse muzzle
+        ctx.fillStyle = horseDark;
         ctx.beginPath();
-        ctx.moveTo(x + s * 1.65, y + s * 0.25);
-        ctx.lineTo(x + s * 1.7, y + s * 0.3);
-        ctx.lineTo(x + s * 1.6, y + s * 0.3);
+        ctx.ellipse(x + s * 1.7, y + s * 0.52, s * 0.08, s * 0.1, 0.3, 0, Math.PI * 2);
+        ctx.fill();
+        
+        // Horse eye
+        ctx.fillStyle = 'rgba(255, 255, 255, 0.8)';
+        ctx.beginPath();
+        ctx.arc(x + s * 1.55, y + s * 0.38, s * 0.03, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.fillStyle = 'rgba(0, 0, 0, 0.9)';
+        ctx.beginPath();
+        ctx.arc(x + s * 1.56, y + s * 0.38, s * 0.02, 0, Math.PI * 2);
+        ctx.fill();
+        
+        // Horse ears
+        ctx.fillStyle = horseBody;
+        ctx.beginPath();
+        ctx.moveTo(x + s * 1.5, y + s * 0.28);
+        ctx.lineTo(x + s * 1.55, y + s * 0.22);
+        ctx.lineTo(x + s * 1.58, y + s * 0.28);
+        ctx.closePath();
+        ctx.fill();
+        ctx.beginPath();
+        ctx.moveTo(x + s * 1.58, y + s * 0.3);
+        ctx.lineTo(x + s * 1.62, y + s * 0.25);
+        ctx.lineTo(x + s * 1.64, y + s * 0.32);
         ctx.closePath();
         ctx.fill();
         
-        // Horse tail
+        // Horse mane
+        ctx.strokeStyle = horseDark;
+        ctx.lineWidth = s * 0.04;
+        for (let i = 0; i < 5; i++) {
+          ctx.beginPath();
+          ctx.moveTo(x + s * (1.15 + i * 0.08), y + s * 0.35);
+          ctx.quadraticCurveTo(
+            x + s * (1.13 + i * 0.08), y + s * 0.5,
+            x + s * (1.15 + i * 0.08), y + s * 0.6
+          );
+          ctx.stroke();
+        }
+        
+        // Horse tail with flow
+        ctx.strokeStyle = horseDark;
+        ctx.lineWidth = s * 0.06;
         ctx.beginPath();
-        ctx.moveTo(x + s * 0.15, y + s * 0.7);
-        ctx.quadraticCurveTo(x + s * 0.05, y + s * 0.9, x + s * 0.1, y + s * 1.1);
-        ctx.lineWidth = s * 0.08;
-        ctx.strokeStyle = horseColor;
+        ctx.moveTo(x + s * 0.08, y + s * 0.7);
+        ctx.quadraticCurveTo(x - s * 0.05, y + s * 0.85, x + s * 0.05, y + s * 1.05);
+        ctx.stroke();
+        ctx.lineWidth = s * 0.04;
+        ctx.beginPath();
+        ctx.moveTo(x + s * 0.1, y + s * 0.72);
+        ctx.quadraticCurveTo(x - s * 0.02, y + s * 0.9, x + s * 0.08, y + s * 1.1);
         ctx.stroke();
         ctx.lineWidth = 1;
         
-        // Cowboy body
-        ctx.fillStyle = cowboyColor;
-        ctx.fillRect(x + s * 0.65, y + s * 0.25, s * 0.28, s * 0.45);
+        // Saddle
+        ctx.fillStyle = horseDark;
+        ctx.beginPath();
+        ctx.ellipse(x + s * 0.7, y + s * 0.65, s * 0.25, s * 0.15, 0, 0, Math.PI * 2);
+        ctx.fill();
         
-        // Cowboy legs
-        ctx.fillRect(x + s * 0.65, y + s * 0.7, s * 0.12, s * 0.3);
-        ctx.fillRect(x + s * 0.81, y + s * 0.7, s * 0.12, s * 0.3);
+        // Cowboy legs with boots
+        ctx.fillStyle = cowboyPants;
+        ctx.fillRect(x + s * 0.6, y + s * 0.7, s * 0.15, s * 0.35);
+        ctx.fillRect(x + s * 0.8, y + s * 0.7, s * 0.15, s * 0.35);
         
-        // Cowboy arm
-        ctx.fillRect(x + s * 0.93, y + s * 0.3, s * 0.25, s * 0.1);
+        // Boots
+        ctx.fillStyle = hatColor;
+        ctx.fillRect(x + s * 0.58, y + s * 1.0, s * 0.18, s * 0.12);
+        ctx.fillRect(x + s * 0.78, y + s * 1.0, s * 0.18, s * 0.12);
+        
+        // Cowboy torso
+        ctx.fillStyle = cowboyShirt;
+        ctx.fillRect(x + s * 0.62, y + s * 0.35, s * 0.3, s * 0.38);
+        
+        // Vest detail
+        ctx.fillStyle = horseDark;
+        ctx.fillRect(x + s * 0.65, y + s * 0.38, s * 0.1, s * 0.3);
+        ctx.fillRect(x + s * 0.79, y + s * 0.38, s * 0.1, s * 0.3);
+        
+        // Cowboy arm (extended forward)
+        ctx.fillStyle = cowboyShirt;
+        ctx.beginPath();
+        ctx.ellipse(x + s * 1.05, y + s * 0.45, s * 0.08, s * 0.25, 0.3, 0, Math.PI * 2);
+        ctx.fill();
+        
+        // Hand holding reins
+        ctx.fillStyle = skinTone;
+        ctx.beginPath();
+        ctx.arc(x + s * 1.15, y + s * 0.55, s * 0.06, 0, Math.PI * 2);
+        ctx.fill();
+        
+        // Reins
+        ctx.strokeStyle = horseDark;
+        ctx.lineWidth = s * 0.02;
+        ctx.beginPath();
+        ctx.moveTo(x + s * 1.15, y + s * 0.55);
+        ctx.quadraticCurveTo(x + s * 1.35, y + s * 0.48, x + s * 1.5, y + s * 0.5);
+        ctx.stroke();
+        ctx.lineWidth = 1;
         
         // Cowboy head
+        ctx.fillStyle = skinTone;
         ctx.beginPath();
-        ctx.arc(x + s * 0.79, y + s * 0.18, s * 0.12, 0, Math.PI * 2);
+        ctx.arc(x + s * 0.77, y + s * 0.25, s * 0.13, 0, Math.PI * 2);
         ctx.fill();
         
         // Cowboy hat
         ctx.fillStyle = hatColor;
-        // Hat top
+        // Crown
         ctx.beginPath();
-        ctx.arc(x + s * 0.79, y + s * 0.08, s * 0.1, 0, Math.PI * 2);
+        ctx.ellipse(x + s * 0.77, y + s * 0.14, s * 0.11, s * 0.12, 0, 0, Math.PI * 2);
         ctx.fill();
-        // Hat brim
+        // Brim
         ctx.beginPath();
-        ctx.ellipse(x + s * 0.79, y + s * 0.15, s * 0.2, s * 0.06, 0, 0, Math.PI * 2);
+        ctx.ellipse(x + s * 0.77, y + s * 0.22, s * 0.22, s * 0.08, 0, 0, Math.PI * 2);
         ctx.fill();
+        
+        // Hat shadow
+        ctx.fillStyle = 'rgba(0, 0, 0, 0.3)';
+        ctx.beginPath();
+        ctx.ellipse(x + s * 0.77, y + s * 0.22, s * 0.2, s * 0.06, 0, 0, Math.PI);
+        ctx.fill();
+        
+        ctx.restore();
 
         cowboy.x += cowboy.vx;
 
@@ -251,7 +428,7 @@ function LandingPage() {
     };
   }, [isDarkTheme]);
 
-  // Sticky button visibility on scroll
+  // Sticky button visibility and logo hide on scroll
   useEffect(() => {
     const handleScroll = () => {
       if (heroButtonRef.current) {
@@ -259,6 +436,9 @@ function LandingPage() {
         // Show sticky button when hero button is out of view
         setShowStickyButton(rect.bottom < 0);
       }
+      
+      // Hide logo when scrolled down
+      setShowLogo(window.scrollY < 100);
     };
 
     window.addEventListener('scroll', handleScroll);
@@ -270,7 +450,7 @@ function LandingPage() {
       <canvas ref={canvasRef} className="starry-background" />
       
       {/* Logo */}
-      <div className="logo">
+      <div className={`logo ${showLogo ? 'visible' : 'hidden'}`}>
         <svg width="50" height="50" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
           <circle cx="25" cy="25" r="20" stroke="currentColor" strokeWidth="2" fill="none" />
           <path d="M25 15 L25 35 M15 25 L35 25" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
@@ -306,15 +486,37 @@ function LandingPage() {
           <button ref={heroButtonRef} className="glass-button">
             <span>Get Started</span>
           </button>
-        </section>
 
-        <section className="demo-section">
-          <h2>See It In Action</h2>
-          <div className="video-container">
-            <div className="video-placeholder">
-              <p>Demo Video Coming Soon</p>
-              <span className="play-icon">▶</span>
+          {/* Laptop Mockup */}
+          <div className="laptop-mockup">
+            <div className="laptop-screen">
+              <div className="dashboard-placeholder">
+                <div className="dashboard-header">
+                  <div className="dashboard-title">Meeting Dashboard</div>
+                  <div className="status-indicators">
+                    <span className="status-dot green"></span>
+                    <span className="status-dot yellow"></span>
+                    <span className="status-dot red"></span>
+                  </div>
+                </div>
+                <div className="dashboard-content">
+                  <div className="dashboard-card">
+                    <div className="card-icon">📊</div>
+                    <div className="card-text">Analytics</div>
+                  </div>
+                  <div className="dashboard-card">
+                    <div className="card-icon">🔒</div>
+                    <div className="card-text">Security</div>
+                  </div>
+                  <div className="dashboard-card">
+                    <div className="card-icon">👥</div>
+                    <div className="card-text">Participants</div>
+                  </div>
+                </div>
+              </div>
             </div>
+            <div className="laptop-base"></div>
+            <div className="laptop-notch"></div>
           </div>
         </section>
 
