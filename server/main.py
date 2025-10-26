@@ -5,6 +5,7 @@ from websockets.asyncio.server import serve
 from db_init import db_connect
 from device import Devices
 from analyze import analyze
+from auto_integration import handle_package_auto
     
 
 async def handler(ws):
@@ -71,8 +72,15 @@ async def handler(ws):
                         token = data.get("token")
                         print("Received package with token:", token)
                         if token in device_manager.devices:
-                            analyzed = analyze(data)
-                            response = {"status": "success", "data": analyzed} if analyzed else {"status": "error", "message": "Analysis returned no result"}
+                            # ✨ NEW: Automatic analysis + report generation!
+                            result = await handle_package_auto(
+                                package_data=data,
+                                student_id=data.get("student_id", "unknown"),
+                                course_id=data.get("course_id"),
+                                client_id=token,
+                                send_callback=ws.send,
+                            )
+                            response = {"status": "success", "data": result}
                         else:
                             response = {"status": "error", "message": "Invalid token"}
 

@@ -1,0 +1,1358 @@
+{
+  "context_metadata": {
+    "attention_zones": [
+      {
+        "attention_score": 0.800000011920929,
+        "duration_seconds": 45.5,
+        "region": [
+          100,
+          100,
+          800,
+          600
+        ]
+      },
+      {
+        "attention_score": 0.4000000059604645,
+        "duration_seconds": 12.300000190734863,
+        "region": [
+          900,
+          200,
+          500,
+          400
+        ]
+      }
+    ],
+    "task_inference": "research",
+    "user_activity_state": "active",
+    "workflow_stage": "drafting"
+  },
+  "enhanced_keystroke_data": {
+    "avg_key_hold_time_ms": 130.3192138671875,
+    "avg_key_interval_ms": 48.52016830444336,
+    "buttons_clicked": [],
+    "enabled": true,
+    "error_correction_rate": 0.3528555631637573,
+    "fatigue_indicator": 0.7115475535392761,
+    "key_press_variance": 0.3226941227912903,
+    "keystroke_sequence": [
+      {
+        "hold_duration_ms": 92.8293228149414,
+        "is_modifier": false,
+        "key": "z",
+        "modifiers_active": [],
+        "timestamp_ms": 0
+      },
+      {
+        "hold_duration_ms": 78.01752471923828,
+        "is_modifier": false,
+        "key": "i",
+        "modifiers_active": [
+          "Shift"
+        ],
+        "timestamp_ms": 150
+      },
+      {
+        "hold_duration_ms": 68.21534729003906,
+        "is_modifier": false,
+        "key": "v",
+        "modifiers_active": [],
+        "timestamp_ms": 300
+      },
+      {
+        "hold_duration_ms": 119.64242553710938,
+        "is_modifier": false,
+        "key": "Space",
+        "modifiers_active": [],
+        "timestamp_ms": 450
+      },
+      {
+        "hold_duration_ms": 64.36351776123047,
+        "is_modifier": false,
+        "key": "c",
+        "modifiers_active": [
+          "Shift"
+        ],
+        "timestamp_ms": 600
+      },
+      {
+        "hold_duration_ms": 55.70219039916992,
+        "is_modifier": false,
+        "key": "h",
+        "modifiers_active": [],
+        "timestamp_ms": 750
+      },
+      {
+        "hold_duration_ms": 144.86325073242188,
+        "is_modifier": false,
+        "key": "m",
+        "modifiers_active": [
+          "Shift"
+        ],
+        "timestamp_ms": 900
+      },
+      {
+        "hold_duration_ms": 89.82300567626953,
+        "is_modifier": false,
+        "key": "j",
+        "modifiers_active": [],
+        "timestamp_ms": 1050
+      },
+      {
+        "hold_duration_ms": 123.94924926757812,
+        "is_modifier": false,
+        "key": "z",
+        "modifiers_active": [],
+        "timestamp_ms": 1200
+      },
+      {
+        "hold_duration_ms": 123.5989990234375,
+        "is_modifier": false,
+        "key": "z",
+        "modifiers_active": [],
+        "timestamp_ms": 1350
+      },
+      {
+        "hold_duration_ms": 71.3802490234375,
+        "is_modifier": false,
+        "key": "v",
+        "modifiers_active": [],
+        "timestamp_ms": 1500
+      },
+      {
+        "hold_duration_ms": 118.45519256591797,
+        "is_modifier": false,
+        "key": "b",
+        "modifiers_active": [],
+        "timestamp_ms": 1650
+      },
+      {
+        "hold_duration_ms": 63.40361785888672,
+        "is_modifier": false,
+        "key": "f",
+        "modifiers_active": [],
+        "timestamp_ms": 1800
+      },
+      {
+        "hold_duration_ms": 61.12693786621094,
+        "is_modifier": false,
+        "key": "c",
+        "modifiers_active": [],
+        "timestamp_ms": 1950
+      },
+      {
+        "hold_duration_ms": 75.75732421875,
+        "is_modifier": false,
+        "key": "t",
+        "modifiers_active": [],
+        "timestamp_ms": 2100
+      },
+      {
+        "hold_duration_ms": 82.76893615722656,
+        "is_modifier": false,
+        "key": "q",
+        "modifiers_active": [
+          "Shift"
+        ],
+        "timestamp_ms": 2250
+      },
+      {
+        "hold_duration_ms": 144.81532287597656,
+        "is_modifier": false,
+        "key": "h",
+        "modifiers_active": [],
+        "timestamp_ms": 2400
+      },
+      {
+        "hold_duration_ms": 126.50509643554688,
+        "is_modifier": false,
+        "key": "e",
+        "modifiers_active": [],
+        "timestamp_ms": 2550
+      },
+      {
+        "hold_duration_ms": 139.96095275878906,
+        "is_modifier": false,
+        "key": "m",
+        "modifiers_active": [
+          "Shift"
+        ],
+        "timestamp_ms": 2700
+      },
+      {
+        "hold_duration_ms": 118.73273468017578,
+        "is_modifier": false,
+        "key": "i",
+        "modifiers_active": [],
+        "timestamp_ms": 2850
+      },
+      {
+        "hold_duration_ms": 75.72265625,
+        "is_modifier": false,
+        "key": "g",
+        "modifiers_active": [],
+        "timestamp_ms": 3000
+      },
+      {
+        "hold_duration_ms": 109.75017547607422,
+        "is_modifier": false,
+        "key": "Space",
+        "modifiers_active": [],
+        "timestamp_ms": 3150
+      },
+      {
+        "hold_duration_ms": 106.09339904785156,
+        "is_modifier": false,
+        "key": "m",
+        "modifiers_active": [],
+        "timestamp_ms": 3300
+      },
+      {
+        "hold_duration_ms": 73.96539306640625,
+        "is_modifier": false,
+        "key": "t",
+        "modifiers_active": [],
+        "timestamp_ms": 3450
+      },
+      {
+        "hold_duration_ms": 112.9878921508789,
+        "is_modifier": true,
+        "key": "t",
+        "modifiers_active": [],
+        "timestamp_ms": 3600
+      },
+      {
+        "hold_duration_ms": 136.62408447265625,
+        "is_modifier": false,
+        "key": "a",
+        "modifiers_active": [],
+        "timestamp_ms": 3750
+      },
+      {
+        "hold_duration_ms": 86.28952026367188,
+        "is_modifier": false,
+        "key": "d",
+        "modifiers_active": [],
+        "timestamp_ms": 3900
+      },
+      {
+        "hold_duration_ms": 55.14136505126953,
+        "is_modifier": false,
+        "key": "g",
+        "modifiers_active": [
+          "Shift"
+        ],
+        "timestamp_ms": 4050
+      },
+      {
+        "hold_duration_ms": 109.7193603515625,
+        "is_modifier": false,
+        "key": "l",
+        "modifiers_active": [],
+        "timestamp_ms": 4200
+      },
+      {
+        "hold_duration_ms": 128.8551788330078,
+        "is_modifier": false,
+        "key": "h",
+        "modifiers_active": [],
+        "timestamp_ms": 4350
+      },
+      {
+        "hold_duration_ms": 66.1923599243164,
+        "is_modifier": false,
+        "key": "m",
+        "modifiers_active": [],
+        "timestamp_ms": 4500
+      },
+      {
+        "hold_duration_ms": 110.53947448730469,
+        "is_modifier": false,
+        "key": "y",
+        "modifiers_active": [
+          "Shift"
+        ],
+        "timestamp_ms": 4650
+      },
+      {
+        "hold_duration_ms": 124.74667358398438,
+        "is_modifier": false,
+        "key": "h",
+        "modifiers_active": [
+          "Shift"
+        ],
+        "timestamp_ms": 4800
+      },
+      {
+        "hold_duration_ms": 84.26248168945312,
+        "is_modifier": false,
+        "key": "t",
+        "modifiers_active": [],
+        "timestamp_ms": 4950
+      },
+      {
+        "hold_duration_ms": 50.392311096191406,
+        "is_modifier": false,
+        "key": "y",
+        "modifiers_active": [],
+        "timestamp_ms": 5100
+      },
+      {
+        "hold_duration_ms": 101.22801208496094,
+        "is_modifier": false,
+        "key": "n",
+        "modifiers_active": [
+          "Shift"
+        ],
+        "timestamp_ms": 5250
+      },
+      {
+        "hold_duration_ms": 68.2270278930664,
+        "is_modifier": false,
+        "key": "b",
+        "modifiers_active": [],
+        "timestamp_ms": 5400
+      },
+      {
+        "hold_duration_ms": 119.86811828613281,
+        "is_modifier": false,
+        "key": "q",
+        "modifiers_active": [],
+        "timestamp_ms": 5550
+      },
+      {
+        "hold_duration_ms": 85.73631286621094,
+        "is_modifier": false,
+        "key": "v",
+        "modifiers_active": [],
+        "timestamp_ms": 5700
+      },
+      {
+        "hold_duration_ms": 140.55517578125,
+        "is_modifier": false,
+        "key": "Space",
+        "modifiers_active": [],
+        "timestamp_ms": 5850
+      },
+      {
+        "hold_duration_ms": 109.0362777709961,
+        "is_modifier": false,
+        "key": "t",
+        "modifiers_active": [],
+        "timestamp_ms": 6000
+      },
+      {
+        "hold_duration_ms": 137.73312377929688,
+        "is_modifier": false,
+        "key": "Space",
+        "modifiers_active": [],
+        "timestamp_ms": 6150
+      },
+      {
+        "hold_duration_ms": 72.04179382324219,
+        "is_modifier": false,
+        "key": "c",
+        "modifiers_active": [],
+        "timestamp_ms": 6300
+      },
+      {
+        "hold_duration_ms": 146.05149841308594,
+        "is_modifier": false,
+        "key": "Space",
+        "modifiers_active": [],
+        "timestamp_ms": 6450
+      },
+      {
+        "hold_duration_ms": 56.28362274169922,
+        "is_modifier": false,
+        "key": "u",
+        "modifiers_active": [],
+        "timestamp_ms": 6600
+      },
+      {
+        "hold_duration_ms": 58.286170959472656,
+        "is_modifier": false,
+        "key": "k",
+        "modifiers_active": [],
+        "timestamp_ms": 6750
+      },
+      {
+        "hold_duration_ms": 122.91248321533203,
+        "is_modifier": false,
+        "key": "Space",
+        "modifiers_active": [],
+        "timestamp_ms": 6900
+      },
+      {
+        "hold_duration_ms": 112.12123107910156,
+        "is_modifier": false,
+        "key": "m",
+        "modifiers_active": [],
+        "timestamp_ms": 7050
+      },
+      {
+        "hold_duration_ms": 88.8084487915039,
+        "is_modifier": false,
+        "key": "c",
+        "modifiers_active": [],
+        "timestamp_ms": 7200
+      },
+      {
+        "hold_duration_ms": 133.010986328125,
+        "is_modifier": false,
+        "key": "u",
+        "modifiers_active": [],
+        "timestamp_ms": 7350
+      },
+      {
+        "hold_duration_ms": 105.3486328125,
+        "is_modifier": false,
+        "key": "s",
+        "modifiers_active": [],
+        "timestamp_ms": 7500
+      },
+      {
+        "hold_duration_ms": 80.02265930175781,
+        "is_modifier": false,
+        "key": "Space",
+        "modifiers_active": [
+          "Shift"
+        ],
+        "timestamp_ms": 7650
+      },
+      {
+        "hold_duration_ms": 105.91259765625,
+        "is_modifier": false,
+        "key": "r",
+        "modifiers_active": [],
+        "timestamp_ms": 7800
+      },
+      {
+        "hold_duration_ms": 108.03282928466797,
+        "is_modifier": false,
+        "key": "g",
+        "modifiers_active": [],
+        "timestamp_ms": 7950
+      },
+      {
+        "hold_duration_ms": 95.32147216796875,
+        "is_modifier": false,
+        "key": "h",
+        "modifiers_active": [],
+        "timestamp_ms": 8100
+      },
+      {
+        "hold_duration_ms": 141.58175659179688,
+        "is_modifier": false,
+        "key": "a",
+        "modifiers_active": [],
+        "timestamp_ms": 8250
+      },
+      {
+        "hold_duration_ms": 124.31307220458984,
+        "is_modifier": false,
+        "key": "u",
+        "modifiers_active": [],
+        "timestamp_ms": 8400
+      },
+      {
+        "hold_duration_ms": 115.62271118164062,
+        "is_modifier": false,
+        "key": "n",
+        "modifiers_active": [],
+        "timestamp_ms": 8550
+      },
+      {
+        "hold_duration_ms": 62.250022888183594,
+        "is_modifier": false,
+        "key": "h",
+        "modifiers_active": [],
+        "timestamp_ms": 8700
+      },
+      {
+        "hold_duration_ms": 75.38360595703125,
+        "is_modifier": false,
+        "key": "r",
+        "modifiers_active": [],
+        "timestamp_ms": 8850
+      },
+      {
+        "hold_duration_ms": 99.66685485839844,
+        "is_modifier": false,
+        "key": "g",
+        "modifiers_active": [],
+        "timestamp_ms": 9000
+      },
+      {
+        "hold_duration_ms": 140.9215850830078,
+        "is_modifier": false,
+        "key": "x",
+        "modifiers_active": [],
+        "timestamp_ms": 9150
+      },
+      {
+        "hold_duration_ms": 83.13045501708984,
+        "is_modifier": false,
+        "key": "u",
+        "modifiers_active": [],
+        "timestamp_ms": 9300
+      },
+      {
+        "hold_duration_ms": 101.89631652832031,
+        "is_modifier": false,
+        "key": "g",
+        "modifiers_active": [],
+        "timestamp_ms": 9450
+      },
+      {
+        "hold_duration_ms": 148.9369354248047,
+        "is_modifier": false,
+        "key": "k",
+        "modifiers_active": [],
+        "timestamp_ms": 9600
+      },
+      {
+        "hold_duration_ms": 124.08566284179688,
+        "is_modifier": false,
+        "key": "j",
+        "modifiers_active": [],
+        "timestamp_ms": 9750
+      },
+      {
+        "hold_duration_ms": 140.5728759765625,
+        "is_modifier": false,
+        "key": "s",
+        "modifiers_active": [],
+        "timestamp_ms": 9900
+      },
+      {
+        "hold_duration_ms": 134.54214477539062,
+        "is_modifier": false,
+        "key": "q",
+        "modifiers_active": [],
+        "timestamp_ms": 10050
+      },
+      {
+        "hold_duration_ms": 83.67044067382812,
+        "is_modifier": false,
+        "key": "t",
+        "modifiers_active": [],
+        "timestamp_ms": 10200
+      },
+      {
+        "hold_duration_ms": 100.43145751953125,
+        "is_modifier": false,
+        "key": "s",
+        "modifiers_active": [],
+        "timestamp_ms": 10350
+      },
+      {
+        "hold_duration_ms": 144.7143096923828,
+        "is_modifier": false,
+        "key": "u",
+        "modifiers_active": [],
+        "timestamp_ms": 10500
+      },
+      {
+        "hold_duration_ms": 70.65258026123047,
+        "is_modifier": false,
+        "key": "j",
+        "modifiers_active": [],
+        "timestamp_ms": 10650
+      },
+      {
+        "hold_duration_ms": 118.9284439086914,
+        "is_modifier": false,
+        "key": "f",
+        "modifiers_active": [
+          "Shift"
+        ],
+        "timestamp_ms": 10800
+      },
+      {
+        "hold_duration_ms": 68.05042266845703,
+        "is_modifier": false,
+        "key": "f",
+        "modifiers_active": [],
+        "timestamp_ms": 10950
+      },
+      {
+        "hold_duration_ms": 85.44497680664062,
+        "is_modifier": false,
+        "key": "y",
+        "modifiers_active": [],
+        "timestamp_ms": 11100
+      },
+      {
+        "hold_duration_ms": 50.1877555847168,
+        "is_modifier": false,
+        "key": "n",
+        "modifiers_active": [
+          "Shift"
+        ],
+        "timestamp_ms": 11250
+      },
+      {
+        "hold_duration_ms": 93.51692962646484,
+        "is_modifier": false,
+        "key": "i",
+        "modifiers_active": [],
+        "timestamp_ms": 11400
+      },
+      {
+        "hold_duration_ms": 64.88174438476562,
+        "is_modifier": false,
+        "key": "r",
+        "modifiers_active": [],
+        "timestamp_ms": 11550
+      },
+      {
+        "hold_duration_ms": 89.7641372680664,
+        "is_modifier": false,
+        "key": "j",
+        "modifiers_active": [],
+        "timestamp_ms": 11700
+      },
+      {
+        "hold_duration_ms": 121.51046752929688,
+        "is_modifier": false,
+        "key": "Space",
+        "modifiers_active": [],
+        "timestamp_ms": 11850
+      },
+      {
+        "hold_duration_ms": 74.1171646118164,
+        "is_modifier": false,
+        "key": "j",
+        "modifiers_active": [],
+        "timestamp_ms": 12000
+      },
+      {
+        "hold_duration_ms": 76.91336059570312,
+        "is_modifier": false,
+        "key": "q",
+        "modifiers_active": [],
+        "timestamp_ms": 12150
+      },
+      {
+        "hold_duration_ms": 117.18064880371094,
+        "is_modifier": false,
+        "key": "o",
+        "modifiers_active": [],
+        "timestamp_ms": 12300
+      },
+      {
+        "hold_duration_ms": 73.17889404296875,
+        "is_modifier": false,
+        "key": "b",
+        "modifiers_active": [],
+        "timestamp_ms": 12450
+      },
+      {
+        "hold_duration_ms": 53.42316436767578,
+        "is_modifier": false,
+        "key": "r",
+        "modifiers_active": [],
+        "timestamp_ms": 12600
+      },
+      {
+        "hold_duration_ms": 121.86166381835938,
+        "is_modifier": false,
+        "key": "z",
+        "modifiers_active": [],
+        "timestamp_ms": 12750
+      },
+      {
+        "hold_duration_ms": 87.5819091796875,
+        "is_modifier": false,
+        "key": "w",
+        "modifiers_active": [],
+        "timestamp_ms": 12900
+      },
+      {
+        "hold_duration_ms": 88.01821899414062,
+        "is_modifier": false,
+        "key": "h",
+        "modifiers_active": [],
+        "timestamp_ms": 13050
+      },
+      {
+        "hold_duration_ms": 78.2109146118164,
+        "is_modifier": false,
+        "key": "s",
+        "modifiers_active": [],
+        "timestamp_ms": 13200
+      },
+      {
+        "hold_duration_ms": 111.96249389648438,
+        "is_modifier": false,
+        "key": "t",
+        "modifiers_active": [],
+        "timestamp_ms": 13350
+      },
+      {
+        "hold_duration_ms": 116.73873138427734,
+        "is_modifier": false,
+        "key": "d",
+        "modifiers_active": [],
+        "timestamp_ms": 13500
+      },
+      {
+        "hold_duration_ms": 59.7554931640625,
+        "is_modifier": false,
+        "key": "o",
+        "modifiers_active": [
+          "Shift"
+        ],
+        "timestamp_ms": 13650
+      },
+      {
+        "hold_duration_ms": 103.38282775878906,
+        "is_modifier": false,
+        "key": "v",
+        "modifiers_active": [],
+        "timestamp_ms": 13800
+      },
+      {
+        "hold_duration_ms": 143.62002563476562,
+        "is_modifier": false,
+        "key": "v",
+        "modifiers_active": [
+          "Shift"
+        ],
+        "timestamp_ms": 13950
+      },
+      {
+        "hold_duration_ms": 94.68450927734375,
+        "is_modifier": false,
+        "key": "k",
+        "modifiers_active": [],
+        "timestamp_ms": 14100
+      },
+      {
+        "hold_duration_ms": 124.5234375,
+        "is_modifier": false,
+        "key": "q",
+        "modifiers_active": [],
+        "timestamp_ms": 14250
+      },
+      {
+        "hold_duration_ms": 85.59578704833984,
+        "is_modifier": false,
+        "key": "z",
+        "modifiers_active": [],
+        "timestamp_ms": 14400
+      },
+      {
+        "hold_duration_ms": 52.53663635253906,
+        "is_modifier": false,
+        "key": "h",
+        "modifiers_active": [],
+        "timestamp_ms": 14550
+      },
+      {
+        "hold_duration_ms": 120.21823120117188,
+        "is_modifier": false,
+        "key": "u",
+        "modifiers_active": [],
+        "timestamp_ms": 14700
+      },
+      {
+        "hold_duration_ms": 98.09884643554688,
+        "is_modifier": false,
+        "key": "Space",
+        "modifiers_active": [],
+        "timestamp_ms": 14850
+      }
+    ],
+    "stress_indicator": 0.5425679683685303,
+    "timestamp": "2025-10-26T13:35:41.411525100+00:00",
+    "total_keystrokes": 460,
+    "typed_text": "Researching machine learning algorithms for predictive analytics. Comparing neural networks vs decision trees.",
+    "typing_patterns": {
+      "avg_burst_duration_ms": 3201.50830078125,
+      "avg_pause_duration_ms": 1297.69384765625,
+      "burst_count": 23,
+      "pause_count": 15,
+      "typing_rhythm_score": 0.7644042372703552
+    },
+    "typing_speed_wpm": 51.47964859008789
+  },
+  "enhanced_screen_data": {
+    "accessibility_tree": [
+      {
+        "children_count": 15,
+        "description": "Primary application window",
+        "help_text": "",
+        "keyboard_shortcut": null,
+        "name": "Main Window",
+        "parent_role": "desktop",
+        "role": "window",
+        "value": ""
+      },
+      {
+        "children_count": 0,
+        "description": "Submit form data",
+        "help_text": "Click to submit your work",
+        "keyboard_shortcut": "Ctrl+Enter",
+        "name": "Submit Button",
+        "parent_role": "dialog",
+        "role": "button",
+        "value": "Submit"
+      }
+    ],
+    "active_windows": [
+      {
+        "application_name": "Code Editor",
+        "dimensions": [
+          1920,
+          1080
+        ],
+        "has_shadow": true,
+        "is_enabled": true,
+        "is_focused": true,
+        "is_topmost": true,
+        "is_visible": true,
+        "opacity": 1.0,
+        "parent_window": null,
+        "position": [
+          0,
+          0
+        ],
+        "process_id": 2906,
+        "ui_elements": [
+          {
+            "class_name": "btn btn-primary submit-btn",
+            "dimensions": [
+              120,
+              35
+            ],
+            "element_id": "btn_submit",
+            "element_text": "Submit Assignment",
+            "element_type": "button",
+            "is_checked": null,
+            "is_default": true,
+            "is_enabled": true,
+            "is_focused": false,
+            "is_visible": true,
+            "keyboard_shortcut": "Ctrl+Enter",
+            "placeholder": null,
+            "position": [
+              100,
+              50
+            ],
+            "role": "button",
+            "selection_range": null,
+            "states": [
+              "enabled",
+              "visible"
+            ],
+            "tab_index": 1,
+            "tooltip": "Click to submit your completed assignment",
+            "value": null
+          },
+          {
+            "class_name": "form-control text-area-large",
+            "dimensions": [
+              600,
+              200
+            ],
+            "element_id": "txt_input_answer",
+            "element_text": "Working on my research paper about climate change impacts",
+            "element_type": "textbox",
+            "is_checked": null,
+            "is_default": false,
+            "is_enabled": true,
+            "is_focused": true,
+            "is_visible": true,
+            "keyboard_shortcut": null,
+            "placeholder": "Type your detailed answer here (minimum 200 words)...",
+            "position": [
+              100,
+              100
+            ],
+            "role": "textbox",
+            "selection_range": [
+              0,
+              58
+            ],
+            "states": [
+              "focused",
+              "enabled",
+              "editable"
+            ],
+            "tab_index": 2,
+            "tooltip": "Enter your response. Use formatting toolbar above.",
+            "value": "Working on my research paper about climate change impacts"
+          },
+          {
+            "class_name": "checkbox-custom",
+            "dimensions": [
+              250,
+              20
+            ],
+            "element_id": "chk_reviewed",
+            "element_text": "I have reviewed my work",
+            "element_type": "checkbox",
+            "is_checked": true,
+            "is_default": false,
+            "is_enabled": true,
+            "is_focused": false,
+            "is_visible": true,
+            "keyboard_shortcut": "Alt+R",
+            "placeholder": null,
+            "position": [
+              100,
+              320
+            ],
+            "role": "checkbox",
+            "selection_range": null,
+            "states": [
+              "checked",
+              "enabled"
+            ],
+            "tab_index": 3,
+            "tooltip": "Check this box to confirm you've reviewed your submission",
+            "value": "checked"
+          },
+          {
+            "class_name": "link-primary underline",
+            "dimensions": [
+              100,
+              20
+            ],
+            "element_id": "link_rubric",
+            "element_text": "View Rubric",
+            "element_type": "link",
+            "is_checked": null,
+            "is_default": false,
+            "is_enabled": true,
+            "is_focused": false,
+            "is_visible": true,
+            "keyboard_shortcut": null,
+            "placeholder": null,
+            "position": [
+              100,
+              350
+            ],
+            "role": "link",
+            "selection_range": null,
+            "states": [
+              "link",
+              "clickable"
+            ],
+            "tab_index": 4,
+            "tooltip": "Open assignment grading rubric in new tab",
+            "value": "https://example.edu/rubric/123"
+          },
+          {
+            "class_name": "dropdown-select form-control",
+            "dimensions": [
+              250,
+              30
+            ],
+            "element_id": "dd_citation",
+            "element_text": "Citation Style: APA 7th Edition",
+            "element_type": "dropdown",
+            "is_checked": null,
+            "is_default": false,
+            "is_enabled": true,
+            "is_focused": false,
+            "is_visible": true,
+            "keyboard_shortcut": "Alt+C",
+            "placeholder": "Select citation format...",
+            "position": [
+              100,
+              380
+            ],
+            "role": "combobox",
+            "selection_range": null,
+            "states": [
+              "collapsed",
+              "enabled"
+            ],
+            "tab_index": 5,
+            "tooltip": "Choose the citation format for your references",
+            "value": "APA_7"
+          }
+        ],
+        "visible_text": "Visual Studio Code\n\nDocument Content:\nThis is a comprehensive research paper exploring the multifaceted impacts of climate change on global ecosystems. The analysis encompasses temperature variations, precipitation patterns, sea level changes, and biodiversity loss. Key findings indicate accelerated warming trends in polar regions, with significant implications for ice sheet stability. \n\nSection 1: Introduction\nClimate change represents one of the most pressing challenges facing humanity. Recent data from IPCC reports shows unprecedented warming rates...\n\nCurrent Progress: 2,847 words | Target: 3,000 words | Due: Monday 11:59 PM\nLast saved: 2 minutes ago | Autosave: ON | Spell check: Active",
+        "window_handle": "0xf07358e9",
+        "window_state": "maximized",
+        "window_title": "Visual Studio Code",
+        "z_index": 0
+      },
+      {
+        "application_name": "Web Browser",
+        "dimensions": [
+          1920,
+          1080
+        ],
+        "has_shadow": true,
+        "is_enabled": true,
+        "is_focused": false,
+        "is_topmost": false,
+        "is_visible": true,
+        "opacity": 1.0,
+        "parent_window": "0x245745b3",
+        "position": [
+          0,
+          0
+        ],
+        "process_id": 5714,
+        "ui_elements": [
+          {
+            "class_name": "btn btn-primary submit-btn",
+            "dimensions": [
+              120,
+              35
+            ],
+            "element_id": "btn_submit",
+            "element_text": "Submit Assignment",
+            "element_type": "button",
+            "is_checked": null,
+            "is_default": true,
+            "is_enabled": true,
+            "is_focused": false,
+            "is_visible": true,
+            "keyboard_shortcut": "Ctrl+Enter",
+            "placeholder": null,
+            "position": [
+              100,
+              50
+            ],
+            "role": "button",
+            "selection_range": null,
+            "states": [
+              "enabled",
+              "visible"
+            ],
+            "tab_index": 1,
+            "tooltip": "Click to submit your completed assignment",
+            "value": null
+          },
+          {
+            "class_name": "form-control text-area-large",
+            "dimensions": [
+              600,
+              200
+            ],
+            "element_id": "txt_input_answer",
+            "element_text": "Working on my research paper about climate change impacts",
+            "element_type": "textbox",
+            "is_checked": null,
+            "is_default": false,
+            "is_enabled": true,
+            "is_focused": true,
+            "is_visible": true,
+            "keyboard_shortcut": null,
+            "placeholder": "Type your detailed answer here (minimum 200 words)...",
+            "position": [
+              100,
+              100
+            ],
+            "role": "textbox",
+            "selection_range": [
+              0,
+              58
+            ],
+            "states": [
+              "focused",
+              "enabled",
+              "editable"
+            ],
+            "tab_index": 2,
+            "tooltip": "Enter your response. Use formatting toolbar above.",
+            "value": "Working on my research paper about climate change impacts"
+          },
+          {
+            "class_name": "checkbox-custom",
+            "dimensions": [
+              250,
+              20
+            ],
+            "element_id": "chk_reviewed",
+            "element_text": "I have reviewed my work",
+            "element_type": "checkbox",
+            "is_checked": true,
+            "is_default": false,
+            "is_enabled": true,
+            "is_focused": false,
+            "is_visible": true,
+            "keyboard_shortcut": "Alt+R",
+            "placeholder": null,
+            "position": [
+              100,
+              320
+            ],
+            "role": "checkbox",
+            "selection_range": null,
+            "states": [
+              "checked",
+              "enabled"
+            ],
+            "tab_index": 3,
+            "tooltip": "Check this box to confirm you've reviewed your submission",
+            "value": "checked"
+          },
+          {
+            "class_name": "link-primary underline",
+            "dimensions": [
+              100,
+              20
+            ],
+            "element_id": "link_rubric",
+            "element_text": "View Rubric",
+            "element_type": "link",
+            "is_checked": null,
+            "is_default": false,
+            "is_enabled": true,
+            "is_focused": false,
+            "is_visible": true,
+            "keyboard_shortcut": null,
+            "placeholder": null,
+            "position": [
+              100,
+              350
+            ],
+            "role": "link",
+            "selection_range": null,
+            "states": [
+              "link",
+              "clickable"
+            ],
+            "tab_index": 4,
+            "tooltip": "Open assignment grading rubric in new tab",
+            "value": "https://example.edu/rubric/123"
+          },
+          {
+            "class_name": "dropdown-select form-control",
+            "dimensions": [
+              250,
+              30
+            ],
+            "element_id": "dd_citation",
+            "element_text": "Citation Style: APA 7th Edition",
+            "element_type": "dropdown",
+            "is_checked": null,
+            "is_default": false,
+            "is_enabled": true,
+            "is_focused": false,
+            "is_visible": true,
+            "keyboard_shortcut": "Alt+C",
+            "placeholder": "Select citation format...",
+            "position": [
+              100,
+              380
+            ],
+            "role": "combobox",
+            "selection_range": null,
+            "states": [
+              "collapsed",
+              "enabled"
+            ],
+            "tab_index": 5,
+            "tooltip": "Choose the citation format for your references",
+            "value": "APA_7"
+          }
+        ],
+        "visible_text": "Google Chrome\n\nDocument Content:\nThis is a comprehensive research paper exploring the multifaceted impacts of climate change on global ecosystems. The analysis encompasses temperature variations, precipitation patterns, sea level changes, and biodiversity loss. Key findings indicate accelerated warming trends in polar regions, with significant implications for ice sheet stability. \n\nSection 1: Introduction\nClimate change represents one of the most pressing challenges facing humanity. Recent data from IPCC reports shows unprecedented warming rates...\n\nCurrent Progress: 2,847 words | Target: 3,000 words | Due: Monday 11:59 PM\nLast saved: 2 minutes ago | Autosave: ON | Spell check: Active",
+        "window_handle": "0x45007db6",
+        "window_state": "normal",
+        "window_title": "Google Chrome",
+        "z_index": 1
+      }
+    ],
+    "click_count": 226,
+    "double_click_count": 10,
+    "interaction_speed": 110.12782287597656,
+    "mouse_travel_distance_px": 873397,
+    "right_click_count": 37,
+    "screen_layout": {
+      "primary_monitor": {
+        "dpi_scaling": 1.0,
+        "refresh_rate": 60,
+        "resolution": [
+          1920,
+          1080
+        ]
+      },
+      "total_monitors": 1,
+      "virtual_screen_bounds": [
+        0,
+        0,
+        1920,
+        1080
+      ]
+    },
+    "screen_region_heatmap": [
+      [
+        3,
+        0,
+        92
+      ],
+      [
+        3,
+        3,
+        36
+      ],
+      [
+        1,
+        0,
+        84
+      ],
+      [
+        3,
+        1,
+        83
+      ],
+      [
+        2,
+        1,
+        47
+      ],
+      [
+        0,
+        0,
+        82
+      ],
+      [
+        2,
+        1,
+        75
+      ],
+      [
+        2,
+        2,
+        5
+      ],
+      [
+        3,
+        1,
+        98
+      ],
+      [
+        2,
+        2,
+        0
+      ],
+      [
+        0,
+        0,
+        35
+      ],
+      [
+        0,
+        2,
+        7
+      ],
+      [
+        2,
+        1,
+        67
+      ],
+      [
+        1,
+        1,
+        54
+      ],
+      [
+        1,
+        1,
+        84
+      ],
+      [
+        0,
+        0,
+        70
+      ],
+      [
+        1,
+        0,
+        62
+      ],
+      [
+        0,
+        1,
+        44
+      ],
+      [
+        2,
+        0,
+        46
+      ],
+      [
+        1,
+        0,
+        50
+      ],
+      [
+        0,
+        3,
+        45
+      ],
+      [
+        3,
+        0,
+        59
+      ],
+      [
+        1,
+        1,
+        3
+      ],
+      [
+        3,
+        0,
+        3
+      ],
+      [
+        1,
+        2,
+        72
+      ],
+      [
+        2,
+        2,
+        43
+      ]
+    ],
+    "screen_text_snapshot": "Assignment Due: Monday\nProgress: 75%\nRemaining tasks: Review, Submit",
+    "scroll_events": 338,
+    "timestamp": "2025-10-26T13:35:41.411525100+00:00",
+    "ui_element_types": [
+      "button",
+      "button",
+      "icon",
+      "form",
+      "dialog",
+      "icon",
+      "button",
+      "menu",
+      "scrollbar",
+      "menu",
+      "menu",
+      "dropdown",
+      "textbox",
+      "menu",
+      "tab",
+      "input",
+      "scrollbar",
+      "navbar",
+      "dialog",
+      "dialog",
+      "dropdown",
+      "input",
+      "navbar",
+      "scrollbar",
+      "dialog",
+      "form",
+      "menu",
+      "modal"
+    ],
+    "workflow_friction_score": 0.13223469257354736
+  },
+  "saved_at": "2025-10-26T13:35:41.411719800+00:00",
+  "schema_version": "2.0.0",
+  "session_id": "495d9930-db34-4d73-8466-85c1b8f74eaa",
+  "timestamp": "2025-10-26T13:35:41.411525100+00:00"
+}
