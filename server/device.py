@@ -135,40 +135,82 @@ class Devices:
                 pass
         return True
     
-    def create_report_from_analysis(devices, token: str, analysis: dict, package: dict) -> dict:
-        sess = devices.devices.get(token)
-        if not sess:
-            return {"created": False, "error": "Invalid token"}
-    
-        device_id = sess.get("device_id")
-        if not device_id:
-            return {"created": False, "error": "Unknown device"}
-    
-        if not analysis or not analysis.get("suspicious"):
-            return {"created": False, "reason": "Not suspicious"}
-    
-        cats = analysis.get("categories") or {}
-        max_name, max_score = None, -1.0
-        for name, vals in cats.items():
+    def create_report_from_analysis(self, token: str, analysis: dict, package: dict | None = None) -> dict:
+        """
+        Create a Report row from an analyzer result.
+
+        Behavior:
+        - Uses Gemini-produced `analysis["reason"]` and `analysis["message"]` when present.
+        - Falls back to the top-scoring category name as `reason` if needed.
+        - Persists the full analyzer JSON in Report.data for auditing.
+        - Only creates a report when `analysis.get("suspicious")` is True.
+
+        Returns:
+            {"created": True, "report_id": "<uuid>"} on success, or
+            {"created": False, "error": "..."} / {"created": False, "reason": "..."} on no-op.
+        """
+        try:
+            # Validate session
+            sess = self.devices.get(token)
+            if not sess:
+                return {"created": False, "error": "Invalid token"}
+            device_id = sess.get("device_id")
+            if not device_id:
+                return {"created": False, "error": "Unknown device"}
+
+            # Require suspicious == True
+            if not isinstance(analysis, dict) or not analysis.get("suspicious", False):
+                return {"created": False, "reason": "Not suspicious"}
+
+            # Prefer Gemini-produced reason/message; fallback to top category
+            reason = analysis.get("reason")
+            message = analysis.get("message") or ""
+
+            if not reason:
+                cats = analysis.get("categories") or {}
+                top_name, top_score = None, float("-inf")
+                for name, vals in cats.items():
+                    try:
+                        s = float((vals or {}).get("score") or 0.0)
+                    except Exception:
+                        s = 0.0
+                    if s > top_score:
+                        top_name, top_score = name, s
+                reason = top_name or "suspicious_activity"
+
+            # Resolve device row (avoid changing your existing helpers)
+            import uuid
+            from db_init import Device, Report  # assumes your models are here
+
             try:
-                s = float(vals.get("score") or 0.0)
+                did = uuid.UUID(device_id)
             except Exception:
-                s = 0.0
-            if s > max_score:
-                max_name, max_score = name, s
-    
-        d = Device.get_or_none(Device.id == _ensure_uuid(device_id))
-        if not d:
-            return {"created": False, "error": "Device not found"}
-    
-        screen_shot_id = package.get("screen_shot_id") or (package.get("data", {}) or {}).get("screen_shot_id")
-    
-        r = Report.create(
-            device=d,
-            reason=max_name or "suspicious_activity",
-            message=analysis.get("message") or "",
-            screen_shot_id=screen_shot_id,
-            data=analysis,
-        )
-        return {"created": True, "report_id": str(r.id)}
+                # deterministic fallback if device_id isn't a UUID string
+                did = uuid.uuid5(uuid.NAMESPACE_DNS, device_id)
+
+            d = Device.get_or_none(Device.id == did)
+            if not d:
+                return {"created": False, "error": "Device not found"}
+
+            # Optional screenshot passthrough
+            screen_shot_id = None
+            if isinstance(package, dict):
+                screen_shot_id = package.get("screen_shot_id")
+                if not screen_shot_id:
+                    pdata = (package.get("data") or {}) if isinstance(package.get("data"), dict) else {}
+                    screen_shot_id = pdata.get("screen_shot_id")
+
+            # Persist report
+            r = Report.create(
+                device=d,
+                reason=str(reason),
+                message=str(message),
+                screen_shot_id=screen_shot_id,
+                data=analysis,  # store full analysis payload for audit
+            )
+            return {"created": True, "report_id": str(r.id)}
+
+        except Exception as e:
+            return {"created": False, "error": f"{e.__class__.__name__}: {e}"}
+
 

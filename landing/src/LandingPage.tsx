@@ -186,7 +186,7 @@ function LandingPage() {
         <div className="page-header">
           <div className="logo">Cosmo Corral</div>
           <div className="header-actions">
-            <button className="nav-cta">Head to Dashboard</button>
+            <a href="http://localhost:3000"><button className="nav-cta">Head to Dashboard</button></a>
           </div>
         </div>
 

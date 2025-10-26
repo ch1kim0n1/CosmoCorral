@@ -337,11 +337,6 @@ export default function DashboardPage() {
           </DialogContent>
         </Dialog>
 
-        {/* Flag Reports Panel - Real-time alerts */}
-        <div className="border-b border-[#2a3f5f] bg-[#0f1419]/80">
-          <FlagReportsPanel />
-        </div>
-
         {/* Main Terminal Content */}
         <div className="container mx-auto px-4 py-8">
           {devices.length === 0 ? (
