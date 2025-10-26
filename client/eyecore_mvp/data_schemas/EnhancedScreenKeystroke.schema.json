@@ -1,0 +1,440 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Enhanced Screen Reading and Keystroke Data Schema",
+  "description": "Comprehensive schema for capturing screen content, window information, typed text, and button clicks for AI analysis",
+  "version": "2.0.0",
+  "type": "object",
+  "properties": {
+    "session_id": {
+      "type": "string",
+      "description": "Unique session identifier"
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Collection timestamp in ISO 8601 format"
+    },
+    "enhanced_keystroke_data": {
+      "type": "object",
+      "description": "Complete keystroke tracking with actual content",
+      "properties": {
+        "timestamp": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "typing_speed_wpm": {
+          "type": "number",
+          "description": "Words per minute typing speed"
+        },
+        "avg_key_hold_time_ms": {
+          "type": "number",
+          "description": "Average time each key is held down in milliseconds"
+        },
+        "avg_key_interval_ms": {
+          "type": "number",
+          "description": "Average time between consecutive keystrokes"
+        },
+        "key_press_variance": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "description": "Typing consistency indicator (0 = inconsistent, 1 = consistent)"
+        },
+        "error_correction_rate": {
+          "type": "number",
+          "description": "Frequency of backspace/delete usage"
+        },
+        "stress_indicator": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "description": "Stress level based on typing patterns (0 = relaxed, 1 = stressed)"
+        },
+        "fatigue_indicator": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "description": "Fatigue level based on typing patterns (0 = fresh, 1 = tired)"
+        },
+        "total_keystrokes": {
+          "type": "integer",
+          "description": "Total number of keystrokes in this collection period"
+        },
+        "typed_text": {
+          "type": ["string", "null"],
+          "description": "ACTUAL TEXT TYPED - Complete content for AI context analysis",
+          "maxLength": 10000
+        },
+        "buttons_clicked": {
+          "type": "array",
+          "description": "All button clicks with complete context",
+          "items": {
+            "type": "object",
+            "properties": {
+              "timestamp": {
+                "type": "string",
+                "format": "date-time"
+              },
+              "button_text": {
+                "type": "string",
+                "description": "Text displayed on the button"
+              },
+              "button_type": {
+                "type": "string",
+                "enum": ["submit", "cancel", "save", "delete", "link", "menu", "close", "minimize", "maximize", "back", "forward", "refresh", "other"],
+                "description": "Semantic type of button"
+              },
+              "window_context": {
+                "type": "string",
+                "description": "Which window the button was in"
+              },
+              "application": {
+                "type": "string",
+                "description": "Application name where click occurred"
+              },
+              "position": {
+                "type": "array",
+                "items": {"type": "integer"},
+                "minItems": 2,
+                "maxItems": 2,
+                "description": "Screen coordinates [x, y]"
+              },
+              "click_type": {
+                "type": "string",
+                "enum": ["left", "right", "middle", "double", "triple"],
+                "description": "Type of mouse click"
+              }
+            },
+            "required": ["timestamp", "button_text", "button_type", "window_context", "application", "position", "click_type"]
+          }
+        },
+        "keystroke_sequence": {
+          "type": "array",
+          "description": "Detailed sequence of individual keystrokes with timing",
+          "items": {
+            "type": "object",
+            "properties": {
+              "key": {
+                "type": "string",
+                "description": "Key pressed (character or special key name)"
+              },
+              "timestamp_ms": {
+                "type": "integer",
+                "description": "Milliseconds since collection start"
+              },
+              "hold_duration_ms": {
+                "type": "number",
+                "description": "How long key was held"
+              },
+              "is_modifier": {
+                "type": "boolean",
+                "description": "Whether this is a modifier key (Ctrl, Alt, Shift)"
+              },
+              "modifiers_active": {
+                "type": "array",
+                "items": {"type": "string"},
+                "description": "Which modifier keys were pressed simultaneously"
+              }
+            }
+          }
+        },
+        "typing_patterns": {
+          "type": "object",
+          "description": "Advanced typing pattern analysis",
+          "properties": {
+            "burst_count": {
+              "type": "integer",
+              "description": "Number of rapid typing bursts"
+            },
+            "pause_count": {
+              "type": "integer",
+              "description": "Number of significant pauses"
+            },
+            "avg_burst_duration_ms": {
+              "type": "number"
+            },
+            "avg_pause_duration_ms": {
+              "type": "number"
+            },
+            "typing_rhythm_score": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1,
+              "description": "Overall rhythm consistency"
+            }
+          }
+        },
+        "enabled": {
+          "type": "boolean",
+          "description": "Whether keystroke collection is enabled"
+        }
+      },
+      "required": ["timestamp", "typing_speed_wpm", "total_keystrokes", "enabled"]
+    },
+    "enhanced_screen_data": {
+      "type": "object",
+      "description": "Complete screen content capture with all windows",
+      "properties": {
+        "timestamp": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "click_count": {
+          "type": "integer",
+          "description": "Total mouse clicks"
+        },
+        "double_click_count": {
+          "type": "integer"
+        },
+        "right_click_count": {
+          "type": "integer"
+        },
+        "scroll_events": {
+          "type": "integer"
+        },
+        "ui_element_types": {
+          "type": "array",
+          "items": {"type": "string"},
+          "description": "Types of UI elements interacted with"
+        },
+        "interaction_speed": {
+          "type": "number",
+          "description": "Interactions per minute"
+        },
+        "workflow_friction_score": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "description": "Indication of user frustration"
+        },
+        "mouse_travel_distance_px": {
+          "type": "integer",
+          "description": "Total pixels mouse traveled"
+        },
+        "screen_region_heatmap": {
+          "type": "array",
+          "description": "Activity heatmap zones",
+          "items": {
+            "type": "array",
+            "items": {"type": "integer"},
+            "minItems": 3,
+            "maxItems": 3
+          }
+        },
+        "active_windows": {
+          "type": "array",
+          "description": "ALL VISIBLE WINDOWS with complete content",
+          "items": {
+            "type": "object",
+            "properties": {
+              "window_title": {
+                "type": "string",
+                "description": "Title bar text"
+              },
+              "application_name": {
+                "type": "string",
+                "description": "Name of the application"
+              },
+              "window_handle": {
+                "type": "string",
+                "description": "System window handle identifier"
+              },
+              "z_index": {
+                "type": "integer",
+                "description": "Layering order (0 = foreground)"
+              },
+              "dimensions": {
+                "type": "array",
+                "items": {"type": "integer"},
+                "minItems": 2,
+                "maxItems": 2,
+                "description": "Width and height in pixels [w, h]"
+              },
+              "position": {
+                "type": "array",
+                "items": {"type": "integer"},
+                "minItems": 2,
+                "maxItems": 2,
+                "description": "Top-left corner coordinates [x, y]"
+              },
+              "visible_text": {
+                "type": "string",
+                "description": "ALL READABLE TEXT from this window",
+                "maxLength": 50000
+              },
+              "ui_elements": {
+                "type": "array",
+                "description": "All UI elements in the window",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "element_type": {
+                      "type": "string",
+                      "enum": ["button", "textbox", "label", "menu", "menuitem", "checkbox", "radio", "slider", "dropdown", "list", "tree", "tab", "scrollbar", "link", "image", "video", "table", "form", "dialog", "panel", "toolbar", "statusbar"],
+                      "description": "Type of UI element"
+                    },
+                    "element_text": {
+                      "type": "string",
+                      "description": "Text content of element (label, value, etc.)"
+                    },
+                    "element_id": {
+                      "type": ["string", "null"],
+                      "description": "Element identifier if available"
+                    },
+                    "position": {
+                      "type": "array",
+                      "items": {"type": "integer"},
+                      "minItems": 2,
+                      "maxItems": 2,
+                      "description": "Position relative to window [x, y]"
+                    },
+                    "dimensions": {
+                      "type": "array",
+                      "items": {"type": "integer"},
+                      "minItems": 2,
+                      "maxItems": 2,
+                      "description": "Element size [w, h]"
+                    },
+                    "is_enabled": {
+                      "type": "boolean"
+                    },
+                    "is_visible": {
+                      "type": "boolean"
+                    },
+                    "class_name": {
+                      "type": "string",
+                      "description": "CSS/UI class name if available"
+                    },
+                    "value": {
+                      "type": ["string", "null"],
+                      "description": "Current value for input elements"
+                    },
+                    "placeholder": {
+                      "type": ["string", "null"],
+                      "description": "Placeholder text for inputs"
+                    },
+                    "tooltip": {
+                      "type": ["string", "null"],
+                      "description": "Tooltip text if available"
+                    },
+                    "is_focused": {
+                      "type": "boolean",
+                      "description": "Whether this element has focus"
+                    }
+                  },
+                  "required": ["element_type", "element_text", "position", "dimensions", "is_enabled", "is_visible"]
+                }
+              },
+              "is_focused": {
+                "type": "boolean",
+                "description": "Whether this window has focus"
+              },
+              "window_state": {
+                "type": "string",
+                "enum": ["normal", "maximized", "minimized", "fullscreen"],
+                "description": "Current window state"
+              },
+              "process_id": {
+                "type": "integer",
+                "description": "Operating system process ID"
+              },
+              "parent_window": {
+                "type": ["string", "null"],
+                "description": "Parent window handle if this is a child window"
+              }
+            },
+            "required": ["window_title", "application_name", "window_handle", "z_index", "dimensions", "position", "visible_text", "ui_elements", "is_focused"]
+          }
+        },
+        "screen_text_snapshot": {
+          "type": ["string", "null"],
+          "description": "FULL SCREEN OCR TEXT - All visible text on entire screen",
+          "maxLength": 100000
+        },
+        "screen_layout": {
+          "type": "object",
+          "description": "Overall screen configuration",
+          "properties": {
+            "primary_monitor": {
+              "type": "object",
+              "properties": {
+                "resolution": {
+                  "type": "array",
+                  "items": {"type": "integer"},
+                  "minItems": 2,
+                  "maxItems": 2
+                },
+                "dpi_scaling": {
+                  "type": "number"
+                },
+                "refresh_rate": {
+                  "type": "integer"
+                }
+              }
+            },
+            "total_monitors": {
+              "type": "integer"
+            },
+            "virtual_screen_bounds": {
+              "type": "array",
+              "items": {"type": "integer"},
+              "minItems": 4,
+              "maxItems": 4,
+              "description": "Total screen area [x, y, width, height]"
+            }
+          }
+        },
+        "accessibility_tree": {
+          "type": "array",
+          "description": "Complete UI Automation accessibility tree for maximum data capture",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": {"type": "string"},
+              "role": {"type": "string"},
+              "value": {"type": "string"},
+              "description": {"type": "string"},
+              "help_text": {"type": "string"},
+              "keyboard_shortcut": {"type": ["string", "null"]},
+              "children_count": {"type": "integer"},
+              "parent_role": {"type": "string"}
+            }
+          }
+        }
+      },
+      "required": ["timestamp", "click_count", "active_windows"]
+    },
+    "context_metadata": {
+      "type": "object",
+      "description": "Additional context for AI analysis",
+      "properties": {
+        "user_activity_state": {
+          "type": "string",
+          "enum": ["active", "idle", "away", "focused", "distracted"],
+          "description": "Current user activity classification"
+        },
+        "task_inference": {
+          "type": "string",
+          "description": "AI-inferred task user is performing"
+        },
+        "attention_zones": {
+          "type": "array",
+          "description": "Screen regions receiving most attention",
+          "items": {
+            "type": "object",
+            "properties": {
+              "region": {"type": "array", "items": {"type": "integer"}},
+              "attention_score": {"type": "number"},
+              "duration_seconds": {"type": "number"}
+            }
+          }
+        },
+        "workflow_stage": {
+          "type": "string",
+          "description": "Stage in detected workflow"
+        }
+      }
+    }
+  },
+  "required": ["session_id", "timestamp", "enhanced_keystroke_data", "enhanced_screen_data"]
+}

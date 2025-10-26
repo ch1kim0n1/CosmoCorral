@@ -14,78 +14,82 @@ async def handler(ws):
 
     print(device_manager.devices)
 
-    async for raw in ws:
-        try:
-            message = json.loads(raw)
-            method = message.get("method")
-            data = message.get("data", {})
+    try:
+        async for raw in ws:
+            try:
+                message = json.loads(raw)
+                method = message.get("method")
+                data = message.get("data", {})
 
-            # handle incoming methods in a single dispatch
-            match method:
-                case "GetAllDevices":
-                    devices = device_manager.get_all_devices()
-                    response = {"status": "success", "data": devices}
+                # handle incoming methods in a single dispatch
+                match method:
+                    case "GetAllDevices":
+                        devices = device_manager.get_all_devices()
+                        response = {"status": "success", "data": devices}
 
-                case "GetDevice":
-                    device_id = data.get("device_id")
-                    device_info = device_manager.get_device(device_id)
-                    if device_info:
-                        response = {"status": "success", "data": device_info}
-                    else:
-                        response = {"status": "error", "message": "Device not found"}
+                    case "GetDevice":
+                        device_id = data.get("device_id")
+                        device_info = device_manager.get_device(device_id)
+                        if device_info:
+                            response = {"status": "success", "data": device_info}
+                        else:
+                            response = {"status": "error", "message": "Device not found"}
 
-                case "CreateDevice":
-                    name = data.get("name")
-                    created = device_manager.create_device(name)
-                    # created is a dict {id, access_code}
-                    response = {"status": "success", "data": created}
+                    case "CreateDevice":
+                        name = data.get("name")
+                        created = device_manager.create_device(name)
+                        # created is a dict {id, access_code}
+                        response = {"status": "success", "data": created}
 
-                case "RemoveDevice":
-                    device_id = data.get("device_id")
-                    success = device_manager.remove_device(device_id)
-                    if success:
-                        response = {"status": "success"}
-                    else:
-                        response = {"status": "error", "message": "Failed to remove device"}
+                    case "RemoveDevice":
+                        device_id = data.get("device_id")
+                        success = device_manager.remove_device(device_id)
+                        if success:
+                            response = {"status": "success"}
+                        else:
+                            response = {"status": "error", "message": "Failed to remove device"}
 
-                case "EditDevice":
-                    device_id = data.get("device_id")
-                    name = data.get("name")
-                    success = device_manager.edit_device(device_id, name)
-                    if success:
-                        response = {"status": "success"}
-                    else:
-                        response = {"status": "error", "message": "Failed to edit device"}
+                    case "EditDevice":
+                        device_id = data.get("device_id")
+                        name = data.get("name")
+                        success = device_manager.edit_device(device_id, name)
+                        if success:
+                            response = {"status": "success"}
+                        else:
+                            response = {"status": "error", "message": "Failed to edit device"}
 
-                case "Authenticate":
-                    access_code = data.get("access_code")
-                    token = device_manager.authenticate(ws, access_code)
-                    if token:
-                        response = {"status": "success", "data": {"token": token}}
-                    else:
-                        response = {"status": "error", "message": "Authentication failed"}
+                    case "Authenticate":
+                        access_code = data.get("access_code")
+                        print("Authenticating with access code:", access_code)
+                        token = device_manager.authenticate(ws, access_code)
+                        if token:
+                            response = {"status": "success", "data": {"token": token}}
+                        else:
+                            response = {"status": "error", "message": "Authentication failed"}
 
-                case "Package":
-                    token = data.get("token")
-                    if token and device_manager.devices.get(token):
-                        analyzed = analyze(data.get("data"))
-                        response = {"status": "success", "data": analyzed} if analyzed else {"status": "error", "message": "Analysis returned no result"}
-                    else:
-                        response = {"status": "error", "message": "Invalid token"}
+                    case "Package":
+                        token = data.get("token")
+                        print("Received package with token:", token)
+                        if token in device_manager.devices:
+                            analyzed = analyze(data)
+                            response = {"status": "success", "data": analyzed} if analyzed else {"status": "error", "message": "Analysis returned no result"}
+                        else:
+                            response = {"status": "error", "message": "Invalid token"}
 
-                case _:
-                    response = {"status": "error", "message": "Unknown method"}
+                    case _:
+                        response = {"status": "error", "message": "Unknown method"}
 
-        except json.JSONDecodeError:
-            response = {"status": "error", "message": "Invalid JSON"}
-        except Exception as exc:
-            response = {"status": "error", "message": f"Server error: {exc}"}
-        finally:
-            tokens = [t for t, info in device_manager.devices.items() if info.get("session") is ws]
-            for t in tokens:
-                device_manager.forget(t)
+            except json.JSONDecodeError:
+                response = {"status": "error", "message": "Invalid JSON"}
+            except Exception as exc:
+                response = {"status": "error", "message": f"Server error: {exc}"}
 
-        await ws.send(json.dumps(response))
+            await ws.send(json.dumps(response))
+    finally:
+        # Clean up session when WebSocket connection closes
+        tokens = [t for t, info in device_manager.devices.items() if info.get("session") is ws]
+        for t in tokens:
+            device_manager.forget(t)
 
 
 
