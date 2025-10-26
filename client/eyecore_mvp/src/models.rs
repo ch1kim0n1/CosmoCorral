@@ -107,7 +107,7 @@ pub struct CameraData {
     pub enabled: bool,                // privacy: user consent status
 }
 
-// NEW: Keystroke Dynamics (NO CONTENT - only patterns)
+// NEW: Keystroke Dynamics WITH CONTENT for AI Analysis
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct KeystrokeDynamics {
     pub timestamp: DateTime<Utc>,
@@ -119,10 +119,13 @@ pub struct KeystrokeDynamics {
     pub stress_indicator: f32,           // 0.0 (relaxed) to 1.0 (stressed)
     pub fatigue_indicator: f32,          // 0.0 (fresh) to 1.0 (tired)
     pub total_keystrokes: u32,           // count only, no content
+    // ENHANCED: Actual content tracking
+    pub typed_text: Option<String>,      // actual text typed for AI context
+    pub buttons_clicked: Vec<ButtonClick>, // all button/UI clicks tracked
     pub enabled: bool,                   // privacy: user consent status
 }
 
-// NEW: Screen Interaction Analysis
+// NEW: Screen Interaction Analysis WITH FULL SCREEN READING
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct ScreenInteractions {
     pub timestamp: DateTime<Utc>,
@@ -135,6 +138,9 @@ pub struct ScreenInteractions {
     pub workflow_friction_score: f32,    // 0.0 (smooth) to 1.0 (frustrated)
     pub mouse_travel_distance_px: u64,   // total pixel distance
     pub screen_region_heatmap: Vec<(u32, u32, u32)>, // (x_zone, y_zone, count)
+    // ENHANCED: Full screen content capture
+    pub active_windows: Vec<WindowContent>, // all visible windows with content
+    pub screen_text_snapshot: Option<String>, // OCR text from entire screen
 }
 
 // NEW: File Metadata Analysis (NO NAMES OR CONTENT)
@@ -193,4 +199,42 @@ pub struct NetworkActivityMetadata {
     pub latency_avg_ms: f32,           // average ping
     pub packet_loss_rate: f32,         // 0.0 to 1.0
     pub connection_stability: f32,     // 0.0 (unstable) to 1.0 (stable)
+}
+
+// NEW: Window Content Capture for AI Analysis
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct WindowContent {
+    pub window_title: String,
+    pub application_name: String,
+    pub window_handle: String,
+    pub z_index: i32,                  // layering order
+    pub dimensions: (u32, u32),        // width, height
+    pub position: (i32, i32),          // x, y coordinates
+    pub visible_text: String,          // all readable text in window
+    pub ui_elements: Vec<UIElement>,   // buttons, fields, etc.
+    pub is_focused: bool,
+}
+
+// NEW: UI Element details for comprehensive tracking
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct UIElement {
+    pub element_type: String,          // "button", "textbox", "menu", etc.
+    pub element_text: String,          // button label, field content, etc.
+    pub element_id: Option<String>,    // ID if available
+    pub position: (i32, i32),          // relative position in window
+    pub dimensions: (u32, u32),        // width, height
+    pub is_enabled: bool,
+    pub is_visible: bool,
+}
+
+// NEW: Button Click tracking for AI context
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct ButtonClick {
+    pub timestamp: DateTime<Utc>,
+    pub button_text: String,           // text on button
+    pub button_type: String,           // "submit", "cancel", "link", etc.
+    pub window_context: String,        // which window was it in
+    pub application: String,           // which app
+    pub position: (i32, i32),          // screen coordinates
+    pub click_type: String,            // "left", "right", "double"
 }
