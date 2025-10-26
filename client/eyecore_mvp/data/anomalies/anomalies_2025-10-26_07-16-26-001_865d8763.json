@@ -1,0 +1,13 @@
+{
+  "anomalies": [
+    {
+      "emotion": "disappointed",
+      "sentiment": -0.882922887802124,
+      "timestamp": "2025-10-26T07:16:25.999637600Z",
+      "type": "negative_emotion"
+    }
+  ],
+  "anomaly_count": 1,
+  "session_id": "865d8763-9ae5-459e-b3c1-0384d1b34a31",
+  "timestamp": "2025-10-26T07:16:26.001288700+00:00"
+}
