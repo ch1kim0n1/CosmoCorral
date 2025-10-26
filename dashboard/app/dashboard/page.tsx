@@ -1,6 +1,7 @@
 "use client"
 
-import { useState } from "react"
+import { useEffect, useRef, useState } from "react"
+import { init, close, getAllDevices, createDevice, editDevice, removeDevice } from "@/lib/ws"
 import { SpaceBackground } from "@/components/space-background"
 import { Button } from "@/components/ui/button"
 import {
@@ -29,6 +30,9 @@ interface Device {
 export default function DashboardPage() {
   const [devices, setDevices] = useState<Device[]>([])
   const [isAddDialogOpen, setIsAddDialogOpen] = useState(false)
+  const [showCodeModalOpen, setShowCodeModalOpen] = useState(false)
+  const [createdAccessCode, setCreatedAccessCode] = useState("")
+  const [createdDeviceName, setCreatedDeviceName] = useState("")
   const [deviceCode, setDeviceCode] = useState("")
   const [deviceName, setDeviceName] = useState("")
   const [isSettingsDialogOpen, setIsSettingsDialogOpen] = useState(false)
@@ -36,29 +40,67 @@ export default function DashboardPage() {
   const [editName, setEditName] = useState("")
   const [editDescription, setEditDescription] = useState("")
   const [layout, setLayout] = useState<"grid" | "list">("grid")
+  const wsRef = useRef<WebSocket | null>(null)
+  const [connected, setConnected] = useState(false)
+
+  useEffect(() => {
+    init()
+      .then(() => {
+        setConnected(true)
+        return getAllDevices()
+      })
+      .then((res) => {
+        if (res?.status === "success" && Array.isArray(res.data)) {
+          const mapped = res.data.map((d: any) => ({
+            id: d.id,
+            code: d.access_code ?? "",
+            name: d.name ?? "",
+            // description is client-only; server does not store it
+            description: "",
+            status: d.is_online ? "online" : "offline",
+            lastOnline: d.last_online ? new Date(d.last_online) : undefined,
+          }))
+          setDevices(mapped)
+        }
+      })
+      .catch(() => {
+        setConnected(false)
+      })
+
+    return () => {
+      close()
+      wsRef.current = null
+    }
+  }, [])
 
   const handleAddDevice = () => {
-    if (!deviceCode.trim() || !deviceName.trim()) return
+    if (!deviceName.trim()) return
 
-    const status = Math.random() > 0.5 ? "online" : "offline"
-    const lastOnline =
-      status === "offline"
-        ? new Date(Date.now() - Math.floor(Math.random() * 7 * 24 * 60 * 60 * 1000)) // Random date within last 7 days
-        : undefined
-
-    const newDevice: Device = {
-      id: `DEV-${Math.random().toString(36).substr(2, 9).toUpperCase()}`,
-      code: deviceCode,
-      name: deviceName,
-      description: "",
-      status,
-      lastOnline,
-    }
-
-    setDevices([...devices, newDevice])
-    setDeviceCode("")
-    setDeviceName("")
-    setIsAddDialogOpen(false)
+    createDevice(deviceName)
+      .then((res) => {
+        if (res?.status === "success" && res.data) {
+          const created = res.data
+          const newDevice: Device = {
+            id: created.id,
+            code: created.access_code ?? deviceCode,
+            name: deviceName,
+            description: "",
+            status: "offline",
+            lastOnline: undefined,
+          }
+          setDevices((prev) => [...prev, newDevice])
+          // show access code modal so user can copy/store the code
+          setCreatedAccessCode(created.access_code ?? "")
+          setCreatedDeviceName(created.name ?? deviceName)
+          setShowCodeModalOpen(true)
+        }
+      })
+      .catch(() => {})
+      .finally(() => {
+        setDeviceCode("")
+        setDeviceName("")
+        setIsAddDialogOpen(false)
+      })
   }
 
   const formatLastOnline = (date: Date) => {
@@ -73,7 +115,11 @@ export default function DashboardPage() {
   }
 
   const handleDeleteDevice = (id: string) => {
-    setDevices(devices.filter((device) => device.id !== id))
+    removeDevice(id)
+      .then((res) => {
+        if (res?.status === "success") setDevices((prev) => prev.filter((d) => d.id !== id))
+      })
+      .catch(() => {})
   }
 
   const handleOpenSettings = (device: Device) => {
@@ -85,16 +131,29 @@ export default function DashboardPage() {
 
   const handleConfirmSettings = () => {
     if (!editingDevice) return
+    const updates = { name: editName }
+    // send name update to server, but keep description client-side
+    editDevice(editingDevice.id, editName)
+      .then((res) => {
+        if (res?.status === "success") {
+          setDevices((prev) => prev.map((device) => (device.id === editingDevice.id ? { ...device, ...updates, description: editDescription } : device)))
+        }
+      })
+      .catch(() => {})
+      .finally(() => {
+        setIsSettingsDialogOpen(false)
+        setEditingDevice(null)
+        setEditName("")
+        setEditDescription("")
+      })
+  }
 
-    setDevices(
-      devices.map((device) =>
-        device.id === editingDevice.id ? { ...device, name: editName, description: editDescription } : device,
-      ),
-    )
-    setIsSettingsDialogOpen(false)
-    setEditingDevice(null)
-    setEditName("")
-    setEditDescription("")
+  const copyAccessCode = async () => {
+    try {
+      if (createdAccessCode) await navigator.clipboard.writeText(createdAccessCode)
+    } catch (e) {
+      // ignore clipboard failures
+    }
   }
 
   const StatusDisplay = ({ device }: { device: Device }) => (
@@ -178,18 +237,6 @@ export default function DashboardPage() {
                   </DialogHeader>
                   <div className="space-y-4 mt-4">
                     <div className="space-y-2">
-                      <Label htmlFor="device-code" className="text-accent font-mono text-xs">
-                        DEVICE_CODE:
-                      </Label>
-                      <Input
-                        id="device-code"
-                        value={deviceCode}
-                        onChange={(e) => setDeviceCode(e.target.value)}
-                        className="font-mono bg-[#1a1f2e] border-[#2a3f5f] text-foreground focus:border-accent"
-                        placeholder="Enter device code..."
-                      />
-                    </div>
-                    <div className="space-y-2">
                       <Label htmlFor="device-name" className="text-accent font-mono text-xs">
                         DEVICE_NAME:
                       </Label>
@@ -206,6 +253,38 @@ export default function DashboardPage() {
                       className="w-full font-mono bg-accent hover:bg-accent/80 text-accent-foreground"
                     >
                       {">"} CONNECT_DEVICE
+                    </Button>
+                  </div>
+                </DialogContent>
+              </Dialog>
+
+              <Dialog open={showCodeModalOpen} onOpenChange={setShowCodeModalOpen}>
+                <DialogContent className="bg-[#0f1419] border-[#2a3f5f] font-mono">
+                  <DialogHeader>
+                    <DialogTitle className="text-accent font-mono">{">"} DEVICE_CREATED</DialogTitle>
+                    <DialogDescription className="text-muted-foreground font-mono text-xs">
+                      The access code for the device is shown below. Copy and save it — this is required to authenticate the device.
+                    </DialogDescription>
+                  </DialogHeader>
+
+                  <div className="space-y-4 mt-4 text-center">
+                    <div className="space-y-1">
+                      <span className="font-mono text-sm text-muted-foreground">DEVICE NAME</span>
+                      <div className="font-mono text-xl text-foreground">{createdDeviceName || "-"}</div>
+                    </div>
+
+                    <div className="space-y-1 text-center">
+                      <span className="font-mono text-sm text-muted-foreground">ACCESS CODE</span>
+                      <div className="flex items-center justify-center gap-2">
+                        <div className="font-mono text-xl white">{createdAccessCode || "-"}</div>
+                        {/* <div onClick={copyAccessCode} className="font-mono text-xs cursor-pointer hover:underline text-blue-700">
+                          COPY
+                        </div> */}
+                      </div>
+                    </div>
+
+                    <Button onClick={() => setShowCodeModalOpen(false)} className="w-full font-mono bg-accent hover:bg-accent/80 text-accent-foreground">
+                      {">"} CLOSE
                     </Button>
                   </div>
                 </DialogContent>

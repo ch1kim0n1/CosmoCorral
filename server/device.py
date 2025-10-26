@@ -17,7 +17,6 @@ def _device_to_dict(device: Device) -> Dict[str, Any]:
     return {
         "id": str(device.id),
         "name": device.name,
-        "description": device.description,
         "last_online": device.last_online.isoformat() if device.last_online else None,
         "last_session_time": device.last_session_time,
     }
@@ -42,9 +41,9 @@ class Devices:
         self.devices: Dict[str, Dict[str, Any]] = {}  # token -> session info
         self.online: Dict[str, str] = {}  # device_id(str) -> token
 
-    def create_device(self, name: str, description: Optional[str] = None) -> Dict[str, str]:
+    def create_device(self, name: str) -> Dict[str, str]:
         access_code = generate_access_code()
-        d = Device.create(name=name, description=description, access_code=access_code)
+        d = Device.create(name=name, access_code=access_code)
         return {"id": str(d.id), "access_code": access_code}
 
     def remove_device(self, device_id: str) -> bool:
@@ -59,7 +58,7 @@ class Devices:
         except Exception:
             return False
 
-    def edit_device(self, device_id: str, name: Optional[str] = None, description: Optional[str] = None) -> bool:
+    def edit_device(self, device_id: str, name: Optional[str] = None) -> bool:
         try:
             did = _ensure_uuid(device_id)
             d = Device.get_or_none(Device.id == did)
@@ -67,8 +66,6 @@ class Devices:
                 return False
             if name is not None:
                 d.name = name
-            if description is not None:
-                d.description = description
             d.save()
             # update cached session device if present
             token = self.online.get(str(did))

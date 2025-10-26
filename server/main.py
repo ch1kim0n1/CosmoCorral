@@ -36,8 +36,7 @@ async def handler(ws):
 
                 case "CreateDevice":
                     name = data.get("name")
-                    description = data.get("description")
-                    created = device_manager.create_device(name, description)
+                    created = device_manager.create_device(name)
                     # created is a dict {id, access_code}
                     response = {"status": "success", "data": created}
 
@@ -52,8 +51,7 @@ async def handler(ws):
                 case "EditDevice":
                     device_id = data.get("device_id")
                     name = data.get("name")
-                    description = data.get("description")
-                    success = device_manager.edit_device(device_id, name, description)
+                    success = device_manager.edit_device(device_id, name)
                     if success:
                         response = {"status": "success"}
                     else:
