@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react"
 import { init, close, getAllDevices, createDevice, editDevice, removeDevice } from "@/lib/ws"
+import FlagReportsPanel from "@/components/FlagReportsPanel"
 import { SpaceBackground } from "@/components/space-background"
 import { Button } from "@/components/ui/button"
 import {
@@ -335,6 +336,11 @@ export default function DashboardPage() {
             </div>
           </DialogContent>
         </Dialog>
+
+        {/* Flag Reports Panel - Real-time alerts */}
+        <div className="border-b border-[#2a3f5f] bg-[#0f1419]/80">
+          <FlagReportsPanel />
+        </div>
 
         {/* Main Terminal Content */}
         <div className="container mx-auto px-4 py-8">

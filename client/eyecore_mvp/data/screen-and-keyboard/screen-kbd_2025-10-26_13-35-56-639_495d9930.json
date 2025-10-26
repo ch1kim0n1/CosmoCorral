@@ -1,0 +1,1479 @@
+{
+  "context_metadata": {
+    "attention_zones": [
+      {
+        "attention_score": 0.800000011920929,
+        "duration_seconds": 45.5,
+        "region": [
+          100,
+          100,
+          800,
+          600
+        ]
+      },
+      {
+        "attention_score": 0.4000000059604645,
+        "duration_seconds": 12.300000190734863,
+        "region": [
+          900,
+          200,
+          500,
+          400
+        ]
+      }
+    ],
+    "task_inference": "research",
+    "user_activity_state": "active",
+    "workflow_stage": "finalizing"
+  },
+  "enhanced_keystroke_data": {
+    "avg_key_hold_time_ms": 43.08833694458008,
+    "avg_key_interval_ms": 28.784868240356445,
+    "buttons_clicked": [],
+    "enabled": true,
+    "error_correction_rate": 0.4512205719947815,
+    "fatigue_indicator": 0.5204042196273804,
+    "key_press_variance": 0.15096533298492432,
+    "keystroke_sequence": [
+      {
+        "hold_duration_ms": 100.47657775878906,
+        "is_modifier": false,
+        "key": "Space",
+        "modifiers_active": [],
+        "timestamp_ms": 0
+      },
+      {
+        "hold_duration_ms": 134.06661987304688,
+        "is_modifier": false,
+        "key": "Space",
+        "modifiers_active": [
+          "Shift"
+        ],
+        "timestamp_ms": 150
+      },
+      {
+        "hold_duration_ms": 88.30072784423828,
+        "is_modifier": false,
+        "key": "Space",
+        "modifiers_active": [],
+        "timestamp_ms": 300
+      },
+      {
+        "hold_duration_ms": 138.97726440429688,
+        "is_modifier": false,
+        "key": "Space",
+        "modifiers_active": [],
+        "timestamp_ms": 450
+      },
+      {
+        "hold_duration_ms": 142.49191284179688,
+        "is_modifier": true,
+        "key": "y",
+        "modifiers_active": [],
+        "timestamp_ms": 600
+      },
+      {
+        "hold_duration_ms": 127.8425064086914,
+        "is_modifier": false,
+        "key": "k",
+        "modifiers_active": [],
+        "timestamp_ms": 750
+      },
+      {
+        "hold_duration_ms": 110.08483123779297,
+        "is_modifier": false,
+        "key": "r",
+        "modifiers_active": [],
+        "timestamp_ms": 900
+      },
+      {
+        "hold_duration_ms": 72.58953857421875,
+        "is_modifier": true,
+        "key": "u",
+        "modifiers_active": [],
+        "timestamp_ms": 1050
+      },
+      {
+        "hold_duration_ms": 65.2363510131836,
+        "is_modifier": false,
+        "key": "k",
+        "modifiers_active": [],
+        "timestamp_ms": 1200
+      },
+      {
+        "hold_duration_ms": 100.6725082397461,
+        "is_modifier": false,
+        "key": "Space",
+        "modifiers_active": [],
+        "timestamp_ms": 1350
+      },
+      {
+        "hold_duration_ms": 113.48600769042969,
+        "is_modifier": false,
+        "key": "y",
+        "modifiers_active": [],
+        "timestamp_ms": 1500
+      },
+      {
+        "hold_duration_ms": 113.15847778320312,
+        "is_modifier": false,
+        "key": "o",
+        "modifiers_active": [],
+        "timestamp_ms": 1650
+      },
+      {
+        "hold_duration_ms": 140.32208251953125,
+        "is_modifier": false,
+        "key": "a",
+        "modifiers_active": [],
+        "timestamp_ms": 1800
+      },
+      {
+        "hold_duration_ms": 78.77326202392578,
+        "is_modifier": true,
+        "key": "z",
+        "modifiers_active": [],
+        "timestamp_ms": 1950
+      },
+      {
+        "hold_duration_ms": 127.70175170898438,
+        "is_modifier": false,
+        "key": "m",
+        "modifiers_active": [],
+        "timestamp_ms": 2100
+      },
+      {
+        "hold_duration_ms": 93.96591186523438,
+        "is_modifier": false,
+        "key": "h",
+        "modifiers_active": [],
+        "timestamp_ms": 2250
+      },
+      {
+        "hold_duration_ms": 86.14834594726562,
+        "is_modifier": true,
+        "key": "p",
+        "modifiers_active": [],
+        "timestamp_ms": 2400
+      },
+      {
+        "hold_duration_ms": 144.1871795654297,
+        "is_modifier": false,
+        "key": "x",
+        "modifiers_active": [],
+        "timestamp_ms": 2550
+      },
+      {
+        "hold_duration_ms": 59.87596130371094,
+        "is_modifier": false,
+        "key": "f",
+        "modifiers_active": [],
+        "timestamp_ms": 2700
+      },
+      {
+        "hold_duration_ms": 72.64075469970703,
+        "is_modifier": false,
+        "key": "p",
+        "modifiers_active": [],
+        "timestamp_ms": 2850
+      },
+      {
+        "hold_duration_ms": 99.71150207519531,
+        "is_modifier": false,
+        "key": "p",
+        "modifiers_active": [],
+        "timestamp_ms": 3000
+      },
+      {
+        "hold_duration_ms": 141.63900756835938,
+        "is_modifier": false,
+        "key": "m",
+        "modifiers_active": [],
+        "timestamp_ms": 3150
+      },
+      {
+        "hold_duration_ms": 75.14056396484375,
+        "is_modifier": false,
+        "key": "x",
+        "modifiers_active": [
+          "Shift"
+        ],
+        "timestamp_ms": 3300
+      },
+      {
+        "hold_duration_ms": 78.88246154785156,
+        "is_modifier": false,
+        "key": "l",
+        "modifiers_active": [],
+        "timestamp_ms": 3450
+      },
+      {
+        "hold_duration_ms": 85.46240997314453,
+        "is_modifier": false,
+        "key": "u",
+        "modifiers_active": [],
+        "timestamp_ms": 3600
+      },
+      {
+        "hold_duration_ms": 98.74018859863281,
+        "is_modifier": false,
+        "key": "Space",
+        "modifiers_active": [],
+        "timestamp_ms": 3750
+      },
+      {
+        "hold_duration_ms": 100.40550994873047,
+        "is_modifier": false,
+        "key": "c",
+        "modifiers_active": [],
+        "timestamp_ms": 3900
+      },
+      {
+        "hold_duration_ms": 134.45193481445312,
+        "is_modifier": false,
+        "key": "x",
+        "modifiers_active": [],
+        "timestamp_ms": 4050
+      },
+      {
+        "hold_duration_ms": 121.42444610595703,
+        "is_modifier": false,
+        "key": "r",
+        "modifiers_active": [
+          "Shift"
+        ],
+        "timestamp_ms": 4200
+      },
+      {
+        "hold_duration_ms": 58.7000846862793,
+        "is_modifier": false,
+        "key": "e",
+        "modifiers_active": [],
+        "timestamp_ms": 4350
+      },
+      {
+        "hold_duration_ms": 64.18022918701172,
+        "is_modifier": false,
+        "key": "c",
+        "modifiers_active": [
+          "Shift"
+        ],
+        "timestamp_ms": 4500
+      },
+      {
+        "hold_duration_ms": 143.86492919921875,
+        "is_modifier": false,
+        "key": "i",
+        "modifiers_active": [],
+        "timestamp_ms": 4650
+      },
+      {
+        "hold_duration_ms": 86.64986419677734,
+        "is_modifier": false,
+        "key": "Space",
+        "modifiers_active": [],
+        "timestamp_ms": 4800
+      },
+      {
+        "hold_duration_ms": 52.01057052612305,
+        "is_modifier": true,
+        "key": "w",
+        "modifiers_active": [],
+        "timestamp_ms": 4950
+      },
+      {
+        "hold_duration_ms": 65.21155548095703,
+        "is_modifier": false,
+        "key": "Space",
+        "modifiers_active": [],
+        "timestamp_ms": 5100
+      },
+      {
+        "hold_duration_ms": 127.15271759033203,
+        "is_modifier": false,
+        "key": "i",
+        "modifiers_active": [],
+        "timestamp_ms": 5250
+      },
+      {
+        "hold_duration_ms": 82.48514556884766,
+        "is_modifier": false,
+        "key": "e",
+        "modifiers_active": [],
+        "timestamp_ms": 5400
+      },
+      {
+        "hold_duration_ms": 52.50027084350586,
+        "is_modifier": false,
+        "key": "r",
+        "modifiers_active": [],
+        "timestamp_ms": 5550
+      },
+      {
+        "hold_duration_ms": 87.11170959472656,
+        "is_modifier": false,
+        "key": "v",
+        "modifiers_active": [],
+        "timestamp_ms": 5700
+      },
+      {
+        "hold_duration_ms": 107.78533935546875,
+        "is_modifier": false,
+        "key": "Space",
+        "modifiers_active": [],
+        "timestamp_ms": 5850
+      },
+      {
+        "hold_duration_ms": 82.30477905273438,
+        "is_modifier": false,
+        "key": "e",
+        "modifiers_active": [],
+        "timestamp_ms": 6000
+      },
+      {
+        "hold_duration_ms": 50.488037109375,
+        "is_modifier": false,
+        "key": "k",
+        "modifiers_active": [
+          "Shift"
+        ],
+        "timestamp_ms": 6150
+      },
+      {
+        "hold_duration_ms": 115.19005584716797,
+        "is_modifier": false,
+        "key": "u",
+        "modifiers_active": [],
+        "timestamp_ms": 6300
+      },
+      {
+        "hold_duration_ms": 135.23159790039062,
+        "is_modifier": false,
+        "key": "f",
+        "modifiers_active": [],
+        "timestamp_ms": 6450
+      },
+      {
+        "hold_duration_ms": 53.03515625,
+        "is_modifier": false,
+        "key": "p",
+        "modifiers_active": [],
+        "timestamp_ms": 6600
+      },
+      {
+        "hold_duration_ms": 144.48135375976562,
+        "is_modifier": false,
+        "key": "y",
+        "modifiers_active": [],
+        "timestamp_ms": 6750
+      },
+      {
+        "hold_duration_ms": 83.84803771972656,
+        "is_modifier": false,
+        "key": "p",
+        "modifiers_active": [],
+        "timestamp_ms": 6900
+      },
+      {
+        "hold_duration_ms": 87.67707824707031,
+        "is_modifier": false,
+        "key": "i",
+        "modifiers_active": [],
+        "timestamp_ms": 7050
+      },
+      {
+        "hold_duration_ms": 71.9787826538086,
+        "is_modifier": false,
+        "key": "d",
+        "modifiers_active": [],
+        "timestamp_ms": 7200
+      },
+      {
+        "hold_duration_ms": 117.13093566894531,
+        "is_modifier": false,
+        "key": "v",
+        "modifiers_active": [],
+        "timestamp_ms": 7350
+      },
+      {
+        "hold_duration_ms": 77.3389892578125,
+        "is_modifier": false,
+        "key": "m",
+        "modifiers_active": [],
+        "timestamp_ms": 7500
+      },
+      {
+        "hold_duration_ms": 146.24203491210938,
+        "is_modifier": false,
+        "key": "b",
+        "modifiers_active": [],
+        "timestamp_ms": 7650
+      },
+      {
+        "hold_duration_ms": 108.07414245605469,
+        "is_modifier": false,
+        "key": "t",
+        "modifiers_active": [],
+        "timestamp_ms": 7800
+      },
+      {
+        "hold_duration_ms": 143.71542358398438,
+        "is_modifier": false,
+        "key": "n",
+        "modifiers_active": [],
+        "timestamp_ms": 7950
+      },
+      {
+        "hold_duration_ms": 56.26841735839844,
+        "is_modifier": false,
+        "key": "s",
+        "modifiers_active": [],
+        "timestamp_ms": 8100
+      },
+      {
+        "hold_duration_ms": 112.65731048583984,
+        "is_modifier": false,
+        "key": "f",
+        "modifiers_active": [],
+        "timestamp_ms": 8250
+      },
+      {
+        "hold_duration_ms": 113.26066589355469,
+        "is_modifier": false,
+        "key": "b",
+        "modifiers_active": [],
+        "timestamp_ms": 8400
+      },
+      {
+        "hold_duration_ms": 89.80760192871094,
+        "is_modifier": false,
+        "key": "h",
+        "modifiers_active": [],
+        "timestamp_ms": 8550
+      },
+      {
+        "hold_duration_ms": 113.19451141357422,
+        "is_modifier": false,
+        "key": "z",
+        "modifiers_active": [],
+        "timestamp_ms": 8700
+      },
+      {
+        "hold_duration_ms": 92.33341217041016,
+        "is_modifier": false,
+        "key": "o",
+        "modifiers_active": [],
+        "timestamp_ms": 8850
+      },
+      {
+        "hold_duration_ms": 91.06512451171875,
+        "is_modifier": false,
+        "key": "t",
+        "modifiers_active": [],
+        "timestamp_ms": 9000
+      },
+      {
+        "hold_duration_ms": 53.88264083862305,
+        "is_modifier": false,
+        "key": "h",
+        "modifiers_active": [],
+        "timestamp_ms": 9150
+      },
+      {
+        "hold_duration_ms": 59.445308685302734,
+        "is_modifier": false,
+        "key": "o",
+        "modifiers_active": [],
+        "timestamp_ms": 9300
+      },
+      {
+        "hold_duration_ms": 81.15791320800781,
+        "is_modifier": false,
+        "key": "c",
+        "modifiers_active": [],
+        "timestamp_ms": 9450
+      },
+      {
+        "hold_duration_ms": 94.79454040527344,
+        "is_modifier": false,
+        "key": "x",
+        "modifiers_active": [],
+        "timestamp_ms": 9600
+      },
+      {
+        "hold_duration_ms": 67.56969451904297,
+        "is_modifier": false,
+        "key": "e",
+        "modifiers_active": [],
+        "timestamp_ms": 9750
+      },
+      {
+        "hold_duration_ms": 87.70562744140625,
+        "is_modifier": false,
+        "key": "o",
+        "modifiers_active": [],
+        "timestamp_ms": 9900
+      },
+      {
+        "hold_duration_ms": 137.95510864257812,
+        "is_modifier": false,
+        "key": "t",
+        "modifiers_active": [],
+        "timestamp_ms": 10050
+      },
+      {
+        "hold_duration_ms": 98.59858703613281,
+        "is_modifier": false,
+        "key": "m",
+        "modifiers_active": [],
+        "timestamp_ms": 10200
+      },
+      {
+        "hold_duration_ms": 141.3063507080078,
+        "is_modifier": false,
+        "key": "p",
+        "modifiers_active": [],
+        "timestamp_ms": 10350
+      },
+      {
+        "hold_duration_ms": 67.21536254882812,
+        "is_modifier": false,
+        "key": "i",
+        "modifiers_active": [],
+        "timestamp_ms": 10500
+      },
+      {
+        "hold_duration_ms": 50.18419647216797,
+        "is_modifier": false,
+        "key": "q",
+        "modifiers_active": [],
+        "timestamp_ms": 10650
+      },
+      {
+        "hold_duration_ms": 109.61077880859375,
+        "is_modifier": false,
+        "key": "s",
+        "modifiers_active": [],
+        "timestamp_ms": 10800
+      },
+      {
+        "hold_duration_ms": 140.99676513671875,
+        "is_modifier": false,
+        "key": "o",
+        "modifiers_active": [],
+        "timestamp_ms": 10950
+      },
+      {
+        "hold_duration_ms": 120.79082489013672,
+        "is_modifier": false,
+        "key": "t",
+        "modifiers_active": [],
+        "timestamp_ms": 11100
+      },
+      {
+        "hold_duration_ms": 116.65105438232422,
+        "is_modifier": false,
+        "key": "e",
+        "modifiers_active": [],
+        "timestamp_ms": 11250
+      },
+      {
+        "hold_duration_ms": 115.71407318115234,
+        "is_modifier": false,
+        "key": "i",
+        "modifiers_active": [],
+        "timestamp_ms": 11400
+      },
+      {
+        "hold_duration_ms": 74.63823699951172,
+        "is_modifier": false,
+        "key": "j",
+        "modifiers_active": [
+          "Shift"
+        ],
+        "timestamp_ms": 11550
+      },
+      {
+        "hold_duration_ms": 87.54884338378906,
+        "is_modifier": false,
+        "key": "p",
+        "modifiers_active": [],
+        "timestamp_ms": 11700
+      },
+      {
+        "hold_duration_ms": 89.0132064819336,
+        "is_modifier": false,
+        "key": "a",
+        "modifiers_active": [],
+        "timestamp_ms": 11850
+      },
+      {
+        "hold_duration_ms": 86.52729797363281,
+        "is_modifier": false,
+        "key": "v",
+        "modifiers_active": [],
+        "timestamp_ms": 12000
+      },
+      {
+        "hold_duration_ms": 136.7112579345703,
+        "is_modifier": false,
+        "key": "j",
+        "modifiers_active": [],
+        "timestamp_ms": 12150
+      },
+      {
+        "hold_duration_ms": 60.89017868041992,
+        "is_modifier": false,
+        "key": "y",
+        "modifiers_active": [],
+        "timestamp_ms": 12300
+      },
+      {
+        "hold_duration_ms": 102.59637451171875,
+        "is_modifier": false,
+        "key": "d",
+        "modifiers_active": [
+          "Shift"
+        ],
+        "timestamp_ms": 12450
+      },
+      {
+        "hold_duration_ms": 56.244171142578125,
+        "is_modifier": false,
+        "key": "n",
+        "modifiers_active": [],
+        "timestamp_ms": 12600
+      },
+      {
+        "hold_duration_ms": 92.87271118164062,
+        "is_modifier": false,
+        "key": "c",
+        "modifiers_active": [],
+        "timestamp_ms": 12750
+      },
+      {
+        "hold_duration_ms": 118.72067260742188,
+        "is_modifier": false,
+        "key": "b",
+        "modifiers_active": [],
+        "timestamp_ms": 12900
+      },
+      {
+        "hold_duration_ms": 111.20243835449219,
+        "is_modifier": false,
+        "key": "t",
+        "modifiers_active": [],
+        "timestamp_ms": 13050
+      },
+      {
+        "hold_duration_ms": 104.3978500366211,
+        "is_modifier": false,
+        "key": "u",
+        "modifiers_active": [],
+        "timestamp_ms": 13200
+      },
+      {
+        "hold_duration_ms": 120.58818054199219,
+        "is_modifier": false,
+        "key": "o",
+        "modifiers_active": [],
+        "timestamp_ms": 13350
+      },
+      {
+        "hold_duration_ms": 117.30023956298828,
+        "is_modifier": false,
+        "key": "o",
+        "modifiers_active": [],
+        "timestamp_ms": 13500
+      },
+      {
+        "hold_duration_ms": 74.70101165771484,
+        "is_modifier": false,
+        "key": "h",
+        "modifiers_active": [],
+        "timestamp_ms": 13650
+      },
+      {
+        "hold_duration_ms": 83.71621704101562,
+        "is_modifier": false,
+        "key": "g",
+        "modifiers_active": [],
+        "timestamp_ms": 13800
+      },
+      {
+        "hold_duration_ms": 140.55587768554688,
+        "is_modifier": false,
+        "key": "d",
+        "modifiers_active": [],
+        "timestamp_ms": 13950
+      },
+      {
+        "hold_duration_ms": 81.22347259521484,
+        "is_modifier": false,
+        "key": "Space",
+        "modifiers_active": [],
+        "timestamp_ms": 14100
+      },
+      {
+        "hold_duration_ms": 72.56837463378906,
+        "is_modifier": false,
+        "key": "a",
+        "modifiers_active": [],
+        "timestamp_ms": 14250
+      },
+      {
+        "hold_duration_ms": 132.77352905273438,
+        "is_modifier": false,
+        "key": "a",
+        "modifiers_active": [],
+        "timestamp_ms": 14400
+      },
+      {
+        "hold_duration_ms": 66.68215942382812,
+        "is_modifier": false,
+        "key": "q",
+        "modifiers_active": [],
+        "timestamp_ms": 14550
+      },
+      {
+        "hold_duration_ms": 88.12495422363281,
+        "is_modifier": false,
+        "key": "e",
+        "modifiers_active": [],
+        "timestamp_ms": 14700
+      },
+      {
+        "hold_duration_ms": 120.33985137939453,
+        "is_modifier": false,
+        "key": "y",
+        "modifiers_active": [],
+        "timestamp_ms": 14850
+      }
+    ],
+    "stress_indicator": 0.5083850622177124,
+    "timestamp": "2025-10-26T13:35:56.639119200+00:00",
+    "total_keystrokes": 1133,
+    "typed_text": "Note to self: Review chapters 5-7 before tomorrow's exam. Focus on data structures and algorithms.",
+    "typing_patterns": {
+      "avg_burst_duration_ms": 3215.0830078125,
+      "avg_pause_duration_ms": 1282.7681884765625,
+      "burst_count": 56,
+      "pause_count": 37,
+      "typing_rhythm_score": 0.8236518502235413
+    },
+    "typing_speed_wpm": 76.80131530761719
+  },
+  "enhanced_screen_data": {
+    "accessibility_tree": [
+      {
+        "children_count": 15,
+        "description": "Primary application window",
+        "help_text": "",
+        "keyboard_shortcut": null,
+        "name": "Main Window",
+        "parent_role": "desktop",
+        "role": "window",
+        "value": ""
+      },
+      {
+        "children_count": 0,
+        "description": "Submit form data",
+        "help_text": "Click to submit your work",
+        "keyboard_shortcut": "Ctrl+Enter",
+        "name": "Submit Button",
+        "parent_role": "dialog",
+        "role": "button",
+        "value": "Submit"
+      }
+    ],
+    "active_windows": [
+      {
+        "application_name": "Code Editor",
+        "dimensions": [
+          1920,
+          1080
+        ],
+        "has_shadow": true,
+        "is_enabled": true,
+        "is_focused": true,
+        "is_topmost": true,
+        "is_visible": true,
+        "opacity": 1.0,
+        "parent_window": null,
+        "position": [
+          0,
+          0
+        ],
+        "process_id": 3309,
+        "ui_elements": [
+          {
+            "class_name": "btn btn-primary submit-btn",
+            "dimensions": [
+              120,
+              35
+            ],
+            "element_id": "btn_submit",
+            "element_text": "Submit Assignment",
+            "element_type": "button",
+            "is_checked": null,
+            "is_default": true,
+            "is_enabled": true,
+            "is_focused": false,
+            "is_visible": true,
+            "keyboard_shortcut": "Ctrl+Enter",
+            "placeholder": null,
+            "position": [
+              100,
+              50
+            ],
+            "role": "button",
+            "selection_range": null,
+            "states": [
+              "enabled",
+              "visible"
+            ],
+            "tab_index": 1,
+            "tooltip": "Click to submit your completed assignment",
+            "value": null
+          },
+          {
+            "class_name": "form-control text-area-large",
+            "dimensions": [
+              600,
+              200
+            ],
+            "element_id": "txt_input_answer",
+            "element_text": "Working on my research paper about climate change impacts",
+            "element_type": "textbox",
+            "is_checked": null,
+            "is_default": false,
+            "is_enabled": true,
+            "is_focused": true,
+            "is_visible": true,
+            "keyboard_shortcut": null,
+            "placeholder": "Type your detailed answer here (minimum 200 words)...",
+            "position": [
+              100,
+              100
+            ],
+            "role": "textbox",
+            "selection_range": [
+              0,
+              58
+            ],
+            "states": [
+              "focused",
+              "enabled",
+              "editable"
+            ],
+            "tab_index": 2,
+            "tooltip": "Enter your response. Use formatting toolbar above.",
+            "value": "Working on my research paper about climate change impacts"
+          },
+          {
+            "class_name": "checkbox-custom",
+            "dimensions": [
+              250,
+              20
+            ],
+            "element_id": "chk_reviewed",
+            "element_text": "I have reviewed my work",
+            "element_type": "checkbox",
+            "is_checked": true,
+            "is_default": false,
+            "is_enabled": true,
+            "is_focused": false,
+            "is_visible": true,
+            "keyboard_shortcut": "Alt+R",
+            "placeholder": null,
+            "position": [
+              100,
+              320
+            ],
+            "role": "checkbox",
+            "selection_range": null,
+            "states": [
+              "checked",
+              "enabled"
+            ],
+            "tab_index": 3,
+            "tooltip": "Check this box to confirm you've reviewed your submission",
+            "value": "checked"
+          },
+          {
+            "class_name": "link-primary underline",
+            "dimensions": [
+              100,
+              20
+            ],
+            "element_id": "link_rubric",
+            "element_text": "View Rubric",
+            "element_type": "link",
+            "is_checked": null,
+            "is_default": false,
+            "is_enabled": true,
+            "is_focused": false,
+            "is_visible": true,
+            "keyboard_shortcut": null,
+            "placeholder": null,
+            "position": [
+              100,
+              350
+            ],
+            "role": "link",
+            "selection_range": null,
+            "states": [
+              "link",
+              "clickable"
+            ],
+            "tab_index": 4,
+            "tooltip": "Open assignment grading rubric in new tab",
+            "value": "https://example.edu/rubric/123"
+          },
+          {
+            "class_name": "dropdown-select form-control",
+            "dimensions": [
+              250,
+              30
+            ],
+            "element_id": "dd_citation",
+            "element_text": "Citation Style: APA 7th Edition",
+            "element_type": "dropdown",
+            "is_checked": null,
+            "is_default": false,
+            "is_enabled": true,
+            "is_focused": false,
+            "is_visible": true,
+            "keyboard_shortcut": "Alt+C",
+            "placeholder": "Select citation format...",
+            "position": [
+              100,
+              380
+            ],
+            "role": "combobox",
+            "selection_range": null,
+            "states": [
+              "collapsed",
+              "enabled"
+            ],
+            "tab_index": 5,
+            "tooltip": "Choose the citation format for your references",
+            "value": "APA_7"
+          }
+        ],
+        "visible_text": "Visual Studio Code\n\nDocument Content:\nThis is a comprehensive research paper exploring the multifaceted impacts of climate change on global ecosystems. The analysis encompasses temperature variations, precipitation patterns, sea level changes, and biodiversity loss. Key findings indicate accelerated warming trends in polar regions, with significant implications for ice sheet stability. \n\nSection 1: Introduction\nClimate change represents one of the most pressing challenges facing humanity. Recent data from IPCC reports shows unprecedented warming rates...\n\nCurrent Progress: 2,847 words | Target: 3,000 words | Due: Monday 11:59 PM\nLast saved: 2 minutes ago | Autosave: ON | Spell check: Active",
+        "window_handle": "0x96f68d8b",
+        "window_state": "maximized",
+        "window_title": "Visual Studio Code",
+        "z_index": 0
+      },
+      {
+        "application_name": "Web Browser",
+        "dimensions": [
+          1920,
+          1080
+        ],
+        "has_shadow": true,
+        "is_enabled": true,
+        "is_focused": false,
+        "is_topmost": false,
+        "is_visible": true,
+        "opacity": 1.0,
+        "parent_window": "0x7527149d",
+        "position": [
+          0,
+          0
+        ],
+        "process_id": 10707,
+        "ui_elements": [
+          {
+            "class_name": "btn btn-primary submit-btn",
+            "dimensions": [
+              120,
+              35
+            ],
+            "element_id": "btn_submit",
+            "element_text": "Submit Assignment",
+            "element_type": "button",
+            "is_checked": null,
+            "is_default": true,
+            "is_enabled": true,
+            "is_focused": false,
+            "is_visible": true,
+            "keyboard_shortcut": "Ctrl+Enter",
+            "placeholder": null,
+            "position": [
+              100,
+              50
+            ],
+            "role": "button",
+            "selection_range": null,
+            "states": [
+              "enabled",
+              "visible"
+            ],
+            "tab_index": 1,
+            "tooltip": "Click to submit your completed assignment",
+            "value": null
+          },
+          {
+            "class_name": "form-control text-area-large",
+            "dimensions": [
+              600,
+              200
+            ],
+            "element_id": "txt_input_answer",
+            "element_text": "Working on my research paper about climate change impacts",
+            "element_type": "textbox",
+            "is_checked": null,
+            "is_default": false,
+            "is_enabled": true,
+            "is_focused": true,
+            "is_visible": true,
+            "keyboard_shortcut": null,
+            "placeholder": "Type your detailed answer here (minimum 200 words)...",
+            "position": [
+              100,
+              100
+            ],
+            "role": "textbox",
+            "selection_range": [
+              0,
+              58
+            ],
+            "states": [
+              "focused",
+              "enabled",
+              "editable"
+            ],
+            "tab_index": 2,
+            "tooltip": "Enter your response. Use formatting toolbar above.",
+            "value": "Working on my research paper about climate change impacts"
+          },
+          {
+            "class_name": "checkbox-custom",
+            "dimensions": [
+              250,
+              20
+            ],
+            "element_id": "chk_reviewed",
+            "element_text": "I have reviewed my work",
+            "element_type": "checkbox",
+            "is_checked": true,
+            "is_default": false,
+            "is_enabled": true,
+            "is_focused": false,
+            "is_visible": true,
+            "keyboard_shortcut": "Alt+R",
+            "placeholder": null,
+            "position": [
+              100,
+              320
+            ],
+            "role": "checkbox",
+            "selection_range": null,
+            "states": [
+              "checked",
+              "enabled"
+            ],
+            "tab_index": 3,
+            "tooltip": "Check this box to confirm you've reviewed your submission",
+            "value": "checked"
+          },
+          {
+            "class_name": "link-primary underline",
+            "dimensions": [
+              100,
+              20
+            ],
+            "element_id": "link_rubric",
+            "element_text": "View Rubric",
+            "element_type": "link",
+            "is_checked": null,
+            "is_default": false,
+            "is_enabled": true,
+            "is_focused": false,
+            "is_visible": true,
+            "keyboard_shortcut": null,
+            "placeholder": null,
+            "position": [
+              100,
+              350
+            ],
+            "role": "link",
+            "selection_range": null,
+            "states": [
+              "link",
+              "clickable"
+            ],
+            "tab_index": 4,
+            "tooltip": "Open assignment grading rubric in new tab",
+            "value": "https://example.edu/rubric/123"
+          },
+          {
+            "class_name": "dropdown-select form-control",
+            "dimensions": [
+              250,
+              30
+            ],
+            "element_id": "dd_citation",
+            "element_text": "Citation Style: APA 7th Edition",
+            "element_type": "dropdown",
+            "is_checked": null,
+            "is_default": false,
+            "is_enabled": true,
+            "is_focused": false,
+            "is_visible": true,
+            "keyboard_shortcut": "Alt+C",
+            "placeholder": "Select citation format...",
+            "position": [
+              100,
+              380
+            ],
+            "role": "combobox",
+            "selection_range": null,
+            "states": [
+              "collapsed",
+              "enabled"
+            ],
+            "tab_index": 5,
+            "tooltip": "Choose the citation format for your references",
+            "value": "APA_7"
+          }
+        ],
+        "visible_text": "Google Chrome\n\nDocument Content:\nThis is a comprehensive research paper exploring the multifaceted impacts of climate change on global ecosystems. The analysis encompasses temperature variations, precipitation patterns, sea level changes, and biodiversity loss. Key findings indicate accelerated warming trends in polar regions, with significant implications for ice sheet stability. \n\nSection 1: Introduction\nClimate change represents one of the most pressing challenges facing humanity. Recent data from IPCC reports shows unprecedented warming rates...\n\nCurrent Progress: 2,847 words | Target: 3,000 words | Due: Monday 11:59 PM\nLast saved: 2 minutes ago | Autosave: ON | Spell check: Active",
+        "window_handle": "0x0f4d3935",
+        "window_state": "normal",
+        "window_title": "Google Chrome",
+        "z_index": 1
+      }
+    ],
+    "click_count": 112,
+    "double_click_count": 47,
+    "interaction_speed": 202.70855712890625,
+    "mouse_travel_distance_px": 733031,
+    "right_click_count": 47,
+    "screen_layout": {
+      "primary_monitor": {
+        "dpi_scaling": 1.0,
+        "refresh_rate": 60,
+        "resolution": [
+          1920,
+          1080
+        ]
+      },
+      "total_monitors": 1,
+      "virtual_screen_bounds": [
+        0,
+        0,
+        1920,
+        1080
+      ]
+    },
+    "screen_region_heatmap": [
+      [
+        1,
+        3,
+        8
+      ],
+      [
+        3,
+        2,
+        62
+      ],
+      [
+        1,
+        3,
+        77
+      ],
+      [
+        0,
+        0,
+        15
+      ],
+      [
+        2,
+        1,
+        52
+      ],
+      [
+        3,
+        2,
+        80
+      ],
+      [
+        0,
+        2,
+        16
+      ],
+      [
+        3,
+        0,
+        96
+      ],
+      [
+        1,
+        2,
+        1
+      ],
+      [
+        2,
+        0,
+        34
+      ],
+      [
+        3,
+        3,
+        78
+      ],
+      [
+        1,
+        0,
+        23
+      ],
+      [
+        2,
+        3,
+        65
+      ],
+      [
+        1,
+        3,
+        70
+      ],
+      [
+        0,
+        3,
+        72
+      ],
+      [
+        2,
+        1,
+        69
+      ],
+      [
+        2,
+        2,
+        7
+      ],
+      [
+        0,
+        0,
+        2
+      ],
+      [
+        1,
+        0,
+        86
+      ],
+      [
+        3,
+        1,
+        13
+      ],
+      [
+        2,
+        0,
+        44
+      ],
+      [
+        1,
+        0,
+        31
+      ],
+      [
+        0,
+        2,
+        11
+      ],
+      [
+        3,
+        3,
+        61
+      ],
+      [
+        1,
+        3,
+        1
+      ],
+      [
+        2,
+        1,
+        79
+      ],
+      [
+        3,
+        0,
+        48
+      ],
+      [
+        0,
+        2,
+        96
+      ],
+      [
+        3,
+        2,
+        17
+      ],
+      [
+        1,
+        2,
+        95
+      ],
+      [
+        2,
+        2,
+        24
+      ],
+      [
+        1,
+        3,
+        91
+      ],
+      [
+        1,
+        0,
+        31
+      ],
+      [
+        1,
+        3,
+        76
+      ],
+      [
+        2,
+        2,
+        66
+      ],
+      [
+        3,
+        3,
+        58
+      ],
+      [
+        3,
+        2,
+        72
+      ],
+      [
+        3,
+        3,
+        33
+      ],
+      [
+        1,
+        3,
+        63
+      ],
+      [
+        3,
+        3,
+        54
+      ],
+      [
+        2,
+        0,
+        86
+      ],
+      [
+        1,
+        3,
+        17
+      ],
+      [
+        0,
+        0,
+        35
+      ],
+      [
+        2,
+        2,
+        2
+      ],
+      [
+        1,
+        0,
+        78
+      ],
+      [
+        3,
+        3,
+        44
+      ],
+      [
+        0,
+        3,
+        9
+      ],
+      [
+        2,
+        0,
+        22
+      ],
+      [
+        3,
+        0,
+        72
+      ],
+      [
+        2,
+        2,
+        2
+      ],
+      [
+        0,
+        2,
+        54
+      ],
+      [
+        0,
+        2,
+        80
+      ],
+      [
+        1,
+        3,
+        18
+      ],
+      [
+        3,
+        1,
+        72
+      ],
+      [
+        2,
+        1,
+        51
+      ],
+      [
+        0,
+        2,
+        88
+      ]
+    ],
+    "screen_text_snapshot": "Document Title: Final Project Report\nSection 3.2 - Methodology\nWord Count: 2,847",
+    "scroll_events": 500,
+    "timestamp": "2025-10-26T13:35:56.639119200+00:00",
+    "ui_element_types": [
+      "link",
+      "dialog",
+      "navbar",
+      "icon",
+      "navbar",
+      "scrollbar",
+      "input",
+      "dialog",
+      "icon",
+      "sidebar",
+      "menu",
+      "tab",
+      "input"
+    ],
+    "workflow_friction_score": 0.6222125887870789
+  },
+  "saved_at": "2025-10-26T13:35:56.639299600+00:00",
+  "schema_version": "2.0.0",
+  "session_id": "495d9930-db34-4d73-8466-85c1b8f74eaa",
+  "timestamp": "2025-10-26T13:35:56.639119200+00:00"
+}
