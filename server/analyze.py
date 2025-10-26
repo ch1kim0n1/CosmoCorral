@@ -1,361 +1,222 @@
+# chrome_tiny_gemini_analyzer.py
 from __future__ import annotations
+from typing import Any, Dict, List, Optional
 
-import json
-import re
-import time
-from typing import Any, Dict, List, Optional, Tuple
+# ---- Simple threshold: "tiny" if < 10% of screen area
+TINY_AREA_RATIO = 0.10
 
+# ---- Optional Gemini (graceful fallback if not installed/configured)
 try:
     from google import genai  # type: ignore
     from google.genai.types import GenerateContentConfig  # type: ignore
-    _GENAI_AVAILABLE = True
-except Exception:  # pragma: no cover - environment without SDK
+    _GENAI = True
+except Exception:
     genai = None  # type: ignore
     GenerateContentConfig = object  # type: ignore
-    _GENAI_AVAILABLE = False
+    _GENAI = False
 
-# ------------------ Tunables ------------------
+GEMINI_MODEL = "gemini-1.5-flash"
+GEMINI_TIMEOUT_S = 10.0
 
-GEMINI_MODEL = "gemini-2.5-flash"  # swap to "gemini-1.5-pro" for deeper reasoning
-GEMINI_TIMEOUT_S = 10
 
-# Sensitivity knobs (0..1). Raise to be stricter, lower to be looser.
-SENS: Dict[str, float] = {
-    "education_student_base": 0.55,   # base score when edu+student is detected
-    "cheating_signal": 0.15,          # per-strong-signal add
-    "illegal_search_signal": 0.15,
-    "ui_conflict_signal": 0.10,
-    "context_consistency_bonus": 0.10,
-    "llm_weight": 0.35,               # how much to weight the LLM's numeric score
-    "flag_threshold": 0.75,           # final score above this => suspicious (conservative)
-}
+def _lower(x: Optional[str]) -> str:
+    return (x or "").strip().lower()
 
-# Lightweight regexes & patterns (not keywords = truth; they’re weak signals only)
-EDU_PAGE_HINTS: List[str] = [
-    r"\b(proctor|exam|final|midterm|quiz|assessment|lockdown browser)\b",
-    r"\b(lms|canvas|blackboard|moodle|gradescope|d2l)\b",
-    r"\b(assignment|homework|syllabus|rubric|submission)\b",
-]
-CHEATING_BEHAVIOR_HINTS: List[str] = [
-    r"\bopen book\b.*\bnot (allowed|permitted)\b",
-    r"\btime remaining\b",
-    r"\bflag question\b",
-]
-ILLEGAL_SEARCH_HINTS: List[str] = [
-    r"\b(bypass|circumvent|crack|leak|dump)\b.*\b(restrictions?|answers?|solutions?)\b",
-]
 
-# ------------------ Utilities ------------------
+def _is_chrome(win: Dict[str, Any]) -> bool:
+    app = _lower(win.get("application_name"))
+    proc = _lower(win.get("process_name"))
+    title = _lower(win.get("window_title"))
+    return ("chrome" in app) or ("chrome" in proc) or ("google chrome" in title)
 
-def _safe_get(d: Dict[str, Any], path: List[str], default=None):
-    cur: Any = d
-    for k in path:
-        if not isinstance(cur, dict) or k not in cur:
-            return default
-        cur = cur[k]
-    return cur
 
-def _collect_visible_text(payload: Dict[str, Any]) -> str:
-    chunks: List[str] = []
+def _area_ratio(bounds: Optional[Dict[str, Any]], screen: Optional[Dict[str, Any]]) -> Optional[float]:
+    if not bounds or not screen:
+        return None
+    try:
+        bw = float(bounds.get("width") or 0)
+        bh = float(bounds.get("height") or 0)
+        sw = float(screen.get("width") or 0)
+        sh = float(screen.get("height") or 0)
+        if bw <= 0 or bh <= 0 or sw <= 0 or sh <= 0:
+            return None
+        return (bw * bh) / (sw * sh)
+    except Exception:
+        return None
 
-    # Typed text (what the user is typing right now)
-    typed = _safe_get(payload, ["enhanced_keystroke_data", "typed_text"], "")
-    if typed:
-        chunks.append(str(typed))
 
-    # Screen text snapshot
-    screen_snap = _safe_get(payload, ["enhanced_screen_data", "screen_text_snapshot"], "")
-    if screen_snap:
-        chunks.append(str(screen_snap))
+def _is_foreground(win: Dict[str, Any]) -> bool:
+    visible = bool(win.get("is_visible", True)) and not bool(win.get("is_minimized", False))
+    if not visible:
+        return False
+    if bool(win.get("is_focused", False)):
+        return True
+    try:
+        return int(win.get("z_index")) == 0
+    except Exception:
+        return False
 
-    # Active window titles and visible_text
-    active_windows = _safe_get(payload, ["enhanced_screen_data", "active_windows"], []) or []
-    for win in active_windows:
-        try:
-            title = win.get("window_title") or win.get("application_name")
-            vis = win.get("visible_text", "")
-            if title:
-                chunks.append(str(title))
-            if vis:
-                chunks.append(str(vis))
 
-            # UI element texts (buttons, links, etc.)
-            for el in win.get("ui_elements", []) or []:
-                t = el.get("element_text") or el.get("value") or el.get("placeholder")
-                if t:
-                    chunks.append(str(t))
-        except Exception:
-            continue
+def _make_model_facts(hits: List[Dict[str, Any]], tiny_foreground: bool, screen_size: Dict[str, Any]) -> str:
+    """Compact, factual string for Gemini to summarize."""
+    lines: List[str] = []
+    sw, sh = screen_size.get("width"), screen_size.get("height")
+    for i, w in enumerate(hits, 1):
+        ar = w.get("area_ratio")
+        ar_str = "n/a" if ar is None else f"{ar:.3f}"
+        lines.append(
+            f"[Chrome#{i}] title={w.get('window_title')!r} focused={w.get('is_focused')} "
+            f"z_index={w.get('z_index')} visible={w.get('is_visible')} minimized={w.get('is_minimized')} "
+            f"bounds={w.get('bounds')} area_ratio={ar_str} tiny={w.get('is_tiny')} foreground={w.get('is_foreground')}"
+        )
+    header = f"screen_size={{'width': {sw}, 'height': {sh}}}; tiny_foreground={tiny_foreground}; tiny_area_ratio<{TINY_AREA_RATIO}"
+    return header + "\n" + ("\n".join(lines) if lines else "No Chrome windows found.")
 
-    merged = "\n".join(c for c in chunks if c)
-    # Collapsing whitespace
-    merged = re.sub(r"[ \t]+", " ", merged)
-    merged = re.sub(r"\n{3,}", "\n\n", merged).strip()
-    return merged
 
-def _collect_metrics(payload: Dict[str, Any]) -> Dict[str, Any]:
-    ekd = payload.get("enhanced_keystroke_data", {}) or {}
-    esd = payload.get("enhanced_screen_data", {}) or {}
-    ctx = payload.get("context_metadata", {}) or {}
-
-    metrics: Dict[str, Any] = {
-        "typing_speed_wpm": ekd.get("typing_speed_wpm"),
-        "error_correction_rate": ekd.get("error_correction_rate"),
-        "paste_events": ekd.get("paste_events") or 0,
-        "copy_events": ekd.get("copy_events") or 0,
-        "app_switch_events": esd.get("app_switch_events") or 0,
-        "click_count": esd.get("click_count"),
-        "scroll_events": esd.get("scroll_events"),
-        "interaction_speed": esd.get("interaction_speed"),
-        "fatigue_indicator": ekd.get("fatigue_indicator"),
-        "stress_indicator": ekd.get("stress_indicator"),
-        "user_activity_state": ctx.get("user_activity_state"),
-        "workflow_stage": ctx.get("workflow_stage"),
-        "task_inference": ctx.get("task_inference"),
-    }
-    return metrics
-
-def _match_any(patterns: List[str], text: str) -> List[str]:
-    hits: List[str] = []
-    for p in patterns:
-        try:
-            if re.search(p, text, flags=re.I | re.M):
-                hits.append(p)
-        except re.error:
-            continue
-    return hits
-
-# ------------------ Scenario inference ------------------
-
-def _infer_context(context: Optional[Dict[str, Any]], text: str) -> Dict[str, Any]:
-    ctx = context or {}
-    domain = (ctx.get("application_domain") or "").lower()
-    role = (ctx.get("user_role") or "").lower()
-    assignment_type = (ctx.get("assignment_type") or "").lower()
-
-    # weak inference from on-screen hints
-    edu_hints = _match_any(EDU_PAGE_HINTS + CHEATING_BEHAVIOR_HINTS, text)
-    if not domain and edu_hints:
-        domain = "education"
-    if not role and re.search(r"\b(student|undergrad|graduate|learner)\b", text, re.I):
-        role = "student"
-
-    return {
-        "application_domain": domain or "unknown",
-        "user_role": role or "unknown",
-        "assignment_type": assignment_type or "unspecified",
-        "edu_hints": edu_hints,
-    }
-
-# ------------------ Deterministic scoring ------------------
-
-def _deterministic_scores(inf_ctx: Dict[str, Any], metrics: Dict[str, Any], text: str) -> Dict[str, Any]:
-    score_cheat = 0.0
-    score_illegal = 0.0
-    reasons: List[str] = []
-
-    is_edu_student = (inf_ctx["application_domain"] == "education" and inf_ctx["user_role"] == "student")
-    if is_edu_student:
-        score_cheat += SENS["education_student_base"]
-        reasons.append("education+student context")
-
-    # behavioral signals (contextual, not pure keywords)
-    paste = metrics.get("paste_events", 0) or 0
-    copies = metrics.get("copy_events", 0) or 0
-    app_sw = metrics.get("app_switch_events", 0) or 0
-
-    # elevated paste/copy during exam-like UI
-    if is_edu_student and inf_ctx["edu_hints"]:
-        if paste >= 2:
-            score_cheat += SENS["cheating_signal"]
-            reasons.append(f"multiple paste events ({paste}) during assessment-like UI")
-        if copies >= 2:
-            score_cheat += SENS["cheating_signal"]
-            reasons.append(f"multiple copy events ({copies}) during assessment-like UI")
-        if app_sw >= 3:
-            score_cheat += SENS["cheating_signal"]
-            reasons.append(f"frequent app switching ({app_sw}) during assessment-like UI")
-
-    # illegal search cues (behavioral + phrasing intent)
-    illegal_hits = _match_any(ILLEGAL_SEARCH_HINTS, text)
-    if illegal_hits:
-        score_illegal += SENS["illegal_search_signal"]
-        reasons.append("phrasing suggests restriction circumvention")
-
-    # UI conflicts (e.g., “proctoring/lockdown” visible while external resources also visible)
-    conflict = bool(
-        re.search(r"\b(lockdown|proctor)\b", text, re.I) and
-        re.search(r"\b(chat|messenger|discord|whatsapp|telegram|notes|gpt|ai)\b", text, re.I)
-    )
-    if is_edu_student and conflict:
-        score_cheat += SENS["ui_conflict_signal"]
-        reasons.append("proctored UI + external comm/resource visible")
-
-    # small consistency bonus if multiple edu hints agree
-    if is_edu_student and len(inf_ctx["edu_hints"]) >= 2:
-        score_cheat += SENS["context_consistency_bonus"]
-        reasons.append("multiple independent education UI indicators")
-
-    return {
-        "score_cheating_det": min(1.0, score_cheat),
-        "score_illegal_det": min(1.0, score_illegal),
-        "deterministic_reasons": reasons,
-    }
-
-# ------------------ LLM reasoning ------------------
-
-def _llm_prompt(text: str, inf_ctx: Dict[str, Any], metrics: Dict[str, Any]) -> str:
+def _gemini_prompt(model_facts: str) -> str:
+    # STRICT JSON schema with exactly the fields requested.
     return f"""
-You analyze on-screen + typed context for risk in EDUCATION scenarios.
+You are writing a concise report entry.
 
-Context:
-- application_domain: {inf_ctx['application_domain']}
-- user_role: {inf_ctx['user_role']}
-- assignment_type: {inf_ctx['assignment_type']}
-
-Observed Text (from UI, pages, typed input, labels):
+Given these facts:
 ```
-{text}
+{model_facts}
 ```
 
-Behavioral/telemetry (may be noisy or partial):
-{json.dumps(metrics, ensure_ascii=False, indent=2)}
-
-Careful reasoning goals (be conservative; avoid false positives):
-1) POSSIBLE_CHEATING: Using disallowed aids during an exam/quiz/graded task (e.g., consulting external resources while “exam/proctor/lockdown” UI is present; unusual copy/paste bursts).
-2) POSSIBLE_ILLEGAL_SEARCH: Intent to circumvent restrictions or obtain prohibited materials (e.g., “bypass restriction to get answers”).
-3) If evidence is weak/ambiguous, keep scores low.
-
-Return STRICT JSON ONLY:
+Return STRICT JSON ONLY in this exact schema (no extra keys, no prose, no trailing comments):
 {{
-  "score_cheating_llm": number,   // 0..1 cautious confidence
-  "score_illegal_llm": number,    // 0..1 cautious confidence
-  "reasons": string[],            // short neutral bullet points
-  "user_message": string          // brief, neutral, non-accusatory summary
+  "suspicious": boolean,           // true if Chrome is a tiny foreground window (per facts)
+  "reason": string,                // short machine-friendly code, e.g. "chrome_tiny_foreground" or "no_chrome_tiny"
+  "message": string,               // 1-2 sentence human summary, neutral and factual
+  "confidence": number             // 0..1 conservative confidence
 }}
 """.strip()
 
-def _llm_reason(text: str, inf_ctx: Dict[str, Any], metrics: Dict[str, Any]) -> Dict[str, Any]:
-    if not _GENAI_AVAILABLE:
+
+def _gemini_reason(model_facts: str) -> Dict[str, Any]:
+    if not _GENAI:
+        # Fallback: simple rule-based message
+        suspicious = "tiny_foreground=True" in model_facts or "tiny_foreground=True".lower() in model_facts.lower()
         return {
-            "score_cheating_llm": 0.0,
-            "score_illegal_llm": 0.0,
-            "reasons": ["LLM unavailable: google-genai SDK not installed"],
-            "user_message": "No model reasoning available; used deterministic signals only.",
+            "suspicious": bool(suspicious),
+            "reason": "chrome_tiny_foreground" if suspicious else "no_chrome_tiny",
+            "message": (
+                "Chrome appears on screen as a tiny foreground window (<10% of screen area)."
+                if suspicious else
+                "No tiny foreground Chrome window detected."
+            ),
+            "confidence": 0.6 if suspicious else 0.5,
         }
 
     try:
-        client = genai.Client()  # assumes environment is configured with credentials
+        client = genai.Client()
         model = client.models.get(name=GEMINI_MODEL)
         cfg = GenerateContentConfig(response_mime_type="application/json", temperature=0.0)
-        prompt = _llm_prompt(text, inf_ctx, metrics)
-        t0 = time.time()
+        prompt = _gemini_prompt(model_facts)
         resp = client.models.generate_content(model=model.name, contents=prompt, config=cfg)
-        if (time.time() - t0) > GEMINI_TIMEOUT_S:
-            raise TimeoutError("LLM timeout")
         raw = resp.text if hasattr(resp, "text") else str(resp)
-        data = json.loads(raw)
-        # basic schema guard
-        for k in ["score_cheating_llm", "score_illegal_llm", "reasons", "user_message"]:
+        data = __import__("json").loads(raw)
+
+        # minimal schema guard
+        for k in ("suspicious", "reason", "message", "confidence"):
             if k not in data:
-                raise ValueError(f"missing {k}")
-        # clamp
-        data["score_cheating_llm"] = max(0.0, min(1.0, float(data["score_cheating_llm"])) )
-        data["score_illegal_llm"] = max(0.0, min(1.0, float(data["score_illegal_llm"])) )
-        # ensure shapes
-        data["reasons"] = list(data.get("reasons") or [])
-        data["user_message"] = str(data.get("user_message") or "")
+                raise ValueError(f"missing key: {k}")
+
+        # clamp confidence
+        c = float(data.get("confidence") or 0.0)
+        data["confidence"] = max(0.0, min(1.0, c))
         return data
-    except Exception as e:  # pragma: no cover - network/timing dependent
+    except Exception:
+        # conservative fallback if API flakes
         return {
-            "score_cheating_llm": 0.0,
-            "score_illegal_llm": 0.0,
-            "reasons": [f"LLM unavailable: {e.__class__.__name__}"],
-            "user_message": "No model reasoning available; used deterministic signals only.",
+            "suspicious": False,
+            "reason": "no_chrome_tiny",
+            "message": "No tiny foreground Chrome window detected (model unavailable; used fallback).",
+            "confidence": 0.4,
         }
 
-# ------------------ Public API ------------------
 
-async def analyze(data: Any, context: Optional[Dict[str, Any]] = None) -> Dict[str, Any]:
-    """Reasoning-first suspicion detection.
-
-    Focus: EDUCATION + STUDENT scenarios (cheating / illegal search).
-
-    Args:
-        data: Rich telemetry payload (dict-like). Expected keys (optional):
-              enhanced_keystroke_data, enhanced_screen_data, context_metadata.
-        context: Optional dict overriding/informing context inference with keys:
-                 {application_domain, user_role, assignment_type}.
-
-    Returns:
-        Dict[str, Any]: Stable schema with scores, reasons, message, context, and signals.
+async def analyze(data: Dict[str, Any]) -> Dict[str, Any]:
     """
-    # Persist raw input in a simple audit file, mirroring your existing behavior
-    try:
-        with open("data.json", "w", encoding="utf-8") as f:
-            json.dump({"value": data}, f, ensure_ascii=False, indent=2)
-        print("Saved to data.json:", type(data).__name__)
-    except TypeError:
-        with open("data.json", "w", encoding="utf-8") as f:
-            json.dump({"value": str(data)}, f, ensure_ascii=False, indent=2)
-        print("Saved to data.json (as str)")
-
-    payload: Dict[str, Any] = data if isinstance(data, dict) else {}
-    text = _collect_visible_text(payload)
-    metrics = _collect_metrics(payload)
-    inf_ctx = _infer_context(context, text)
-
-    det = _deterministic_scores(inf_ctx, metrics, text)
-    llm = _llm_reason(text, inf_ctx, metrics)
-
-    # Blend scores (careful weighting)
-    score_cheating = (
-        (1 - SENS["llm_weight"]) * det["score_cheating_det"] +
-        SENS["llm_weight"] * llm["score_cheating_llm"]
-    )
-    score_illegal = (
-        (1 - SENS["llm_weight"]) * det["score_illegal_det"] +
-        SENS["llm_weight"] * llm["score_illegal_llm"]
-    )
-
-    suspicious = (max(score_cheating, score_illegal) >= SENS["flag_threshold"])
-
-    # Build reasons & message (dedup, concise)
-    reasons = list(dict.fromkeys(det["deterministic_reasons"] + (llm.get("reasons") or [])))
-    user_message = llm.get("user_message") or (
-        "Observed education context; some behaviors may conflict with typical assessment rules."
-        if suspicious else
-        "No clear evidence of misconduct; signals appear within normal bounds."
-    )
-
-    result: Dict[str, Any] = {
-        "suspicious": bool(suspicious),
-        "categories": {
-            "possible_cheating": {
-                "score": round(float(score_cheating), 3),
-                "deterministic": round(float(det["score_cheating_det"]), 3),
-                "llm": round(float(llm["score_cheating_llm"]), 3),
-            },
-            "possible_illegal_search": {
-                "score": round(float(score_illegal), 3),
-                "deterministic": round(float(det["score_illegal_det"]), 3),
-                "llm": round(float(llm["score_illegal_llm"]), 3),
-            },
-        },
-        "reasons": reasons,
-        "message": user_message,
-        "context": inf_ctx,
-        "signals": {
-            "text_sample": text[:4000],  # cap to keep payload sane
-            "metrics": metrics,
-        },
-        "meta": {
-            "model_used": GEMINI_MODEL if _GENAI_AVAILABLE else None,
-            "llm_weight": SENS["llm_weight"],
-            "flag_threshold": SENS["flag_threshold"],
-        },
+    Simple analyzer:
+    - Finds Chrome windows.
+    - Decides if any is 'tiny' (<10% area) and 'foreground'.
+    - Asks Gemini to produce report 'reason' and 'message' in strict JSON.
+    - Also returns a single 'categories' item so existing reporters can pick a top category.
+    """
+    esd = (data or {}).get("enhanced_screen_data", {}) or {}
+    screen_layout = esd.get("screen_layout", {}) or {}
+    primary = screen_layout.get("primary_monitor", {}) or {}
+    screen_size = {
+        "width": (primary.get("resolution") or [None, None])[0] if isinstance(primary.get("resolution"), list) else primary.get("width"),
+        "height": (primary.get("resolution") or [None, None])[1] if isinstance(primary.get("resolution"), list) else primary.get("height"),
     }
+    windows: List[Dict[str, Any]] = esd.get("active_windows") or []
 
-    return result
+    hits: List[Dict[str, Any]] = []
+    tiny_foreground = False
 
-__all__ = ["analyze"]
+    for w in windows:
+        app_name = _lower(w.get("application_name"))
+        proc_name = _lower(w.get("process_name"))
+        title = _lower(w.get("window_title"))
+        is_chrome = ("chrome" in app_name) or ("chrome" in proc_name) or ("google chrome" in title)
+        if not is_chrome:
+            continue
+
+        bounds = w.get("bounds")
+        if not bounds:
+            pos = w.get("position") or [0, 0]
+            dim = w.get("dimensions") or [0, 0]
+            bounds = {"x": pos[0], "y": pos[1], "width": (dim[0] or 0), "height": (dim[1] or 0)}
+
+        ar = _area_ratio(bounds, screen_size)
+        visible = bool(w.get("is_visible", True)) and not bool(w.get("is_minimized", False))
+        focused = bool(w.get("is_focused", False))
+        try:
+            topmost = int(w.get("z_index")) == 0
+        except Exception:
+            topmost = False
+        fg = visible and (focused or topmost)
+
+        info = {
+            "window_title": w.get("window_title"),
+            "application_name": w.get("application_name"),
+            "process_name": w.get("process_name"),
+            "bounds": bounds,
+            "is_visible": visible,
+            "is_minimized": w.get("is_minimized", False),
+            "is_focused": focused,
+            "z_index": w.get("z_index"),
+            "area_ratio": ar,
+            "is_tiny": (ar is not None and ar < TINY_AREA_RATIO),
+            "is_foreground": fg,
+        }
+        hits.append(info)
+        if info["is_tiny"] and fg:
+            tiny_foreground = True
+
+    facts = _make_model_facts(hits, tiny_foreground, screen_size)
+    model_out = _gemini_reason(facts)
+
+    suspicious = bool(model_out.get("suspicious"))
+    reason = str(model_out.get("reason") or ("chrome_tiny_foreground" if tiny_foreground else "no_chrome_tiny"))
+    message = str(model_out.get("message") or ("Chrome is tiny in foreground." if tiny_foreground else "No tiny foreground Chrome."))
+
+    # Include single category for compatibility with existing reporters
+    cat_score = 0.8 if suspicious else 0.2
+    categories = {"chrome_tiny_foreground": {"score": cat_score}}
+
+    return {
+        "suspicious": suspicious,
+        "reason": reason,
+        "message": message,
+        "confidence": model_out.get("confidence", 0.5),
+        "categories": categories,
+        "facts": {
+            "tiny_area_ratio": TINY_AREA_RATIO,
+            "screen_size": screen_size,
+            "matches": hits,
+        },
+        "model_used": GEMINI_MODEL if _GENAI else None,
+    }
