@@ -5,6 +5,7 @@ from websockets.asyncio.server import serve
 from db_init import db_connect
 from device import Devices
 from analyze import analyze
+from auto_integration import handle_package_auto
     
 
 async def handler(ws):

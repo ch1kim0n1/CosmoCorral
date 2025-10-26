@@ -30,6 +30,7 @@ impl DataStorage {
             "session_logs",
             "hourly_snapshots",
             "daily_reports",
+            "screen-and-keyboard",  // NEW: Enhanced screen and keyboard data
         ];
 
         for subdir in subdirs {
@@ -245,6 +246,62 @@ impl DataStorage {
         let json_str = to_string_pretty(&anomaly_data)?;
         fs::write(&filepath, json_str).await?;
         info!("🚨 {} anomalies detected and saved", anomalies.len());
+        Ok(filepath)
+    }
+    
+    /// Save enhanced screen and keyboard data following EnhancedScreenKeystroke.schema.json
+    pub async fn save_enhanced_screen_keyboard_data(
+        &self,
+        data: &crate::models::EnhancedScreenKeystrokeData,
+    ) -> std::io::Result<PathBuf> {
+        let timestamp = data.timestamp.format("%Y-%m-%d_%H-%M-%S-%3f");
+        let filename = format!("screen-kbd_{}_{}.json", timestamp, &data.session_id[0..8]);
+        let filepath = self.data_dir.join("screen-and-keyboard").join(&filename);
+        
+        // Create full data structure matching the schema
+        let full_data = json!({
+            "schema_version": "2.0.0",
+            "session_id": &data.session_id,
+            "timestamp": data.timestamp.to_rfc3339(),
+            "enhanced_keystroke_data": {
+                "timestamp": data.enhanced_keystroke_data.timestamp.to_rfc3339(),
+                "typing_speed_wpm": data.enhanced_keystroke_data.typing_speed_wpm,
+                "avg_key_hold_time_ms": data.enhanced_keystroke_data.avg_key_hold_time_ms,
+                "avg_key_interval_ms": data.enhanced_keystroke_data.avg_key_interval_ms,
+                "key_press_variance": data.enhanced_keystroke_data.key_press_variance,
+                "error_correction_rate": data.enhanced_keystroke_data.error_correction_rate,
+                "stress_indicator": data.enhanced_keystroke_data.stress_indicator,
+                "fatigue_indicator": data.enhanced_keystroke_data.fatigue_indicator,
+                "total_keystrokes": data.enhanced_keystroke_data.total_keystrokes,
+                "typed_text": &data.enhanced_keystroke_data.typed_text,
+                "buttons_clicked": &data.enhanced_keystroke_data.buttons_clicked,
+                "keystroke_sequence": &data.enhanced_keystroke_data.keystroke_sequence,
+                "typing_patterns": &data.enhanced_keystroke_data.typing_patterns,
+                "enabled": data.enhanced_keystroke_data.enabled,
+            },
+            "enhanced_screen_data": {
+                "timestamp": data.enhanced_screen_data.timestamp.to_rfc3339(),
+                "click_count": data.enhanced_screen_data.click_count,
+                "double_click_count": data.enhanced_screen_data.double_click_count,
+                "right_click_count": data.enhanced_screen_data.right_click_count,
+                "scroll_events": data.enhanced_screen_data.scroll_events,
+                "ui_element_types": &data.enhanced_screen_data.ui_element_types,
+                "interaction_speed": data.enhanced_screen_data.interaction_speed,
+                "workflow_friction_score": data.enhanced_screen_data.workflow_friction_score,
+                "mouse_travel_distance_px": data.enhanced_screen_data.mouse_travel_distance_px,
+                "screen_region_heatmap": &data.enhanced_screen_data.screen_region_heatmap,
+                "active_windows": &data.enhanced_screen_data.active_windows,
+                "screen_text_snapshot": &data.enhanced_screen_data.screen_text_snapshot,
+                "screen_layout": &data.enhanced_screen_data.screen_layout,
+                "accessibility_tree": &data.enhanced_screen_data.accessibility_tree,
+            },
+            "context_metadata": &data.context_metadata,
+            "saved_at": Utc::now().to_rfc3339(),
+        });
+        
+        let json_str = to_string_pretty(&full_data)?;
+        fs::write(&filepath, json_str).await?;
+        info!("✓ Enhanced screen & keyboard data saved: {}", filename);
         Ok(filepath)
     }
 }

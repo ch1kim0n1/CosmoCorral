@@ -1,5 +1,5 @@
 {
-  "value": {
+  "data": {
     "camera_data": {
       "dominant_emotion": "focused",
       "emotion_confidence": 0.2868483066558838,
@@ -946,7 +946,6 @@
       "timestamp": "2025-10-26T13:36:01.684737400Z"
     },
     "timestamp": "2025-10-26T13:36:01.655582400Z",
-    "token": "72c25304091149cc881e6f7130f6c5a7",
     "voice_data": {
       "emotion_detected": "engaged",
       "enabled": true,
@@ -957,5 +956,25 @@
       "vocal_tone_score": 0.6019046306610107,
       "volume_level": 0.5719151496887207
     }
+  },
+  "metadata": {
+    "data_types_available": {
+      "camera_data": true,
+      "file_metadata": true,
+      "focus_metrics": true,
+      "input_metrics": true,
+      "keystroke_dynamics": true,
+      "mouse_dynamics": true,
+      "network_activity_metadata": true,
+      "network_metrics": true,
+      "process_data": true,
+      "screen_interactions": true,
+      "system_events": true,
+      "system_metrics": true,
+      "voice_data": true
+    },
+    "saved_at": "2025-10-26T13:36:01.721121800+00:00",
+    "session_id": "495d9930-db34-4d73-8466-85c1b8f74eaa",
+    "timestamp": "2025-10-26T13:36:01.655582400+00:00"
   }
 }

@@ -260,3 +260,108 @@ pub struct ButtonClick {
     pub position: (i32, i32),          // screen coordinates
     pub click_type: String,            // "left", "right", "double"
 }
+
+// ENHANCED: Complete Screen and Keyboard Data following EnhancedScreenKeystroke.schema.json
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct EnhancedScreenKeystrokeData {
+    pub session_id: String,
+    pub timestamp: DateTime<Utc>,
+    pub enhanced_keystroke_data: EnhancedKeystrokeData,
+    pub enhanced_screen_data: EnhancedScreenData,
+    pub context_metadata: Option<ContextMetadata>,
+}
+
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct EnhancedKeystrokeData {
+    pub timestamp: DateTime<Utc>,
+    pub typing_speed_wpm: f32,
+    pub avg_key_hold_time_ms: f32,
+    pub avg_key_interval_ms: f32,
+    pub key_press_variance: f32,
+    pub error_correction_rate: f32,
+    pub stress_indicator: f32,
+    pub fatigue_indicator: f32,
+    pub total_keystrokes: u64,
+    pub typed_text: Option<String>,             // ACTUAL TEXT TYPED - for AI context
+    pub buttons_clicked: Vec<ButtonClick>,
+    pub keystroke_sequence: Vec<KeystrokeDetail>,
+    pub typing_patterns: TypingPatterns,
+    pub enabled: bool,
+}
+
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct KeystrokeDetail {
+    pub key: String,
+    pub timestamp_ms: u64,
+    pub hold_duration_ms: f32,
+    pub is_modifier: bool,
+    pub modifiers_active: Vec<String>,
+}
+
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct TypingPatterns {
+    pub burst_count: u32,
+    pub pause_count: u32,
+    pub avg_burst_duration_ms: f32,
+    pub avg_pause_duration_ms: f32,
+    pub typing_rhythm_score: f32,
+}
+
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct EnhancedScreenData {
+    pub timestamp: DateTime<Utc>,
+    pub click_count: u32,
+    pub double_click_count: u32,
+    pub right_click_count: u32,
+    pub scroll_events: u32,
+    pub ui_element_types: Vec<String>,
+    pub interaction_speed: f32,
+    pub workflow_friction_score: f32,
+    pub mouse_travel_distance_px: u64,
+    pub screen_region_heatmap: Vec<Vec<u32>>,
+    pub active_windows: Vec<WindowContent>,
+    pub screen_text_snapshot: Option<String>,   // FULL SCREEN OCR TEXT
+    pub screen_layout: ScreenLayout,
+    pub accessibility_tree: Vec<AccessibilityNode>,
+}
+
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct ScreenLayout {
+    pub primary_monitor: MonitorInfo,
+    pub total_monitors: u32,
+    pub virtual_screen_bounds: (i32, i32, u32, u32), // x, y, width, height
+}
+
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct MonitorInfo {
+    pub resolution: (u32, u32),
+    pub dpi_scaling: f32,
+    pub refresh_rate: u32,
+}
+
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct AccessibilityNode {
+    pub name: String,
+    pub role: String,
+    pub value: String,
+    pub description: String,
+    pub help_text: String,
+    pub keyboard_shortcut: Option<String>,
+    pub children_count: u32,
+    pub parent_role: String,
+}
+
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct ContextMetadata {
+    pub user_activity_state: String,
+    pub task_inference: Option<String>,
+    pub attention_zones: Vec<AttentionZone>,
+    pub workflow_stage: Option<String>,
+}
+
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct AttentionZone {
+    pub region: Vec<i32>,
+    pub attention_score: f32,
+    pub duration_seconds: f32,
+}

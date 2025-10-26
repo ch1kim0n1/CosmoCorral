@@ -1,97 +1,95 @@
 {
-  "value": {
+  "data": {
     "camera_data": {
       "dominant_emotion": "focused",
-      "emotion_confidence": 0.2868483066558838,
+      "emotion_confidence": 0.5055505633354187,
       "enabled": true,
       "face_detected": false,
       "facial_emotions": [
-        "focused",
-        "tired",
-        "engaged"
+        "focused"
       ],
-      "gaze_direction": "away",
-      "posture_score": 0.25073426961898804,
-      "timestamp": "2025-10-26T13:36:01.721045800Z"
+      "gaze_direction": "right",
+      "posture_score": 0.7878673672676086,
+      "timestamp": "2025-10-26T13:36:06.803743800Z"
     },
     "file_metadata": {
-      "avg_file_size_bytes": 4165682,
+      "avg_file_size_bytes": 4204849,
       "enabled": true,
-      "file_close_events": 50,
-      "file_open_events": 95,
+      "file_close_events": 45,
+      "file_open_events": 3,
       "file_sizes_bytes": [
-        3479231,
-        4852133
+        5307552,
+        3102146
       ],
       "file_types_accessed": [
         ".js"
       ],
-      "modification_events": 15,
-      "project_switch_count": 0,
-      "timestamp": "2025-10-26T13:36:01.721069300Z",
-      "work_type_inferred": "design"
+      "modification_events": 27,
+      "project_switch_count": 4,
+      "timestamp": "2025-10-26T13:36:06.803763100Z",
+      "work_type_inferred": "writing"
     },
     "focus_metrics": {
-      "context_switches": 7,
-      "focus_level": 0.05000000074505806,
-      "productive_app_time": 236,
-      "timestamp": "2025-10-26T13:36:01.721043300Z"
+      "context_switches": 3,
+      "focus_level": 0.05999999865889549,
+      "productive_app_time": 512,
+      "timestamp": "2025-10-26T13:36:06.803741Z"
     },
     "input_metrics": {
-      "idle_duration_seconds": 11,
-      "keyboard_events": 16,
-      "mouse_clicks": 3,
-      "timestamp": "2025-10-26T13:36:01.721043Z"
+      "idle_duration_seconds": 22,
+      "keyboard_events": 6,
+      "mouse_clicks": 5,
+      "timestamp": "2025-10-26T13:36:06.803740800Z"
     },
     "keystroke_dynamics": {
-      "avg_key_hold_time_ms": 217.5908203125,
-      "avg_key_interval_ms": 75.74005889892578,
+      "avg_key_hold_time_ms": 59.69367599487305,
+      "avg_key_interval_ms": 70.56515502929688,
       "buttons_clicked": [],
       "enabled": true,
-      "error_correction_rate": 0.3878680467605591,
-      "fatigue_indicator": 0.45690417289733887,
-      "key_press_variance": 0.1647244691848755,
-      "stress_indicator": 0.5970945358276367,
-      "timestamp": "2025-10-26T13:36:01.721047800Z",
-      "total_keystrokes": 1330,
-      "typed_text": "Taking notes from lecture",
-      "typing_speed_wpm": 136.59429931640625
+      "error_correction_rate": 0.45644307136535645,
+      "fatigue_indicator": 0.12589412927627563,
+      "key_press_variance": 0.6707804799079895,
+      "stress_indicator": 0.6901077628135681,
+      "timestamp": "2025-10-26T13:36:06.803745100Z",
+      "total_keystrokes": 1657,
+      "typed_text": "Debugging the error",
+      "typing_speed_wpm": 125.5907211303711
     },
     "mouse_dynamics": {
-      "acceleration_avg": 41.268287658691406,
-      "click_pattern_regularity": 0.05334597826004028,
-      "fatigue_indicator": 0.3579789996147156,
-      "focus_indicator": 0.5904508829116821,
-      "hesitation_count": 210,
-      "movement_speed_avg": 650.7305908203125,
-      "movement_speed_variance": 0.3255781829357147,
-      "path_smoothness": 0.37635117769241333,
-      "timestamp": "2025-10-26T13:36:01.721072400Z",
-      "total_distance_px": 60100
+      "acceleration_avg": 253.55926513671875,
+      "click_pattern_regularity": 0.5935761332511902,
+      "fatigue_indicator": 0.1750802993774414,
+      "focus_indicator": 0.3463589549064636,
+      "hesitation_count": 215,
+      "movement_speed_avg": 565.487060546875,
+      "movement_speed_variance": 0.2436135709285736,
+      "path_smoothness": 0.3105344772338867,
+      "timestamp": "2025-10-26T13:36:06.803766100Z",
+      "total_distance_px": 67300
     },
     "network_activity_metadata": {
-      "active_connections": 11,
-      "activity_context": "file_transfer",
-      "bandwidth_usage_mbps": 1.8134779930114746,
-      "bytes_received": 1326711,
-      "bytes_sent": 486767,
-      "connection_stability": 0.9483818411827087,
-      "latency_avg_ms": 64.90745544433594,
-      "packet_loss_rate": 0.022839033976197243,
-      "timestamp": "2025-10-26T13:36:01.721072800Z",
-      "traffic_type": "gaming"
+      "active_connections": 44,
+      "activity_context": "research",
+      "bandwidth_usage_mbps": 3.5805790424346924,
+      "bytes_received": 3452504,
+      "bytes_sent": 128075,
+      "connection_stability": 0.8416200280189514,
+      "latency_avg_ms": 92.61336517333984,
+      "packet_loss_rate": 0.0013439685571938753,
+      "timestamp": "2025-10-26T13:36:06.803766400Z",
+      "traffic_type": "download"
     },
     "network_metrics": {
-      "active_connections": 11,
-      "bytes_received": 1326711,
-      "bytes_sent": 486767,
-      "timestamp": "2025-10-26T13:36:01.721043200Z"
+      "active_connections": 44,
+      "bytes_received": 3452504,
+      "bytes_sent": 128075,
+      "timestamp": "2025-10-26T13:36:06.803740900Z"
     },
     "process_data": {
       "active_process": "HWND(200192)",
       "active_window_title": "storage.rs - rowdyhack-25 - Visual Studio Code",
       "process_count": 332,
-      "timestamp": "2025-10-26T13:36:01.720151700Z"
+      "timestamp": "2025-10-26T13:36:06.802677200Z"
     },
     "screen_interactions": {
       "active_windows": [
@@ -112,7 +110,7 @@
             0,
             0
           ],
-          "process_id": 8990,
+          "process_id": 5142,
           "ui_elements": [
             {
               "class_name": "btn btn-primary submit-btn",
@@ -270,7 +268,7 @@
             }
           ],
           "visible_text": "Visual Studio Code\n\nDocument Content:\nThis is a comprehensive research paper exploring the multifaceted impacts of climate change on global ecosystems. The analysis encompasses temperature variations, precipitation patterns, sea level changes, and biodiversity loss. Key findings indicate accelerated warming trends in polar regions, with significant implications for ice sheet stability. \n\nSection 1: Introduction\nClimate change represents one of the most pressing challenges facing humanity. Recent data from IPCC reports shows unprecedented warming rates...\n\nCurrent Progress: 2,847 words | Target: 3,000 words | Due: Monday 11:59 PM\nLast saved: 2 minutes ago | Autosave: ON | Spell check: Active",
-          "window_handle": "0x3ebe2b7c",
+          "window_handle": "0x04116b42",
           "window_state": "maximized",
           "window_title": "Visual Studio Code",
           "z_index": 0
@@ -287,12 +285,12 @@
           "is_topmost": false,
           "is_visible": true,
           "opacity": 1.0,
-          "parent_window": "0x373fed4f",
+          "parent_window": "0xb8fb203e",
           "position": [
             0,
             0
           ],
-          "process_id": 3084,
+          "process_id": 9120,
           "ui_elements": [
             {
               "class_name": "btn btn-primary submit-btn",
@@ -450,7 +448,7 @@
             }
           ],
           "visible_text": "Google Chrome\n\nDocument Content:\nThis is a comprehensive research paper exploring the multifaceted impacts of climate change on global ecosystems. The analysis encompasses temperature variations, precipitation patterns, sea level changes, and biodiversity loss. Key findings indicate accelerated warming trends in polar regions, with significant implications for ice sheet stability. \n\nSection 1: Introduction\nClimate change represents one of the most pressing challenges facing humanity. Recent data from IPCC reports shows unprecedented warming rates...\n\nCurrent Progress: 2,847 words | Target: 3,000 words | Due: Monday 11:59 PM\nLast saved: 2 minutes ago | Autosave: ON | Spell check: Active",
-          "window_handle": "0x27415b86",
+          "window_handle": "0xd34df940",
           "window_state": "normal",
           "window_title": "Google Chrome",
           "z_index": 1
@@ -467,12 +465,12 @@
           "is_topmost": false,
           "is_visible": true,
           "opacity": 1.0,
-          "parent_window": "0xb6d8c082",
+          "parent_window": "0x1ad13574",
           "position": [
             0,
             0
           ],
-          "process_id": 3617,
+          "process_id": 10848,
           "ui_elements": [
             {
               "class_name": "btn btn-primary submit-btn",
@@ -630,197 +628,47 @@
             }
           ],
           "visible_text": "Microsoft Word\n\nDocument Content:\nThis is a comprehensive research paper exploring the multifaceted impacts of climate change on global ecosystems. The analysis encompasses temperature variations, precipitation patterns, sea level changes, and biodiversity loss. Key findings indicate accelerated warming trends in polar regions, with significant implications for ice sheet stability. \n\nSection 1: Introduction\nClimate change represents one of the most pressing challenges facing humanity. Recent data from IPCC reports shows unprecedented warming rates...\n\nCurrent Progress: 2,847 words | Target: 3,000 words | Due: Monday 11:59 PM\nLast saved: 2 minutes ago | Autosave: ON | Spell check: Active",
-          "window_handle": "0xdf831cb3",
+          "window_handle": "0x01377a54",
           "window_state": "normal",
           "window_title": "Microsoft Word",
           "z_index": 2
         }
       ],
-      "click_count": 237,
-      "double_click_count": 41,
-      "interaction_speed": 63.58834457397461,
-      "mouse_travel_distance_px": 165842,
-      "right_click_count": 54,
+      "click_count": 99,
+      "double_click_count": 42,
+      "interaction_speed": 215.5640869140625,
+      "mouse_travel_distance_px": 893835,
+      "right_click_count": 51,
       "screen_region_heatmap": [
         [
-          1,
-          1,
-          78
-        ],
-        [
-          2,
-          0,
-          56
-        ],
-        [
           3,
-          1,
-          98
-        ],
-        [
-          0,
           2,
-          38
-        ],
-        [
-          1,
-          2,
-          66
-        ],
-        [
-          2,
-          3,
-          77
-        ],
-        [
-          1,
-          0,
-          56
-        ],
-        [
-          3,
-          1,
-          56
-        ],
-        [
-          3,
-          3,
-          77
-        ],
-        [
-          2,
-          0,
-          26
-        ],
-        [
-          2,
-          3,
-          92
-        ],
-        [
-          1,
-          0,
-          17
+          60
         ],
         [
           0,
           0,
-          4
-        ],
-        [
-          1,
-          2,
-          57
-        ],
-        [
-          3,
-          1,
-          29
+          21
         ],
         [
           1,
           0,
-          35
+          11
         ],
         [
           2,
-          3,
-          38
-        ],
-        [
-          3,
-          1,
-          50
-        ],
-        [
-          2,
-          2,
-          13
-        ],
-        [
-          3,
-          2,
-          91
-        ],
-        [
-          1,
-          3,
+          0,
           37
         ],
         [
           3,
-          2,
-          54
-        ],
-        [
           0,
-          0,
-          7
-        ],
-        [
-          1,
-          0,
-          96
-        ],
-        [
-          0,
-          0,
-          64
-        ],
-        [
-          2,
-          3,
-          76
-        ],
-        [
-          1,
-          1,
-          50
+          53
         ],
         [
           3,
-          1,
-          35
-        ],
-        [
-          0,
           3,
-          77
-        ],
-        [
-          1,
-          2,
-          74
-        ],
-        [
-          1,
-          3,
-          5
-        ],
-        [
-          3,
-          0,
-          94
-        ],
-        [
-          2,
-          3,
-          66
-        ],
-        [
-          0,
-          1,
-          77
-        ],
-        [
-          0,
-          2,
-          37
-        ],
-        [
-          2,
-          2,
-          35
+          89
         ],
         [
           1,
@@ -828,134 +676,240 @@
           42
         ],
         [
-          1,
-          1,
-          45
-        ],
-        [
-          2,
-          2,
-          28
-        ],
-        [
-          1,
-          1,
-          18
-        ],
-        [
-          1,
-          2,
-          74
-        ],
-        [
-          2,
           0,
-          17
+          1,
+          68
         ],
         [
+          3,
           2,
-          1,
-          2
+          34
         ],
         [
           0,
-          1,
-          56
+          3,
+          8
         ],
         [
-          1,
+          0,
           2,
-          42
-        ],
-        [
-          1,
-          1,
-          32
+          93
         ],
         [
           0,
           0,
-          43
+          62
+        ],
+        [
+          1,
+          3,
+          11
+        ],
+        [
+          2,
+          0,
+          30
+        ],
+        [
+          3,
+          3,
+          33
         ],
         [
           0,
+          3,
+          34
+        ],
+        [
+          1,
+          0,
+          1
+        ],
+        [
+          2,
+          0,
+          1
+        ],
+        [
+          1,
           2,
           84
         ],
         [
           0,
+          2,
+          25
+        ],
+        [
+          1,
+          2,
+          60
+        ],
+        [
+          2,
+          2,
+          57
+        ],
+        [
+          0,
+          0,
+          58
+        ],
+        [
+          3,
+          2,
+          45
+        ],
+        [
+          1,
+          3,
+          77
+        ],
+        [
+          2,
+          2,
+          2
+        ],
+        [
+          1,
+          3,
+          98
+        ],
+        [
+          2,
+          1,
+          61
+        ],
+        [
+          3,
           1,
           1
         ],
         [
-          0,
           1,
-          8
+          2,
+          67
+        ],
+        [
+          3,
+          2,
+          35
+        ],
+        [
+          3,
+          0,
+          80
+        ],
+        [
+          0,
+          3,
+          71
+        ],
+        [
+          0,
+          2,
+          60
+        ],
+        [
+          2,
+          3,
+          70
+        ],
+        [
+          2,
+          3,
+          25
+        ],
+        [
+          2,
+          2,
+          16
+        ],
+        [
+          1,
+          3,
+          26
+        ],
+        [
+          2,
+          2,
+          35
+        ],
+        [
+          2,
+          1,
+          64
         ]
       ],
-      "screen_text_snapshot": "Assignment Due: Monday\nProgress: 75%\nRemaining tasks: Review, Submit",
-      "scroll_events": 407,
-      "timestamp": "2025-10-26T13:36:01.721068400Z",
+      "screen_text_snapshot": "Email Subject: Team Meeting\nFrom: Professor Smith\nAttachment: syllabus.pdf",
+      "scroll_events": 116,
+      "timestamp": "2025-10-26T13:36:06.803762200Z",
       "ui_element_types": [
-        "tab",
-        "dropdown",
         "form",
-        "icon",
-        "input",
-        "sidebar",
-        "button",
-        "input",
-        "navbar",
-        "modal",
-        "link",
-        "textbox",
-        "icon",
-        "dialog",
-        "tab",
-        "scrollbar",
-        "navbar",
-        "icon",
-        "tab",
         "dropdown",
-        "menu",
-        "textbox",
-        "tab",
-        "dialog",
-        "dialog",
-        "tab",
+        "modal",
+        "form",
+        "dropdown",
         "input",
-        "icon"
+        "scrollbar",
+        "input",
+        "scrollbar",
+        "dialog",
+        "button",
+        "scrollbar",
+        "sidebar",
+        "scrollbar",
+        "dropdown"
       ],
-      "workflow_friction_score": 0.2737218141555786
+      "workflow_friction_score": 0.07910865545272827
     },
     "session_id": "495d9930-db34-4d73-8466-85c1b8f74eaa",
     "system_events": {
-      "active_session_duration_seconds": 6553,
-      "break_duration_seconds": 0,
-      "daily_rhythm_score": 0.6484272480010986,
-      "event_subtype": "headphones",
-      "event_type": "unlock",
-      "session_end": "2025-10-26T13:36:01.721070500Z",
-      "session_start": "2025-10-26T13:36:01.721070500Z",
-      "timestamp": "2025-10-26T13:36:01.721070500Z"
+      "active_session_duration_seconds": 0,
+      "break_duration_seconds": 1640,
+      "daily_rhythm_score": 0.18231159448623657,
+      "event_subtype": "keyboard",
+      "event_type": "lock",
+      "session_end": null,
+      "session_start": "2025-10-26T13:36:06.803763600Z",
+      "timestamp": "2025-10-26T13:36:06.803763600Z"
     },
     "system_metrics": {
-      "cpu_usage": 9.772253036499023,
-      "disk_usage": 66.78141021728516,
-      "memory_usage": 83.48634338378906,
-      "timestamp": "2025-10-26T13:36:01.684737400Z"
+      "cpu_usage": 57.55764389038086,
+      "disk_usage": 73.14610290527344,
+      "memory_usage": 78.43128967285156,
+      "timestamp": "2025-10-26T13:36:06.761247700Z"
     },
-    "timestamp": "2025-10-26T13:36:01.655582400Z",
-    "token": "72c25304091149cc881e6f7130f6c5a7",
+    "timestamp": "2025-10-26T13:36:06.728402900Z",
     "voice_data": {
-      "emotion_detected": "engaged",
+      "emotion_detected": "frustrated",
       "enabled": true,
-      "sentiment_score": -0.39462435245513916,
-      "silence_duration_ms": 2948,
-      "speaking_duration_ms": 33162,
-      "timestamp": "2025-10-26T13:36:01.721044700Z",
-      "vocal_tone_score": 0.6019046306610107,
-      "volume_level": 0.5719151496887207
+      "sentiment_score": 0.5719666481018066,
+      "silence_duration_ms": 11950,
+      "speaking_duration_ms": 29508,
+      "timestamp": "2025-10-26T13:36:06.803743Z",
+      "vocal_tone_score": 0.07881170511245728,
+      "volume_level": 0.2553914189338684
     }
+  },
+  "metadata": {
+    "data_types_available": {
+      "camera_data": true,
+      "file_metadata": true,
+      "focus_metrics": true,
+      "input_metrics": true,
+      "keystroke_dynamics": true,
+      "mouse_dynamics": true,
+      "network_activity_metadata": true,
+      "network_metrics": true,
+      "process_data": true,
+      "screen_interactions": true,
+      "system_events": true,
+      "system_metrics": true,
+      "voice_data": true
+    },
+    "saved_at": "2025-10-26T13:36:06.803814600+00:00",
+    "session_id": "495d9930-db34-4d73-8466-85c1b8f74eaa",
+    "timestamp": "2025-10-26T13:36:06.728402900+00:00"
   }
 }
