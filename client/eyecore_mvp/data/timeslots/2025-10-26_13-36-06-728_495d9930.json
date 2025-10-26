@@ -1,0 +1,915 @@
+{
+  "data": {
+    "camera_data": {
+      "dominant_emotion": "focused",
+      "emotion_confidence": 0.5055505633354187,
+      "enabled": true,
+      "face_detected": false,
+      "facial_emotions": [
+        "focused"
+      ],
+      "gaze_direction": "right",
+      "posture_score": 0.7878673672676086,
+      "timestamp": "2025-10-26T13:36:06.803743800Z"
+    },
+    "file_metadata": {
+      "avg_file_size_bytes": 4204849,
+      "enabled": true,
+      "file_close_events": 45,
+      "file_open_events": 3,
+      "file_sizes_bytes": [
+        5307552,
+        3102146
+      ],
+      "file_types_accessed": [
+        ".js"
+      ],
+      "modification_events": 27,
+      "project_switch_count": 4,
+      "timestamp": "2025-10-26T13:36:06.803763100Z",
+      "work_type_inferred": "writing"
+    },
+    "focus_metrics": {
+      "context_switches": 3,
+      "focus_level": 0.05999999865889549,
+      "productive_app_time": 512,
+      "timestamp": "2025-10-26T13:36:06.803741Z"
+    },
+    "input_metrics": {
+      "idle_duration_seconds": 22,
+      "keyboard_events": 6,
+      "mouse_clicks": 5,
+      "timestamp": "2025-10-26T13:36:06.803740800Z"
+    },
+    "keystroke_dynamics": {
+      "avg_key_hold_time_ms": 59.69367599487305,
+      "avg_key_interval_ms": 70.56515502929688,
+      "buttons_clicked": [],
+      "enabled": true,
+      "error_correction_rate": 0.45644307136535645,
+      "fatigue_indicator": 0.12589412927627563,
+      "key_press_variance": 0.6707804799079895,
+      "stress_indicator": 0.6901077628135681,
+      "timestamp": "2025-10-26T13:36:06.803745100Z",
+      "total_keystrokes": 1657,
+      "typed_text": "Debugging the error",
+      "typing_speed_wpm": 125.5907211303711
+    },
+    "mouse_dynamics": {
+      "acceleration_avg": 253.55926513671875,
+      "click_pattern_regularity": 0.5935761332511902,
+      "fatigue_indicator": 0.1750802993774414,
+      "focus_indicator": 0.3463589549064636,
+      "hesitation_count": 215,
+      "movement_speed_avg": 565.487060546875,
+      "movement_speed_variance": 0.2436135709285736,
+      "path_smoothness": 0.3105344772338867,
+      "timestamp": "2025-10-26T13:36:06.803766100Z",
+      "total_distance_px": 67300
+    },
+    "network_activity_metadata": {
+      "active_connections": 44,
+      "activity_context": "research",
+      "bandwidth_usage_mbps": 3.5805790424346924,
+      "bytes_received": 3452504,
+      "bytes_sent": 128075,
+      "connection_stability": 0.8416200280189514,
+      "latency_avg_ms": 92.61336517333984,
+      "packet_loss_rate": 0.0013439685571938753,
+      "timestamp": "2025-10-26T13:36:06.803766400Z",
+      "traffic_type": "download"
+    },
+    "network_metrics": {
+      "active_connections": 44,
+      "bytes_received": 3452504,
+      "bytes_sent": 128075,
+      "timestamp": "2025-10-26T13:36:06.803740900Z"
+    },
+    "process_data": {
+      "active_process": "HWND(200192)",
+      "active_window_title": "storage.rs - rowdyhack-25 - Visual Studio Code",
+      "process_count": 332,
+      "timestamp": "2025-10-26T13:36:06.802677200Z"
+    },
+    "screen_interactions": {
+      "active_windows": [
+        {
+          "application_name": "Code Editor",
+          "dimensions": [
+            1920,
+            1080
+          ],
+          "has_shadow": true,
+          "is_enabled": true,
+          "is_focused": true,
+          "is_topmost": true,
+          "is_visible": true,
+          "opacity": 1.0,
+          "parent_window": null,
+          "position": [
+            0,
+            0
+          ],
+          "process_id": 5142,
+          "ui_elements": [
+            {
+              "class_name": "btn btn-primary submit-btn",
+              "dimensions": [
+                120,
+                35
+              ],
+              "element_id": "btn_submit",
+              "element_text": "Submit Assignment",
+              "element_type": "button",
+              "is_checked": null,
+              "is_default": true,
+              "is_enabled": true,
+              "is_focused": false,
+              "is_visible": true,
+              "keyboard_shortcut": "Ctrl+Enter",
+              "placeholder": null,
+              "position": [
+                100,
+                50
+              ],
+              "role": "button",
+              "selection_range": null,
+              "states": [
+                "enabled",
+                "visible"
+              ],
+              "tab_index": 1,
+              "tooltip": "Click to submit your completed assignment",
+              "value": null
+            },
+            {
+              "class_name": "form-control text-area-large",
+              "dimensions": [
+                600,
+                200
+              ],
+              "element_id": "txt_input_answer",
+              "element_text": "Working on my research paper about climate change impacts",
+              "element_type": "textbox",
+              "is_checked": null,
+              "is_default": false,
+              "is_enabled": true,
+              "is_focused": true,
+              "is_visible": true,
+              "keyboard_shortcut": null,
+              "placeholder": "Type your detailed answer here (minimum 200 words)...",
+              "position": [
+                100,
+                100
+              ],
+              "role": "textbox",
+              "selection_range": [
+                0,
+                58
+              ],
+              "states": [
+                "focused",
+                "enabled",
+                "editable"
+              ],
+              "tab_index": 2,
+              "tooltip": "Enter your response. Use formatting toolbar above.",
+              "value": "Working on my research paper about climate change impacts"
+            },
+            {
+              "class_name": "checkbox-custom",
+              "dimensions": [
+                250,
+                20
+              ],
+              "element_id": "chk_reviewed",
+              "element_text": "I have reviewed my work",
+              "element_type": "checkbox",
+              "is_checked": true,
+              "is_default": false,
+              "is_enabled": true,
+              "is_focused": false,
+              "is_visible": true,
+              "keyboard_shortcut": "Alt+R",
+              "placeholder": null,
+              "position": [
+                100,
+                320
+              ],
+              "role": "checkbox",
+              "selection_range": null,
+              "states": [
+                "checked",
+                "enabled"
+              ],
+              "tab_index": 3,
+              "tooltip": "Check this box to confirm you've reviewed your submission",
+              "value": "checked"
+            },
+            {
+              "class_name": "link-primary underline",
+              "dimensions": [
+                100,
+                20
+              ],
+              "element_id": "link_rubric",
+              "element_text": "View Rubric",
+              "element_type": "link",
+              "is_checked": null,
+              "is_default": false,
+              "is_enabled": true,
+              "is_focused": false,
+              "is_visible": true,
+              "keyboard_shortcut": null,
+              "placeholder": null,
+              "position": [
+                100,
+                350
+              ],
+              "role": "link",
+              "selection_range": null,
+              "states": [
+                "link",
+                "clickable"
+              ],
+              "tab_index": 4,
+              "tooltip": "Open assignment grading rubric in new tab",
+              "value": "https://example.edu/rubric/123"
+            },
+            {
+              "class_name": "dropdown-select form-control",
+              "dimensions": [
+                250,
+                30
+              ],
+              "element_id": "dd_citation",
+              "element_text": "Citation Style: APA 7th Edition",
+              "element_type": "dropdown",
+              "is_checked": null,
+              "is_default": false,
+              "is_enabled": true,
+              "is_focused": false,
+              "is_visible": true,
+              "keyboard_shortcut": "Alt+C",
+              "placeholder": "Select citation format...",
+              "position": [
+                100,
+                380
+              ],
+              "role": "combobox",
+              "selection_range": null,
+              "states": [
+                "collapsed",
+                "enabled"
+              ],
+              "tab_index": 5,
+              "tooltip": "Choose the citation format for your references",
+              "value": "APA_7"
+            }
+          ],
+          "visible_text": "Visual Studio Code\n\nDocument Content:\nThis is a comprehensive research paper exploring the multifaceted impacts of climate change on global ecosystems. The analysis encompasses temperature variations, precipitation patterns, sea level changes, and biodiversity loss. Key findings indicate accelerated warming trends in polar regions, with significant implications for ice sheet stability. \n\nSection 1: Introduction\nClimate change represents one of the most pressing challenges facing humanity. Recent data from IPCC reports shows unprecedented warming rates...\n\nCurrent Progress: 2,847 words | Target: 3,000 words | Due: Monday 11:59 PM\nLast saved: 2 minutes ago | Autosave: ON | Spell check: Active",
+          "window_handle": "0x04116b42",
+          "window_state": "maximized",
+          "window_title": "Visual Studio Code",
+          "z_index": 0
+        },
+        {
+          "application_name": "Web Browser",
+          "dimensions": [
+            1920,
+            1080
+          ],
+          "has_shadow": true,
+          "is_enabled": true,
+          "is_focused": false,
+          "is_topmost": false,
+          "is_visible": true,
+          "opacity": 1.0,
+          "parent_window": "0xb8fb203e",
+          "position": [
+            0,
+            0
+          ],
+          "process_id": 9120,
+          "ui_elements": [
+            {
+              "class_name": "btn btn-primary submit-btn",
+              "dimensions": [
+                120,
+                35
+              ],
+              "element_id": "btn_submit",
+              "element_text": "Submit Assignment",
+              "element_type": "button",
+              "is_checked": null,
+              "is_default": true,
+              "is_enabled": true,
+              "is_focused": false,
+              "is_visible": true,
+              "keyboard_shortcut": "Ctrl+Enter",
+              "placeholder": null,
+              "position": [
+                100,
+                50
+              ],
+              "role": "button",
+              "selection_range": null,
+              "states": [
+                "enabled",
+                "visible"
+              ],
+              "tab_index": 1,
+              "tooltip": "Click to submit your completed assignment",
+              "value": null
+            },
+            {
+              "class_name": "form-control text-area-large",
+              "dimensions": [
+                600,
+                200
+              ],
+              "element_id": "txt_input_answer",
+              "element_text": "Working on my research paper about climate change impacts",
+              "element_type": "textbox",
+              "is_checked": null,
+              "is_default": false,
+              "is_enabled": true,
+              "is_focused": true,
+              "is_visible": true,
+              "keyboard_shortcut": null,
+              "placeholder": "Type your detailed answer here (minimum 200 words)...",
+              "position": [
+                100,
+                100
+              ],
+              "role": "textbox",
+              "selection_range": [
+                0,
+                58
+              ],
+              "states": [
+                "focused",
+                "enabled",
+                "editable"
+              ],
+              "tab_index": 2,
+              "tooltip": "Enter your response. Use formatting toolbar above.",
+              "value": "Working on my research paper about climate change impacts"
+            },
+            {
+              "class_name": "checkbox-custom",
+              "dimensions": [
+                250,
+                20
+              ],
+              "element_id": "chk_reviewed",
+              "element_text": "I have reviewed my work",
+              "element_type": "checkbox",
+              "is_checked": true,
+              "is_default": false,
+              "is_enabled": true,
+              "is_focused": false,
+              "is_visible": true,
+              "keyboard_shortcut": "Alt+R",
+              "placeholder": null,
+              "position": [
+                100,
+                320
+              ],
+              "role": "checkbox",
+              "selection_range": null,
+              "states": [
+                "checked",
+                "enabled"
+              ],
+              "tab_index": 3,
+              "tooltip": "Check this box to confirm you've reviewed your submission",
+              "value": "checked"
+            },
+            {
+              "class_name": "link-primary underline",
+              "dimensions": [
+                100,
+                20
+              ],
+              "element_id": "link_rubric",
+              "element_text": "View Rubric",
+              "element_type": "link",
+              "is_checked": null,
+              "is_default": false,
+              "is_enabled": true,
+              "is_focused": false,
+              "is_visible": true,
+              "keyboard_shortcut": null,
+              "placeholder": null,
+              "position": [
+                100,
+                350
+              ],
+              "role": "link",
+              "selection_range": null,
+              "states": [
+                "link",
+                "clickable"
+              ],
+              "tab_index": 4,
+              "tooltip": "Open assignment grading rubric in new tab",
+              "value": "https://example.edu/rubric/123"
+            },
+            {
+              "class_name": "dropdown-select form-control",
+              "dimensions": [
+                250,
+                30
+              ],
+              "element_id": "dd_citation",
+              "element_text": "Citation Style: APA 7th Edition",
+              "element_type": "dropdown",
+              "is_checked": null,
+              "is_default": false,
+              "is_enabled": true,
+              "is_focused": false,
+              "is_visible": true,
+              "keyboard_shortcut": "Alt+C",
+              "placeholder": "Select citation format...",
+              "position": [
+                100,
+                380
+              ],
+              "role": "combobox",
+              "selection_range": null,
+              "states": [
+                "collapsed",
+                "enabled"
+              ],
+              "tab_index": 5,
+              "tooltip": "Choose the citation format for your references",
+              "value": "APA_7"
+            }
+          ],
+          "visible_text": "Google Chrome\n\nDocument Content:\nThis is a comprehensive research paper exploring the multifaceted impacts of climate change on global ecosystems. The analysis encompasses temperature variations, precipitation patterns, sea level changes, and biodiversity loss. Key findings indicate accelerated warming trends in polar regions, with significant implications for ice sheet stability. \n\nSection 1: Introduction\nClimate change represents one of the most pressing challenges facing humanity. Recent data from IPCC reports shows unprecedented warming rates...\n\nCurrent Progress: 2,847 words | Target: 3,000 words | Due: Monday 11:59 PM\nLast saved: 2 minutes ago | Autosave: ON | Spell check: Active",
+          "window_handle": "0xd34df940",
+          "window_state": "normal",
+          "window_title": "Google Chrome",
+          "z_index": 1
+        },
+        {
+          "application_name": "Document Editor",
+          "dimensions": [
+            1920,
+            1080
+          ],
+          "has_shadow": true,
+          "is_enabled": true,
+          "is_focused": false,
+          "is_topmost": false,
+          "is_visible": true,
+          "opacity": 1.0,
+          "parent_window": "0x1ad13574",
+          "position": [
+            0,
+            0
+          ],
+          "process_id": 10848,
+          "ui_elements": [
+            {
+              "class_name": "btn btn-primary submit-btn",
+              "dimensions": [
+                120,
+                35
+              ],
+              "element_id": "btn_submit",
+              "element_text": "Submit Assignment",
+              "element_type": "button",
+              "is_checked": null,
+              "is_default": true,
+              "is_enabled": true,
+              "is_focused": false,
+              "is_visible": true,
+              "keyboard_shortcut": "Ctrl+Enter",
+              "placeholder": null,
+              "position": [
+                100,
+                50
+              ],
+              "role": "button",
+              "selection_range": null,
+              "states": [
+                "enabled",
+                "visible"
+              ],
+              "tab_index": 1,
+              "tooltip": "Click to submit your completed assignment",
+              "value": null
+            },
+            {
+              "class_name": "form-control text-area-large",
+              "dimensions": [
+                600,
+                200
+              ],
+              "element_id": "txt_input_answer",
+              "element_text": "Working on my research paper about climate change impacts",
+              "element_type": "textbox",
+              "is_checked": null,
+              "is_default": false,
+              "is_enabled": true,
+              "is_focused": true,
+              "is_visible": true,
+              "keyboard_shortcut": null,
+              "placeholder": "Type your detailed answer here (minimum 200 words)...",
+              "position": [
+                100,
+                100
+              ],
+              "role": "textbox",
+              "selection_range": [
+                0,
+                58
+              ],
+              "states": [
+                "focused",
+                "enabled",
+                "editable"
+              ],
+              "tab_index": 2,
+              "tooltip": "Enter your response. Use formatting toolbar above.",
+              "value": "Working on my research paper about climate change impacts"
+            },
+            {
+              "class_name": "checkbox-custom",
+              "dimensions": [
+                250,
+                20
+              ],
+              "element_id": "chk_reviewed",
+              "element_text": "I have reviewed my work",
+              "element_type": "checkbox",
+              "is_checked": true,
+              "is_default": false,
+              "is_enabled": true,
+              "is_focused": false,
+              "is_visible": true,
+              "keyboard_shortcut": "Alt+R",
+              "placeholder": null,
+              "position": [
+                100,
+                320
+              ],
+              "role": "checkbox",
+              "selection_range": null,
+              "states": [
+                "checked",
+                "enabled"
+              ],
+              "tab_index": 3,
+              "tooltip": "Check this box to confirm you've reviewed your submission",
+              "value": "checked"
+            },
+            {
+              "class_name": "link-primary underline",
+              "dimensions": [
+                100,
+                20
+              ],
+              "element_id": "link_rubric",
+              "element_text": "View Rubric",
+              "element_type": "link",
+              "is_checked": null,
+              "is_default": false,
+              "is_enabled": true,
+              "is_focused": false,
+              "is_visible": true,
+              "keyboard_shortcut": null,
+              "placeholder": null,
+              "position": [
+                100,
+                350
+              ],
+              "role": "link",
+              "selection_range": null,
+              "states": [
+                "link",
+                "clickable"
+              ],
+              "tab_index": 4,
+              "tooltip": "Open assignment grading rubric in new tab",
+              "value": "https://example.edu/rubric/123"
+            },
+            {
+              "class_name": "dropdown-select form-control",
+              "dimensions": [
+                250,
+                30
+              ],
+              "element_id": "dd_citation",
+              "element_text": "Citation Style: APA 7th Edition",
+              "element_type": "dropdown",
+              "is_checked": null,
+              "is_default": false,
+              "is_enabled": true,
+              "is_focused": false,
+              "is_visible": true,
+              "keyboard_shortcut": "Alt+C",
+              "placeholder": "Select citation format...",
+              "position": [
+                100,
+                380
+              ],
+              "role": "combobox",
+              "selection_range": null,
+              "states": [
+                "collapsed",
+                "enabled"
+              ],
+              "tab_index": 5,
+              "tooltip": "Choose the citation format for your references",
+              "value": "APA_7"
+            }
+          ],
+          "visible_text": "Microsoft Word\n\nDocument Content:\nThis is a comprehensive research paper exploring the multifaceted impacts of climate change on global ecosystems. The analysis encompasses temperature variations, precipitation patterns, sea level changes, and biodiversity loss. Key findings indicate accelerated warming trends in polar regions, with significant implications for ice sheet stability. \n\nSection 1: Introduction\nClimate change represents one of the most pressing challenges facing humanity. Recent data from IPCC reports shows unprecedented warming rates...\n\nCurrent Progress: 2,847 words | Target: 3,000 words | Due: Monday 11:59 PM\nLast saved: 2 minutes ago | Autosave: ON | Spell check: Active",
+          "window_handle": "0x01377a54",
+          "window_state": "normal",
+          "window_title": "Microsoft Word",
+          "z_index": 2
+        }
+      ],
+      "click_count": 99,
+      "double_click_count": 42,
+      "interaction_speed": 215.5640869140625,
+      "mouse_travel_distance_px": 893835,
+      "right_click_count": 51,
+      "screen_region_heatmap": [
+        [
+          3,
+          2,
+          60
+        ],
+        [
+          0,
+          0,
+          21
+        ],
+        [
+          1,
+          0,
+          11
+        ],
+        [
+          2,
+          0,
+          37
+        ],
+        [
+          3,
+          0,
+          53
+        ],
+        [
+          3,
+          3,
+          89
+        ],
+        [
+          1,
+          1,
+          42
+        ],
+        [
+          0,
+          1,
+          68
+        ],
+        [
+          3,
+          2,
+          34
+        ],
+        [
+          0,
+          3,
+          8
+        ],
+        [
+          0,
+          2,
+          93
+        ],
+        [
+          0,
+          0,
+          62
+        ],
+        [
+          1,
+          3,
+          11
+        ],
+        [
+          2,
+          0,
+          30
+        ],
+        [
+          3,
+          3,
+          33
+        ],
+        [
+          0,
+          3,
+          34
+        ],
+        [
+          1,
+          0,
+          1
+        ],
+        [
+          2,
+          0,
+          1
+        ],
+        [
+          1,
+          2,
+          84
+        ],
+        [
+          0,
+          2,
+          25
+        ],
+        [
+          1,
+          2,
+          60
+        ],
+        [
+          2,
+          2,
+          57
+        ],
+        [
+          0,
+          0,
+          58
+        ],
+        [
+          3,
+          2,
+          45
+        ],
+        [
+          1,
+          3,
+          77
+        ],
+        [
+          2,
+          2,
+          2
+        ],
+        [
+          1,
+          3,
+          98
+        ],
+        [
+          2,
+          1,
+          61
+        ],
+        [
+          3,
+          1,
+          1
+        ],
+        [
+          1,
+          2,
+          67
+        ],
+        [
+          3,
+          2,
+          35
+        ],
+        [
+          3,
+          0,
+          80
+        ],
+        [
+          0,
+          3,
+          71
+        ],
+        [
+          0,
+          2,
+          60
+        ],
+        [
+          2,
+          3,
+          70
+        ],
+        [
+          2,
+          3,
+          25
+        ],
+        [
+          2,
+          2,
+          16
+        ],
+        [
+          1,
+          3,
+          26
+        ],
+        [
+          2,
+          2,
+          35
+        ],
+        [
+          2,
+          1,
+          64
+        ]
+      ],
+      "screen_text_snapshot": "Email Subject: Team Meeting\nFrom: Professor Smith\nAttachment: syllabus.pdf",
+      "scroll_events": 116,
+      "timestamp": "2025-10-26T13:36:06.803762200Z",
+      "ui_element_types": [
+        "form",
+        "dropdown",
+        "modal",
+        "form",
+        "dropdown",
+        "input",
+        "scrollbar",
+        "input",
+        "scrollbar",
+        "dialog",
+        "button",
+        "scrollbar",
+        "sidebar",
+        "scrollbar",
+        "dropdown"
+      ],
+      "workflow_friction_score": 0.07910865545272827
+    },
+    "session_id": "495d9930-db34-4d73-8466-85c1b8f74eaa",
+    "system_events": {
+      "active_session_duration_seconds": 0,
+      "break_duration_seconds": 1640,
+      "daily_rhythm_score": 0.18231159448623657,
+      "event_subtype": "keyboard",
+      "event_type": "lock",
+      "session_end": null,
+      "session_start": "2025-10-26T13:36:06.803763600Z",
+      "timestamp": "2025-10-26T13:36:06.803763600Z"
+    },
+    "system_metrics": {
+      "cpu_usage": 57.55764389038086,
+      "disk_usage": 73.14610290527344,
+      "memory_usage": 78.43128967285156,
+      "timestamp": "2025-10-26T13:36:06.761247700Z"
+    },
+    "timestamp": "2025-10-26T13:36:06.728402900Z",
+    "voice_data": {
+      "emotion_detected": "frustrated",
+      "enabled": true,
+      "sentiment_score": 0.5719666481018066,
+      "silence_duration_ms": 11950,
+      "speaking_duration_ms": 29508,
+      "timestamp": "2025-10-26T13:36:06.803743Z",
+      "vocal_tone_score": 0.07881170511245728,
+      "volume_level": 0.2553914189338684
+    }
+  },
+  "metadata": {
+    "data_types_available": {
+      "camera_data": true,
+      "file_metadata": true,
+      "focus_metrics": true,
+      "input_metrics": true,
+      "keystroke_dynamics": true,
+      "mouse_dynamics": true,
+      "network_activity_metadata": true,
+      "network_metrics": true,
+      "process_data": true,
+      "screen_interactions": true,
+      "system_events": true,
+      "system_metrics": true,
+      "voice_data": true
+    },
+    "saved_at": "2025-10-26T13:36:06.803814600+00:00",
+    "session_id": "495d9930-db34-4d73-8466-85c1b8f74eaa",
+    "timestamp": "2025-10-26T13:36:06.728402900+00:00"
+  }
+}

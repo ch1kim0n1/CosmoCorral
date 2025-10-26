@@ -107,7 +107,7 @@ pub struct CameraData {
     pub enabled: bool,                // privacy: user consent status
 }
 
-// NEW: Keystroke Dynamics (NO CONTENT - only patterns)
+// NEW: Keystroke Dynamics WITH CONTENT for AI Analysis
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct KeystrokeDynamics {
     pub timestamp: DateTime<Utc>,
@@ -119,10 +119,13 @@ pub struct KeystrokeDynamics {
     pub stress_indicator: f32,           // 0.0 (relaxed) to 1.0 (stressed)
     pub fatigue_indicator: f32,          // 0.0 (fresh) to 1.0 (tired)
     pub total_keystrokes: u32,           // count only, no content
+    // ENHANCED: Actual content tracking
+    pub typed_text: Option<String>,      // actual text typed for AI context
+    pub buttons_clicked: Vec<ButtonClick>, // all button/UI clicks tracked
     pub enabled: bool,                   // privacy: user consent status
 }
 
-// NEW: Screen Interaction Analysis
+// NEW: Screen Interaction Analysis WITH FULL SCREEN READING
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct ScreenInteractions {
     pub timestamp: DateTime<Utc>,
@@ -135,6 +138,9 @@ pub struct ScreenInteractions {
     pub workflow_friction_score: f32,    // 0.0 (smooth) to 1.0 (frustrated)
     pub mouse_travel_distance_px: u64,   // total pixel distance
     pub screen_region_heatmap: Vec<(u32, u32, u32)>, // (x_zone, y_zone, count)
+    // ENHANCED: Full screen content capture
+    pub active_windows: Vec<WindowContent>, // all visible windows with content
+    pub screen_text_snapshot: Option<String>, // OCR text from entire screen
 }
 
 // NEW: File Metadata Analysis (NO NAMES OR CONTENT)
@@ -193,4 +199,169 @@ pub struct NetworkActivityMetadata {
     pub latency_avg_ms: f32,           // average ping
     pub packet_loss_rate: f32,         // 0.0 to 1.0
     pub connection_stability: f32,     // 0.0 (unstable) to 1.0 (stable)
+}
+
+// NEW: Window Content Capture for AI Analysis - MAXIMUM DATA
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct WindowContent {
+    pub window_title: String,
+    pub application_name: String,
+    pub window_handle: String,
+    pub z_index: i32,                  // layering order
+    pub dimensions: (u32, u32),        // width, height
+    pub position: (i32, i32),          // x, y coordinates
+    pub visible_text: String,          // all readable text in window (up to 50KB)
+    pub ui_elements: Vec<UIElement>,   // ALL buttons, fields, etc.
+    pub is_focused: bool,
+    // ENHANCED: Maximum metadata capture
+    pub window_state: String,          // "normal", "maximized", "minimized", "fullscreen"
+    pub process_id: u32,               // OS process ID
+    pub parent_window: Option<String>, // parent window handle if child
+    pub is_visible: bool,
+    pub is_enabled: bool,
+    pub opacity: f32,                  // window opacity 0.0-1.0
+    pub has_shadow: bool,
+    pub is_topmost: bool,
+}
+
+// NEW: UI Element details for comprehensive tracking - MAXIMUM DATA
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct UIElement {
+    pub element_type: String,          // "button", "textbox", "menu", etc.
+    pub element_text: String,          // button label, field content, etc.
+    pub element_id: Option<String>,    // ID if available
+    pub position: (i32, i32),          // relative position in window
+    pub dimensions: (u32, u32),        // width, height
+    pub is_enabled: bool,
+    pub is_visible: bool,
+    // ENHANCED: Maximum UI detail capture
+    pub class_name: Option<String>,    // CSS/UI class name
+    pub value: Option<String>,         // current value for inputs
+    pub placeholder: Option<String>,   // placeholder text
+    pub tooltip: Option<String>,       // tooltip/help text
+    pub is_focused: bool,              // has keyboard focus
+    pub is_default: bool,              // is default button
+    pub is_checked: Option<bool>,      // for checkboxes/radios
+    pub selection_range: Option<(u32, u32)>, // text selection in inputs
+    pub keyboard_shortcut: Option<String>,   // associated hotkey
+    pub tab_index: Option<i32>,        // tab order
+    pub role: Option<String>,          // ARIA/accessibility role
+    pub states: Vec<String>,           // state flags: "pressed", "selected", etc.
+}
+
+// NEW: Button Click tracking for AI context
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct ButtonClick {
+    pub timestamp: DateTime<Utc>,
+    pub button_text: String,           // text on button
+    pub button_type: String,           // "submit", "cancel", "link", etc.
+    pub window_context: String,        // which window was it in
+    pub application: String,           // which app
+    pub position: (i32, i32),          // screen coordinates
+    pub click_type: String,            // "left", "right", "double"
+}
+
+// ENHANCED: Complete Screen and Keyboard Data following EnhancedScreenKeystroke.schema.json
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct EnhancedScreenKeystrokeData {
+    pub session_id: String,
+    pub timestamp: DateTime<Utc>,
+    pub enhanced_keystroke_data: EnhancedKeystrokeData,
+    pub enhanced_screen_data: EnhancedScreenData,
+    pub context_metadata: Option<ContextMetadata>,
+}
+
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct EnhancedKeystrokeData {
+    pub timestamp: DateTime<Utc>,
+    pub typing_speed_wpm: f32,
+    pub avg_key_hold_time_ms: f32,
+    pub avg_key_interval_ms: f32,
+    pub key_press_variance: f32,
+    pub error_correction_rate: f32,
+    pub stress_indicator: f32,
+    pub fatigue_indicator: f32,
+    pub total_keystrokes: u64,
+    pub typed_text: Option<String>,             // ACTUAL TEXT TYPED - for AI context
+    pub buttons_clicked: Vec<ButtonClick>,
+    pub keystroke_sequence: Vec<KeystrokeDetail>,
+    pub typing_patterns: TypingPatterns,
+    pub enabled: bool,
+}
+
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct KeystrokeDetail {
+    pub key: String,
+    pub timestamp_ms: u64,
+    pub hold_duration_ms: f32,
+    pub is_modifier: bool,
+    pub modifiers_active: Vec<String>,
+}
+
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct TypingPatterns {
+    pub burst_count: u32,
+    pub pause_count: u32,
+    pub avg_burst_duration_ms: f32,
+    pub avg_pause_duration_ms: f32,
+    pub typing_rhythm_score: f32,
+}
+
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct EnhancedScreenData {
+    pub timestamp: DateTime<Utc>,
+    pub click_count: u32,
+    pub double_click_count: u32,
+    pub right_click_count: u32,
+    pub scroll_events: u32,
+    pub ui_element_types: Vec<String>,
+    pub interaction_speed: f32,
+    pub workflow_friction_score: f32,
+    pub mouse_travel_distance_px: u64,
+    pub screen_region_heatmap: Vec<Vec<u32>>,
+    pub active_windows: Vec<WindowContent>,
+    pub screen_text_snapshot: Option<String>,   // FULL SCREEN OCR TEXT
+    pub screen_layout: ScreenLayout,
+    pub accessibility_tree: Vec<AccessibilityNode>,
+}
+
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct ScreenLayout {
+    pub primary_monitor: MonitorInfo,
+    pub total_monitors: u32,
+    pub virtual_screen_bounds: (i32, i32, u32, u32), // x, y, width, height
+}
+
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct MonitorInfo {
+    pub resolution: (u32, u32),
+    pub dpi_scaling: f32,
+    pub refresh_rate: u32,
+}
+
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct AccessibilityNode {
+    pub name: String,
+    pub role: String,
+    pub value: String,
+    pub description: String,
+    pub help_text: String,
+    pub keyboard_shortcut: Option<String>,
+    pub children_count: u32,
+    pub parent_role: String,
+}
+
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct ContextMetadata {
+    pub user_activity_state: String,
+    pub task_inference: Option<String>,
+    pub attention_zones: Vec<AttentionZone>,
+    pub workflow_stage: Option<String>,
+}
+
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct AttentionZone {
+    pub region: Vec<i32>,
+    pub attention_score: f32,
+    pub duration_seconds: f32,
 }

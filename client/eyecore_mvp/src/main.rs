@@ -5,6 +5,7 @@ mod utils;
 mod storage;
 mod voice;
 mod audio_cleaner;
+mod websocket_client;
 
 use axum::{
     routing::get,
@@ -16,6 +17,7 @@ use log::info;
 use std::path::PathBuf;
 use models::EyeCoreData;
 use serde_json::json;
+use uuid::Uuid;
 
 /// Detect system anomalies from collected data
 fn detect_system_anomalies(data: &EyeCoreData) -> Vec<serde_json::Value> {
@@ -71,6 +73,10 @@ async fn main() {
     
     info!("🔍 EyeCore MVP Starting...");
     
+    // Generate or load device ID
+    let device_id = Uuid::new_v4().to_string();
+    info!("📱 Device ID: {}", device_id);
+    
     // Initialize data storage
     let storage = Arc::new(storage::DataStorage::new("./data"));
     storage.initialize().await.expect("Failed to initialize data storage");
@@ -78,18 +84,31 @@ async fn main() {
     // Initialize data collector
     let collector = Arc::new(RwLock::new(data_collector::DataCollector::new()));
     
+    // Shared latest data for WebSocket client
+    let latest_data: Arc<RwLock<Option<EyeCoreData>>> = Arc::new(RwLock::new(None));
+    
     // Create channel for audio cleaning pipeline
     let (audio_tx, mut audio_rx) = mpsc::channel::<PathBuf>(100);
+    
+    // Start WebSocket client
+    let ws_client = Arc::new(websocket_client::WebSocketClient::new(device_id.clone()));
+    let ws_data = Arc::clone(&latest_data);
+    ws_client.start(ws_data).await;
+    info!("🔌 WebSocket client started");
     
     // Start background collection tasks
     let collector_clone = Arc::clone(&collector);
     let storage_clone = Arc::clone(&storage);
+    let latest_data_clone = Arc::clone(&latest_data);
     tokio::spawn(async move {
         loop {
             collector_clone.write().await.collect_all().await;
             
             // Save collected data to disk
             if let Some(data) = collector_clone.read().await.get_latest_data() {
+                // Update shared latest data for WebSocket
+                *latest_data_clone.write().await = Some(data.clone());
+                
                 if let Err(e) = storage_clone.save_data_snapshot(&data).await {
                     log::error!("Failed to save data snapshot: {}", e);
                 }
@@ -105,6 +124,14 @@ async fn main() {
                     if let Err(e) = storage_clone.save_anomalies(&data.session_id, &anomalies).await {
                         log::error!("Failed to save anomalies: {}", e);
                     }
+                }
+            }
+            
+            // NEW: Collect and save enhanced screen and keyboard data every iteration
+            {
+                let enhanced_data = collector_clone.write().await.collect_enhanced_screen_keyboard_data();
+                if let Err(e) = storage_clone.save_enhanced_screen_keyboard_data(&enhanced_data).await {
+                    log::error!("Failed to save enhanced screen & keyboard data: {}", e);
                 }
             }
             

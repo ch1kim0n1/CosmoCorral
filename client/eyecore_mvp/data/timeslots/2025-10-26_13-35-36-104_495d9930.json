@@ -1,0 +1,775 @@
+{
+  "data": {
+    "camera_data": {
+      "dominant_emotion": "focused",
+      "emotion_confidence": 0.06738364696502686,
+      "enabled": true,
+      "face_detected": true,
+      "facial_emotions": [
+        "focused"
+      ],
+      "gaze_direction": "down",
+      "posture_score": 0.2039276361465454,
+      "timestamp": "2025-10-26T13:35:36.323099700Z"
+    },
+    "file_metadata": {
+      "avg_file_size_bytes": 5855862,
+      "enabled": true,
+      "file_close_events": 67,
+      "file_open_events": 78,
+      "file_sizes_bytes": [
+        5448558,
+        7769312,
+        4349718
+      ],
+      "file_types_accessed": [
+        ".html"
+      ],
+      "modification_events": 29,
+      "project_switch_count": 4,
+      "timestamp": "2025-10-26T13:35:36.323134500Z",
+      "work_type_inferred": "admin"
+    },
+    "focus_metrics": {
+      "context_switches": 0,
+      "focus_level": 0.5,
+      "productive_app_time": 485,
+      "timestamp": "2025-10-26T13:35:36.323087900Z"
+    },
+    "input_metrics": {
+      "idle_duration_seconds": 2,
+      "keyboard_events": 4,
+      "mouse_clicks": 8,
+      "timestamp": "2025-10-26T13:35:36.323087700Z"
+    },
+    "keystroke_dynamics": {
+      "avg_key_hold_time_ms": 26.334388732910156,
+      "avg_key_interval_ms": 117.55500793457031,
+      "buttons_clicked": [],
+      "enabled": true,
+      "error_correction_rate": 0.42679935693740845,
+      "fatigue_indicator": 0.5225043892860413,
+      "key_press_variance": 0.08157479763031006,
+      "stress_indicator": 0.45646291971206665,
+      "timestamp": "2025-10-26T13:35:36.323102900Z",
+      "total_keystrokes": 92,
+      "typed_text": "Preparing presentation slides",
+      "typing_speed_wpm": 86.26173400878906
+    },
+    "mouse_dynamics": {
+      "acceleration_avg": 437.04193115234375,
+      "click_pattern_regularity": 0.2346521019935608,
+      "fatigue_indicator": 0.10582715272903442,
+      "focus_indicator": 0.8361003994941711,
+      "hesitation_count": 67,
+      "movement_speed_avg": 394.74078369140625,
+      "movement_speed_variance": 0.5377740263938904,
+      "path_smoothness": 0.896483302116394,
+      "timestamp": "2025-10-26T13:35:36.323139100Z",
+      "total_distance_px": 6900
+    },
+    "network_activity_metadata": {
+      "active_connections": 45,
+      "activity_context": "file_transfer",
+      "bandwidth_usage_mbps": 1.2326849699020386,
+      "bytes_received": 724315,
+      "bytes_sent": 508370,
+      "connection_stability": 0.8924313187599182,
+      "latency_avg_ms": 75.56907653808594,
+      "packet_loss_rate": 0.032287005335092545,
+      "timestamp": "2025-10-26T13:35:36.323139400Z",
+      "traffic_type": "streaming"
+    },
+    "network_metrics": {
+      "active_connections": 45,
+      "bytes_received": 724315,
+      "bytes_sent": 508370,
+      "timestamp": "2025-10-26T13:35:36.323087800Z"
+    },
+    "process_data": {
+      "active_process": "HWND(2953424)",
+      "active_window_title": "Untitled Diagram - Page-1 - Google Chrome",
+      "process_count": 330,
+      "timestamp": "2025-10-26T13:35:36.322110500Z"
+    },
+    "screen_interactions": {
+      "active_windows": [
+        {
+          "application_name": "Code Editor",
+          "dimensions": [
+            1920,
+            1080
+          ],
+          "has_shadow": true,
+          "is_enabled": true,
+          "is_focused": true,
+          "is_topmost": true,
+          "is_visible": true,
+          "opacity": 1.0,
+          "parent_window": null,
+          "position": [
+            0,
+            0
+          ],
+          "process_id": 4463,
+          "ui_elements": [
+            {
+              "class_name": "btn btn-primary submit-btn",
+              "dimensions": [
+                120,
+                35
+              ],
+              "element_id": "btn_submit",
+              "element_text": "Submit Assignment",
+              "element_type": "button",
+              "is_checked": null,
+              "is_default": true,
+              "is_enabled": true,
+              "is_focused": false,
+              "is_visible": true,
+              "keyboard_shortcut": "Ctrl+Enter",
+              "placeholder": null,
+              "position": [
+                100,
+                50
+              ],
+              "role": "button",
+              "selection_range": null,
+              "states": [
+                "enabled",
+                "visible"
+              ],
+              "tab_index": 1,
+              "tooltip": "Click to submit your completed assignment",
+              "value": null
+            },
+            {
+              "class_name": "form-control text-area-large",
+              "dimensions": [
+                600,
+                200
+              ],
+              "element_id": "txt_input_answer",
+              "element_text": "Working on my research paper about climate change impacts",
+              "element_type": "textbox",
+              "is_checked": null,
+              "is_default": false,
+              "is_enabled": true,
+              "is_focused": true,
+              "is_visible": true,
+              "keyboard_shortcut": null,
+              "placeholder": "Type your detailed answer here (minimum 200 words)...",
+              "position": [
+                100,
+                100
+              ],
+              "role": "textbox",
+              "selection_range": [
+                0,
+                58
+              ],
+              "states": [
+                "focused",
+                "enabled",
+                "editable"
+              ],
+              "tab_index": 2,
+              "tooltip": "Enter your response. Use formatting toolbar above.",
+              "value": "Working on my research paper about climate change impacts"
+            },
+            {
+              "class_name": "checkbox-custom",
+              "dimensions": [
+                250,
+                20
+              ],
+              "element_id": "chk_reviewed",
+              "element_text": "I have reviewed my work",
+              "element_type": "checkbox",
+              "is_checked": true,
+              "is_default": false,
+              "is_enabled": true,
+              "is_focused": false,
+              "is_visible": true,
+              "keyboard_shortcut": "Alt+R",
+              "placeholder": null,
+              "position": [
+                100,
+                320
+              ],
+              "role": "checkbox",
+              "selection_range": null,
+              "states": [
+                "checked",
+                "enabled"
+              ],
+              "tab_index": 3,
+              "tooltip": "Check this box to confirm you've reviewed your submission",
+              "value": "checked"
+            },
+            {
+              "class_name": "link-primary underline",
+              "dimensions": [
+                100,
+                20
+              ],
+              "element_id": "link_rubric",
+              "element_text": "View Rubric",
+              "element_type": "link",
+              "is_checked": null,
+              "is_default": false,
+              "is_enabled": true,
+              "is_focused": false,
+              "is_visible": true,
+              "keyboard_shortcut": null,
+              "placeholder": null,
+              "position": [
+                100,
+                350
+              ],
+              "role": "link",
+              "selection_range": null,
+              "states": [
+                "link",
+                "clickable"
+              ],
+              "tab_index": 4,
+              "tooltip": "Open assignment grading rubric in new tab",
+              "value": "https://example.edu/rubric/123"
+            },
+            {
+              "class_name": "dropdown-select form-control",
+              "dimensions": [
+                250,
+                30
+              ],
+              "element_id": "dd_citation",
+              "element_text": "Citation Style: APA 7th Edition",
+              "element_type": "dropdown",
+              "is_checked": null,
+              "is_default": false,
+              "is_enabled": true,
+              "is_focused": false,
+              "is_visible": true,
+              "keyboard_shortcut": "Alt+C",
+              "placeholder": "Select citation format...",
+              "position": [
+                100,
+                380
+              ],
+              "role": "combobox",
+              "selection_range": null,
+              "states": [
+                "collapsed",
+                "enabled"
+              ],
+              "tab_index": 5,
+              "tooltip": "Choose the citation format for your references",
+              "value": "APA_7"
+            }
+          ],
+          "visible_text": "Visual Studio Code\n\nDocument Content:\nThis is a comprehensive research paper exploring the multifaceted impacts of climate change on global ecosystems. The analysis encompasses temperature variations, precipitation patterns, sea level changes, and biodiversity loss. Key findings indicate accelerated warming trends in polar regions, with significant implications for ice sheet stability. \n\nSection 1: Introduction\nClimate change represents one of the most pressing challenges facing humanity. Recent data from IPCC reports shows unprecedented warming rates...\n\nCurrent Progress: 2,847 words | Target: 3,000 words | Due: Monday 11:59 PM\nLast saved: 2 minutes ago | Autosave: ON | Spell check: Active",
+          "window_handle": "0x6b127668",
+          "window_state": "maximized",
+          "window_title": "Visual Studio Code",
+          "z_index": 0
+        },
+        {
+          "application_name": "Web Browser",
+          "dimensions": [
+            1920,
+            1080
+          ],
+          "has_shadow": true,
+          "is_enabled": true,
+          "is_focused": false,
+          "is_topmost": false,
+          "is_visible": true,
+          "opacity": 1.0,
+          "parent_window": "0x710469d1",
+          "position": [
+            0,
+            0
+          ],
+          "process_id": 1647,
+          "ui_elements": [
+            {
+              "class_name": "btn btn-primary submit-btn",
+              "dimensions": [
+                120,
+                35
+              ],
+              "element_id": "btn_submit",
+              "element_text": "Submit Assignment",
+              "element_type": "button",
+              "is_checked": null,
+              "is_default": true,
+              "is_enabled": true,
+              "is_focused": false,
+              "is_visible": true,
+              "keyboard_shortcut": "Ctrl+Enter",
+              "placeholder": null,
+              "position": [
+                100,
+                50
+              ],
+              "role": "button",
+              "selection_range": null,
+              "states": [
+                "enabled",
+                "visible"
+              ],
+              "tab_index": 1,
+              "tooltip": "Click to submit your completed assignment",
+              "value": null
+            },
+            {
+              "class_name": "form-control text-area-large",
+              "dimensions": [
+                600,
+                200
+              ],
+              "element_id": "txt_input_answer",
+              "element_text": "Working on my research paper about climate change impacts",
+              "element_type": "textbox",
+              "is_checked": null,
+              "is_default": false,
+              "is_enabled": true,
+              "is_focused": true,
+              "is_visible": true,
+              "keyboard_shortcut": null,
+              "placeholder": "Type your detailed answer here (minimum 200 words)...",
+              "position": [
+                100,
+                100
+              ],
+              "role": "textbox",
+              "selection_range": [
+                0,
+                58
+              ],
+              "states": [
+                "focused",
+                "enabled",
+                "editable"
+              ],
+              "tab_index": 2,
+              "tooltip": "Enter your response. Use formatting toolbar above.",
+              "value": "Working on my research paper about climate change impacts"
+            },
+            {
+              "class_name": "checkbox-custom",
+              "dimensions": [
+                250,
+                20
+              ],
+              "element_id": "chk_reviewed",
+              "element_text": "I have reviewed my work",
+              "element_type": "checkbox",
+              "is_checked": true,
+              "is_default": false,
+              "is_enabled": true,
+              "is_focused": false,
+              "is_visible": true,
+              "keyboard_shortcut": "Alt+R",
+              "placeholder": null,
+              "position": [
+                100,
+                320
+              ],
+              "role": "checkbox",
+              "selection_range": null,
+              "states": [
+                "checked",
+                "enabled"
+              ],
+              "tab_index": 3,
+              "tooltip": "Check this box to confirm you've reviewed your submission",
+              "value": "checked"
+            },
+            {
+              "class_name": "link-primary underline",
+              "dimensions": [
+                100,
+                20
+              ],
+              "element_id": "link_rubric",
+              "element_text": "View Rubric",
+              "element_type": "link",
+              "is_checked": null,
+              "is_default": false,
+              "is_enabled": true,
+              "is_focused": false,
+              "is_visible": true,
+              "keyboard_shortcut": null,
+              "placeholder": null,
+              "position": [
+                100,
+                350
+              ],
+              "role": "link",
+              "selection_range": null,
+              "states": [
+                "link",
+                "clickable"
+              ],
+              "tab_index": 4,
+              "tooltip": "Open assignment grading rubric in new tab",
+              "value": "https://example.edu/rubric/123"
+            },
+            {
+              "class_name": "dropdown-select form-control",
+              "dimensions": [
+                250,
+                30
+              ],
+              "element_id": "dd_citation",
+              "element_text": "Citation Style: APA 7th Edition",
+              "element_type": "dropdown",
+              "is_checked": null,
+              "is_default": false,
+              "is_enabled": true,
+              "is_focused": false,
+              "is_visible": true,
+              "keyboard_shortcut": "Alt+C",
+              "placeholder": "Select citation format...",
+              "position": [
+                100,
+                380
+              ],
+              "role": "combobox",
+              "selection_range": null,
+              "states": [
+                "collapsed",
+                "enabled"
+              ],
+              "tab_index": 5,
+              "tooltip": "Choose the citation format for your references",
+              "value": "APA_7"
+            }
+          ],
+          "visible_text": "Google Chrome\n\nDocument Content:\nThis is a comprehensive research paper exploring the multifaceted impacts of climate change on global ecosystems. The analysis encompasses temperature variations, precipitation patterns, sea level changes, and biodiversity loss. Key findings indicate accelerated warming trends in polar regions, with significant implications for ice sheet stability. \n\nSection 1: Introduction\nClimate change represents one of the most pressing challenges facing humanity. Recent data from IPCC reports shows unprecedented warming rates...\n\nCurrent Progress: 2,847 words | Target: 3,000 words | Due: Monday 11:59 PM\nLast saved: 2 minutes ago | Autosave: ON | Spell check: Active",
+          "window_handle": "0x7032aa86",
+          "window_state": "normal",
+          "window_title": "Google Chrome",
+          "z_index": 1
+        }
+      ],
+      "click_count": 249,
+      "double_click_count": 38,
+      "interaction_speed": 143.10165405273438,
+      "mouse_travel_distance_px": 785399,
+      "right_click_count": 31,
+      "screen_region_heatmap": [
+        [
+          0,
+          0,
+          61
+        ],
+        [
+          0,
+          2,
+          35
+        ],
+        [
+          1,
+          0,
+          7
+        ],
+        [
+          0,
+          0,
+          3
+        ],
+        [
+          1,
+          3,
+          80
+        ],
+        [
+          3,
+          2,
+          30
+        ],
+        [
+          2,
+          0,
+          71
+        ],
+        [
+          2,
+          1,
+          75
+        ],
+        [
+          1,
+          0,
+          52
+        ],
+        [
+          1,
+          1,
+          7
+        ],
+        [
+          0,
+          3,
+          34
+        ],
+        [
+          2,
+          3,
+          20
+        ],
+        [
+          2,
+          0,
+          85
+        ],
+        [
+          1,
+          0,
+          5
+        ],
+        [
+          0,
+          2,
+          0
+        ],
+        [
+          1,
+          0,
+          52
+        ],
+        [
+          3,
+          3,
+          9
+        ],
+        [
+          2,
+          1,
+          65
+        ],
+        [
+          0,
+          0,
+          38
+        ],
+        [
+          2,
+          3,
+          62
+        ],
+        [
+          1,
+          3,
+          83
+        ],
+        [
+          0,
+          1,
+          65
+        ],
+        [
+          0,
+          3,
+          97
+        ],
+        [
+          2,
+          2,
+          76
+        ],
+        [
+          3,
+          3,
+          39
+        ],
+        [
+          2,
+          2,
+          87
+        ],
+        [
+          3,
+          0,
+          74
+        ],
+        [
+          2,
+          3,
+          59
+        ],
+        [
+          3,
+          3,
+          64
+        ],
+        [
+          0,
+          2,
+          60
+        ],
+        [
+          3,
+          0,
+          66
+        ],
+        [
+          1,
+          0,
+          84
+        ],
+        [
+          2,
+          3,
+          78
+        ],
+        [
+          3,
+          0,
+          24
+        ],
+        [
+          3,
+          0,
+          14
+        ],
+        [
+          1,
+          2,
+          96
+        ],
+        [
+          3,
+          3,
+          20
+        ],
+        [
+          2,
+          0,
+          29
+        ],
+        [
+          1,
+          3,
+          26
+        ],
+        [
+          0,
+          3,
+          28
+        ]
+      ],
+      "screen_text_snapshot": "Browser Tab 1: Wikipedia - Research Topic\nTab 2: Google Docs - Essay Draft\nTab 3: Canvas LMS",
+      "scroll_events": 175,
+      "timestamp": "2025-10-26T13:35:36.323131400Z",
+      "ui_element_types": [
+        "button",
+        "sidebar",
+        "form",
+        "textbox",
+        "icon",
+        "icon",
+        "scrollbar",
+        "dialog",
+        "menu",
+        "navbar",
+        "menu",
+        "dropdown",
+        "menu",
+        "button",
+        "textbox",
+        "link",
+        "textbox",
+        "icon",
+        "scrollbar",
+        "link",
+        "form",
+        "button",
+        "modal",
+        "input",
+        "tab",
+        "menu",
+        "dialog",
+        "scrollbar",
+        "menu",
+        "scrollbar",
+        "form",
+        "input",
+        "dropdown",
+        "modal",
+        "modal",
+        "dialog",
+        "form",
+        "sidebar",
+        "input",
+        "scrollbar",
+        "dropdown",
+        "modal",
+        "textbox",
+        "icon",
+        "tab",
+        "dropdown",
+        "link",
+        "input",
+        "button",
+        "form",
+        "sidebar",
+        "modal",
+        "link",
+        "scrollbar"
+      ],
+      "workflow_friction_score": 0.09711062908172607
+    },
+    "session_id": "495d9930-db34-4d73-8466-85c1b8f74eaa",
+    "system_events": {
+      "active_session_duration_seconds": 0,
+      "break_duration_seconds": 0,
+      "daily_rhythm_score": 0.7187248468399048,
+      "event_subtype": "monitor",
+      "event_type": "peripheral_connect",
+      "session_end": "2025-10-26T13:35:36.323136800Z",
+      "session_start": null,
+      "timestamp": "2025-10-26T13:35:36.323136800Z"
+    },
+    "system_metrics": {
+      "cpu_usage": 12.046194076538086,
+      "disk_usage": 49.95878982543945,
+      "memory_usage": 4.425960540771484,
+      "timestamp": "2025-10-26T13:35:36.280569600Z"
+    },
+    "timestamp": "2025-10-26T13:35:36.104187500Z",
+    "voice_data": {
+      "emotion_detected": "tired",
+      "enabled": true,
+      "sentiment_score": 0.3698916435241699,
+      "silence_duration_ms": 28876,
+      "speaking_duration_ms": 51681,
+      "timestamp": "2025-10-26T13:35:36.323093200Z",
+      "vocal_tone_score": 0.7340828776359558,
+      "volume_level": 0.787302553653717
+    }
+  },
+  "metadata": {
+    "data_types_available": {
+      "camera_data": true,
+      "file_metadata": true,
+      "focus_metrics": true,
+      "input_metrics": true,
+      "keystroke_dynamics": true,
+      "mouse_dynamics": true,
+      "network_activity_metadata": true,
+      "network_metrics": true,
+      "process_data": true,
+      "screen_interactions": true,
+      "system_events": true,
+      "system_metrics": true,
+      "voice_data": true
+    },
+    "saved_at": "2025-10-26T13:35:36.323204100+00:00",
+    "session_id": "495d9930-db34-4d73-8466-85c1b8f74eaa",
+    "timestamp": "2025-10-26T13:35:36.104187500+00:00"
+  }
+}

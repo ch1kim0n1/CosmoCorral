@@ -43,7 +43,6 @@ class BaseModel(Model):
 class Device(BaseModel):
     id = UUIDField(primary_key=True, default=uuid.uuid4)
     name = CharField(max_length=255)
-    description = TextField(null=True)
     access_code = CharField(max_length=255, null=True)
     last_online = DateTimeField(null=True)
     last_session_time = IntegerField(null=True)  # seconds, nullable
