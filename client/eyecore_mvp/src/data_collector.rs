@@ -713,27 +713,116 @@ impl DataCollector {
         ];
         
         for (title, app) in window_types.iter().take(rand::random::<usize>() % 3 + 1) {
+            // ENHANCED: Generate comprehensive UI elements with MAXIMUM data
             let sample_ui_elements = vec![
                 UIElement {
                     element_type: "button".to_string(),
-                    element_text: "Submit".to_string(),
+                    element_text: "Submit Assignment".to_string(),
                     element_id: Some("btn_submit".to_string()),
                     position: (100, 50),
-                    dimensions: (80, 30),
+                    dimensions: (120, 35),
                     is_enabled: true,
                     is_visible: true,
+                    class_name: Some("btn btn-primary submit-btn".to_string()),
+                    value: None,
+                    placeholder: None,
+                    tooltip: Some("Click to submit your completed assignment".to_string()),
+                    is_focused: false,
+                    is_default: true,
+                    is_checked: None,
+                    selection_range: None,
+                    keyboard_shortcut: Some("Ctrl+Enter".to_string()),
+                    tab_index: Some(1),
+                    role: Some("button".to_string()),
+                    states: vec!["enabled".to_string(), "visible".to_string()],
                 },
                 UIElement {
                     element_type: "textbox".to_string(),
-                    element_text: "Type your answer here...".to_string(),
-                    element_id: Some("txt_input".to_string()),
+                    element_text: "Working on my research paper about climate change impacts".to_string(),
+                    element_id: Some("txt_input_answer".to_string()),
                     position: (100, 100),
-                    dimensions: (300, 40),
+                    dimensions: (600, 200),
                     is_enabled: true,
                     is_visible: true,
+                    class_name: Some("form-control text-area-large".to_string()),
+                    value: Some("Working on my research paper about climate change impacts".to_string()),
+                    placeholder: Some("Type your detailed answer here (minimum 200 words)...".to_string()),
+                    tooltip: Some("Enter your response. Use formatting toolbar above.".to_string()),
+                    is_focused: true,
+                    is_default: false,
+                    is_checked: None,
+                    selection_range: Some((0, 58)),
+                    keyboard_shortcut: None,
+                    tab_index: Some(2),
+                    role: Some("textbox".to_string()),
+                    states: vec!["focused".to_string(), "enabled".to_string(), "editable".to_string()],
+                },
+                UIElement {
+                    element_type: "checkbox".to_string(),
+                    element_text: "I have reviewed my work".to_string(),
+                    element_id: Some("chk_reviewed".to_string()),
+                    position: (100, 320),
+                    dimensions: (250, 20),
+                    is_enabled: true,
+                    is_visible: true,
+                    class_name: Some("checkbox-custom".to_string()),
+                    value: Some("checked".to_string()),
+                    placeholder: None,
+                    tooltip: Some("Check this box to confirm you've reviewed your submission".to_string()),
+                    is_focused: false,
+                    is_default: false,
+                    is_checked: Some(true),
+                    selection_range: None,
+                    keyboard_shortcut: Some("Alt+R".to_string()),
+                    tab_index: Some(3),
+                    role: Some("checkbox".to_string()),
+                    states: vec!["checked".to_string(), "enabled".to_string()],
+                },
+                UIElement {
+                    element_type: "link".to_string(),
+                    element_text: "View Rubric".to_string(),
+                    element_id: Some("link_rubric".to_string()),
+                    position: (100, 350),
+                    dimensions: (100, 20),
+                    is_enabled: true,
+                    is_visible: true,
+                    class_name: Some("link-primary underline".to_string()),
+                    value: Some("https://example.edu/rubric/123".to_string()),
+                    placeholder: None,
+                    tooltip: Some("Open assignment grading rubric in new tab".to_string()),
+                    is_focused: false,
+                    is_default: false,
+                    is_checked: None,
+                    selection_range: None,
+                    keyboard_shortcut: None,
+                    tab_index: Some(4),
+                    role: Some("link".to_string()),
+                    states: vec!["link".to_string(), "clickable".to_string()],
+                },
+                UIElement {
+                    element_type: "dropdown".to_string(),
+                    element_text: "Citation Style: APA 7th Edition".to_string(),
+                    element_id: Some("dd_citation".to_string()),
+                    position: (100, 380),
+                    dimensions: (250, 30),
+                    is_enabled: true,
+                    is_visible: true,
+                    class_name: Some("dropdown-select form-control".to_string()),
+                    value: Some("APA_7".to_string()),
+                    placeholder: Some("Select citation format...".to_string()),
+                    tooltip: Some("Choose the citation format for your references".to_string()),
+                    is_focused: false,
+                    is_default: false,
+                    is_checked: None,
+                    selection_range: None,
+                    keyboard_shortcut: Some("Alt+C".to_string()),
+                    tab_index: Some(5),
+                    role: Some("combobox".to_string()),
+                    states: vec!["collapsed".to_string(), "enabled".to_string()],
                 },
             ];
             
+            // ENHANCED: Comprehensive window data with ALL metadata
             let window_content = WindowContent {
                 window_title: title.to_string(),
                 application_name: app.to_string(),
@@ -741,9 +830,29 @@ impl DataCollector {
                 z_index: windows.len() as i32,
                 dimensions: (1920, 1080),
                 position: (0, 0),
-                visible_text: format!("Content from {} - Sample text visible on screen", title),
+                // MAXIMUM TEXT: Capture extensive visible text content
+                visible_text: format!(
+                    "{}\n\nDocument Content:\n\
+                    This is a comprehensive research paper exploring the multifaceted impacts of climate change on global ecosystems. \
+                    The analysis encompasses temperature variations, precipitation patterns, sea level changes, and biodiversity loss. \
+                    Key findings indicate accelerated warming trends in polar regions, with significant implications for ice sheet stability. \
+                    \n\nSection 1: Introduction\nClimate change represents one of the most pressing challenges facing humanity. \
+                    Recent data from IPCC reports shows unprecedented warming rates...\n\n\
+                    Current Progress: 2,847 words | Target: 3,000 words | Due: Monday 11:59 PM\n\
+                    Last saved: 2 minutes ago | Autosave: ON | Spell check: Active",
+                    title
+                ),
                 ui_elements: sample_ui_elements,
                 is_focused: windows.is_empty(),
+                // ENHANCED: Maximum window metadata
+                window_state: if windows.is_empty() { "maximized".to_string() } else { "normal".to_string() },
+                process_id: rand::random::<u32>() % 10000 + 1000,
+                parent_window: if windows.len() > 0 { Some(format!("0x{:08x}", rand::random::<u32>())) } else { None },
+                is_visible: true,
+                is_enabled: true,
+                opacity: 1.0,
+                has_shadow: true,
+                is_topmost: windows.is_empty(),
             };
             
             windows.push(window_content);

@@ -201,7 +201,7 @@ pub struct NetworkActivityMetadata {
     pub connection_stability: f32,     // 0.0 (unstable) to 1.0 (stable)
 }
 
-// NEW: Window Content Capture for AI Analysis
+// NEW: Window Content Capture for AI Analysis - MAXIMUM DATA
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct WindowContent {
     pub window_title: String,
@@ -210,12 +210,21 @@ pub struct WindowContent {
     pub z_index: i32,                  // layering order
     pub dimensions: (u32, u32),        // width, height
     pub position: (i32, i32),          // x, y coordinates
-    pub visible_text: String,          // all readable text in window
-    pub ui_elements: Vec<UIElement>,   // buttons, fields, etc.
+    pub visible_text: String,          // all readable text in window (up to 50KB)
+    pub ui_elements: Vec<UIElement>,   // ALL buttons, fields, etc.
     pub is_focused: bool,
+    // ENHANCED: Maximum metadata capture
+    pub window_state: String,          // "normal", "maximized", "minimized", "fullscreen"
+    pub process_id: u32,               // OS process ID
+    pub parent_window: Option<String>, // parent window handle if child
+    pub is_visible: bool,
+    pub is_enabled: bool,
+    pub opacity: f32,                  // window opacity 0.0-1.0
+    pub has_shadow: bool,
+    pub is_topmost: bool,
 }
 
-// NEW: UI Element details for comprehensive tracking
+// NEW: UI Element details for comprehensive tracking - MAXIMUM DATA
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct UIElement {
     pub element_type: String,          // "button", "textbox", "menu", etc.
@@ -225,6 +234,19 @@ pub struct UIElement {
     pub dimensions: (u32, u32),        // width, height
     pub is_enabled: bool,
     pub is_visible: bool,
+    // ENHANCED: Maximum UI detail capture
+    pub class_name: Option<String>,    // CSS/UI class name
+    pub value: Option<String>,         // current value for inputs
+    pub placeholder: Option<String>,   // placeholder text
+    pub tooltip: Option<String>,       // tooltip/help text
+    pub is_focused: bool,              // has keyboard focus
+    pub is_default: bool,              // is default button
+    pub is_checked: Option<bool>,      // for checkboxes/radios
+    pub selection_range: Option<(u32, u32)>, // text selection in inputs
+    pub keyboard_shortcut: Option<String>,   // associated hotkey
+    pub tab_index: Option<i32>,        // tab order
+    pub role: Option<String>,          // ARIA/accessibility role
+    pub states: Vec<String>,           // state flags: "pressed", "selected", etc.
 }
 
 // NEW: Button Click tracking for AI context
