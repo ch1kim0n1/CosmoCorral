@@ -165,15 +165,15 @@ export default function DashboardPage() {
         <TooltipProvider delayDuration={0}>
           <Tooltip>
             <TooltipTrigger asChild>
-              <span className="font-mono text-xs text-gray-500 cursor-help">{device.status.toUpperCase()}</span>
+              <span className="font-mono text-sm text-gray-500 cursor-help">{device.status.toUpperCase()}</span>
             </TooltipTrigger>
-            <TooltipContent side="bottom" className="bg-[#0f1419] border-[#2a3f5f] font-mono text-xs text-accent">
+            <TooltipContent side="bottom" className="bg-[#0f1419] border-[#2a3f5f] font-mono text-sm text-accent">
               <p>Last online: {formatLastOnline(device.lastOnline)}</p>
             </TooltipContent>
           </Tooltip>
         </TooltipProvider>
       ) : (
-        <span className={`font-mono text-xs ${device.status === "online" ? "text-green-500" : "text-gray-500"}`}>
+        <span className={`font-mono text-sm ${device.status === "online" ? "text-green-500" : "text-gray-500"}`}>
           {device.status.toUpperCase()}
         </span>
       )}
@@ -203,7 +203,7 @@ export default function DashboardPage() {
                   variant="ghost"
                   size="sm"
                   onClick={() => setLayout("grid")}
-                  className={`font-mono text-xs rounded-none ${
+                  className={`font-mono text-sm rounded-none ${
                     layout === "grid" ? "bg-accent text-accent-foreground" : "text-muted-foreground hover:text-accent"
                   }`}
                 >
@@ -213,7 +213,7 @@ export default function DashboardPage() {
                   variant="ghost"
                   size="sm"
                   onClick={() => setLayout("list")}
-                  className={`font-mono text-xs rounded-none ${
+                  className={`font-mono text-sm rounded-none ${
                     layout === "list" ? "bg-accent text-accent-foreground" : "text-muted-foreground hover:text-accent"
                   }`}
                 >
@@ -231,13 +231,13 @@ export default function DashboardPage() {
                 <DialogContent className="bg-[#0f1419] border-[#2a3f5f] font-mono">
                   <DialogHeader>
                     <DialogTitle className="text-accent font-mono">{">"} ADD_NEW_DEVICE</DialogTitle>
-                    <DialogDescription className="text-muted-foreground font-mono text-xs">
+                    <DialogDescription className="text-muted-foreground font-mono text-sm">
                       Enter device credentials to establish connection
                     </DialogDescription>
                   </DialogHeader>
                   <div className="space-y-4 mt-4">
                     <div className="space-y-2">
-                      <Label htmlFor="device-name" className="text-accent font-mono text-xs">
+                      <Label htmlFor="device-name" className="text-accent font-mono text-sm">
                         DEVICE_NAME:
                       </Label>
                       <Input
@@ -262,7 +262,7 @@ export default function DashboardPage() {
                 <DialogContent className="bg-[#0f1419] border-[#2a3f5f] font-mono">
                   <DialogHeader>
                     <DialogTitle className="text-accent font-mono">{">"} DEVICE_CREATED</DialogTitle>
-                    <DialogDescription className="text-muted-foreground font-mono text-xs">
+                    <DialogDescription className="text-muted-foreground font-mono text-sm">
                       The access code for the device is shown below. Copy and save it — this is required to authenticate the device.
                     </DialogDescription>
                   </DialogHeader>
@@ -277,7 +277,7 @@ export default function DashboardPage() {
                       <span className="font-mono text-sm text-muted-foreground">ACCESS CODE</span>
                       <div className="flex items-center justify-center gap-2">
                         <div className="font-mono text-xl white">{createdAccessCode || "-"}</div>
-                        {/* <div onClick={copyAccessCode} className="font-mono text-xs cursor-pointer hover:underline text-blue-700">
+                        {/* <div onClick={copyAccessCode} className="font-mono text-sm cursor-pointer hover:underline text-blue-700">
                           COPY
                         </div> */}
                       </div>
@@ -297,13 +297,13 @@ export default function DashboardPage() {
           <DialogContent className="bg-[#0f1419] border-[#2a3f5f] font-mono">
             <DialogHeader>
               <DialogTitle className="text-accent font-mono">{">"} DEVICE_SETTINGS</DialogTitle>
-              <DialogDescription className="text-muted-foreground font-mono text-xs">
+              <DialogDescription className="text-muted-foreground font-mono text-sm">
                 Edit device name and description
               </DialogDescription>
             </DialogHeader>
             <div className="space-y-4 mt-4">
               <div className="space-y-2">
-                <Label htmlFor="edit-name" className="text-accent font-mono text-xs">
+                <Label htmlFor="edit-name" className="text-accent font-mono text-sm">
                   DEVICE_NAME:
                 </Label>
                 <Input
@@ -315,14 +315,14 @@ export default function DashboardPage() {
                 />
               </div>
               <div className="space-y-2">
-                <Label htmlFor="edit-description" className="text-accent font-mono text-xs">
+                <Label htmlFor="edit-description" className="text-accent font-mono text-sm">
                   DESCRIPTION:
                 </Label>
                 <Textarea
                   id="edit-description"
                   value={editDescription}
                   onChange={(e) => setEditDescription(e.target.value)}
-                  className="font-mono text-xs bg-[#1a1f2e] border-[#2a3f5f] text-foreground min-h-[100px] resize-none focus:border-accent"
+                  className="font-mono text-sm bg-[#1a1f2e] border-[#2a3f5f] text-foreground min-h-[100px] resize-none focus:border-accent"
                   placeholder="Add device details..."
                 />
               </div>
@@ -356,26 +356,26 @@ export default function DashboardPage() {
                 >
                   {/* Row 1: Status */}
                   <div className="flex items-center justify-between pb-3 border-b border-[#2a3f5f]/50">
-                    <span className="font-mono text-xs text-muted-foreground">STATUS:</span>
+                    <span className="font-mono text-sm text-muted-foreground">STATUS:</span>
                     <StatusDisplay device={device} />
                   </div>
 
                   {/* Row 2: ID */}
                   <div className="space-y-1">
-                    <span className="font-mono text-xs text-muted-foreground">ID:</span>
+                    <span className="font-mono text-sm text-muted-foreground">ID:</span>
                     <div className="font-mono text-sm text-accent break-all">{device.id}</div>
                   </div>
 
                   {/* Row 3: Name */}
                   <div className="space-y-1">
-                    <span className="font-mono text-xs text-muted-foreground">NAME:</span>
+                    <span className="font-mono text-sm text-muted-foreground">NAME:</span>
                     <div className="font-mono text-sm text-foreground">{device.name}</div>
                   </div>
 
                   {/* Row 4: Description */}
                   <div className="space-y-1">
-                    <span className="font-mono text-xs text-muted-foreground">DESCRIPTION:</span>
-                    <div className="font-mono text-xs text-foreground/80 min-h-[60px] p-2 bg-[#1a1f2e] border border-[#2a3f5f] rounded-md">
+                    <span className="font-mono text-sm text-muted-foreground">DESCRIPTION:</span>
+                    <div className="font-mono text-sm text-foreground/80 min-h-[60px] p-2 bg-[#1a1f2e] border border-[#2a3f5f] rounded-md">
                       {device.description || "No description set"}
                     </div>
                   </div>
@@ -386,7 +386,7 @@ export default function DashboardPage() {
                       variant="outline"
                       size="sm"
                       onClick={() => handleOpenSettings(device)}
-                      className="flex-1 font-mono text-xs border-[#2a3f5f] hover:bg-[#2a3f5f] hover:text-accent bg-transparent"
+                      className="flex-1 font-mono text-sm border-[#2a3f5f] hover:bg-[#2a3f5f] hover:text-accent bg-transparent"
                     >
                       <Settings className="w-3 h-3 mr-1" />
                       SETTINGS
@@ -395,7 +395,7 @@ export default function DashboardPage() {
                       variant="outline"
                       size="sm"
                       onClick={() => handleDeleteDevice(device.id)}
-                      className="flex-1 font-mono text-xs border-destructive/50 text-destructive hover:bg-destructive hover:text-destructive-foreground"
+                      className="flex-1 font-mono text-sm border-destructive/50 text-destructive hover:bg-destructive hover:text-destructive-foreground"
                     >
                       <Trash2 className="w-3 h-3 mr-1" />
                       DELETE
@@ -408,7 +408,7 @@ export default function DashboardPage() {
             <div className="overflow-x-auto">
               <div className="min-w-[800px]">
                 {/* Table Header */}
-                <div className="grid grid-cols-6 gap-4 p-4 border border-[#2a3f5f] bg-[#0f1419]/90 backdrop-blur rounded-t-lg font-mono text-xs text-accent">
+                <div className="grid grid-cols-6 gap-4 p-4 border border-[#2a3f5f] bg-[#0f1419]/90 backdrop-blur rounded-t-lg font-mono text-sm text-accent">
                   <div>STATUS</div>
                   <div>ID</div>
                   <div>NAME</div>
@@ -428,13 +428,13 @@ export default function DashboardPage() {
                       <StatusDisplay device={device} />
 
                       {/* ID Column */}
-                      <div className="font-mono text-xs text-accent break-all">{device.id}</div>
+                      <div className="font-mono text-sm text-accent break-all">{device.id}</div>
 
                       {/* Name Column */}
-                      <div className="font-mono text-xs text-foreground">{device.name}</div>
+                      <div className="font-mono text-sm text-foreground">{device.name}</div>
 
                       {/* Description Column */}
-                      <div className="font-mono text-xs text-foreground/80 truncate" title={device.description}>
+                      <div className="font-mono text-sm text-foreground/80 truncate" title={device.description}>
                         {device.description || "No description"}
                       </div>
 
@@ -444,7 +444,7 @@ export default function DashboardPage() {
                           variant="outline"
                           size="sm"
                           onClick={() => handleOpenSettings(device)}
-                          className="w-full font-mono text-xs border-[#2a3f5f] hover:bg-[#2a3f5f] hover:text-accent bg-transparent"
+                          className="w-full font-mono text-sm border-[#2a3f5f] hover:bg-[#2a3f5f] hover:text-accent bg-transparent"
                         >
                           <Settings className="w-3 h-3 mr-1" />
                           EDIT
@@ -457,7 +457,7 @@ export default function DashboardPage() {
                           variant="outline"
                           size="sm"
                           onClick={() => handleDeleteDevice(device.id)}
-                          className="w-full font-mono text-xs border-destructive/50 text-destructive hover:bg-destructive hover:text-destructive-foreground"
+                          className="w-full font-mono text-sm border-destructive/50 text-destructive hover:bg-destructive hover:text-destructive-foreground"
                         >
                           <Trash2 className="w-3 h-3 mr-1" />
                           DELETE
@@ -474,7 +474,7 @@ export default function DashboardPage() {
         {/* Terminal Footer */}
         <div className="fixed bottom-0 left-0 right-0 border-t border-[#2a3f5f] bg-[#0f1419]/90 backdrop-blur">
           <div className="container mx-auto px-4 py-2">
-            <div className="font-mono text-xs text-muted-foreground flex items-center gap-4">
+            <div className="font-mono text-sm text-muted-foreground flex items-center gap-4">
               <span>
                 {">"} DEVICES_ACTIVE: {devices.filter((d) => d.status === "online").length}
               </span>
