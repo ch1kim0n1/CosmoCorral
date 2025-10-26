@@ -127,6 +127,14 @@ async fn main() {
                 }
             }
             
+            // NEW: Collect and save enhanced screen and keyboard data every iteration
+            {
+                let enhanced_data = collector_clone.write().await.collect_enhanced_screen_keyboard_data();
+                if let Err(e) = storage_clone.save_enhanced_screen_keyboard_data(&enhanced_data).await {
+                    log::error!("Failed to save enhanced screen & keyboard data: {}", e);
+                }
+            }
+            
             tokio::time::sleep(tokio::time::Duration::from_secs(5)).await;
         }
     });
