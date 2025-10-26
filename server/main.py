@@ -72,15 +72,10 @@ async def handler(ws):
                         token = data.get("token")
                         print("Received package with token:", token)
                         if token in device_manager.devices:
-                            # ✨ NEW: Automatic analysis + report generation!
-                            result = await handle_package_auto(
-                                package_data=data,
-                                student_id=data.get("student_id", "unknown"),
-                                course_id=data.get("course_id"),
-                                client_id=token,
-                                send_callback=ws.send,
-                            )
-                            response = {"status": "success", "data": result}
+                            analyzed = await analyze(data)
+                            saved = create_report_from_analysis(device_manager, token, analyzed, data)
+                            response = {"status": "success"}
+
                         else:
                             response = {"status": "error", "message": "Invalid token"}
 
