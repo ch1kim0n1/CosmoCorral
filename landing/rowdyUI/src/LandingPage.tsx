@@ -1,5 +1,7 @@
 import { useEffect, useRef } from 'react';
 import './LandingPage.css';
+import horseyImg from '../assets/horsey.png';
+import capybaraImg from '../assets/capybarautsa-removebg-preview.png';
 
 function LandingPage() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -14,72 +16,78 @@ function LandingPage() {
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
 
-    // Stars
-    const stars: { x: number; y: number; radius: number; vx: number; vy: number }[] = [];
-    for (let i = 0; i < 200; i++) {
+    // Stars (static, no twinkling)
+    const stars: { x: number; y: number; radius: number; opacity: number }[] = [];
+    for (let i = 0; i < 150; i++) {
       stars.push({
         x: Math.random() * canvas.width,
         y: Math.random() * canvas.height,
-        radius: Math.random() * 2,
-        vx: Math.random() * 0.5 - 0.25,
-        vy: Math.random() * 0.5 - 0.25,
+        radius: Math.random() * 1.5 + 0.5,
+        opacity: Math.random() * 0.4 + 0.3,
       });
     }
 
-    // Cowboys with horses
-    const cowboys: { x: number; y: number; vx: number; size: number }[] = [];
-    for (let i = 0; i < 5; i++) {
-      cowboys.push({
-        x: Math.random() * canvas.width,
-        y: canvas.height - 150 - Math.random() * 100,
-        vx: Math.random() * 0.3 + 0.1,
-        size: 40 + Math.random() * 20,
-      });
-    }
+    // Cowboys with horses (static positions spread across page)
+    const horseyImage = new Image();
+    horseyImage.src = horseyImg;
+    
+    const cowboys: { x: number; y: number; size: number; opacity: number }[] = [];
+    const positions = [
+      { x: 0.08, y: 0.15 },
+      { x: 0.2, y: 0.35 },
+      { x: 0.12, y: 0.6 },
+      { x: 0.35, y: 0.2 },
+      { x: 0.3, y: 0.7 },
+      { x: 0.48, y: 0.25 },
+      { x: 0.52, y: 0.55 },
+      { x: 0.45, y: 0.8 },
+      { x: 0.65, y: 0.18 },
+      { x: 0.7, y: 0.45 },
+      { x: 0.62, y: 0.75 },
+      { x: 0.82, y: 0.3 },
+      { x: 0.88, y: 0.6 },
+      { x: 0.92, y: 0.85 },
+    ];
+    
+    positions.forEach(pos => {
+      const initialX = pos.x * canvas.width;
+      const initialY = pos.y * canvas.height;
+      // Exclude cowboys from bottom area (desert + buffer)
+      if (initialY < canvas.height - 200) {
+        cowboys.push({
+          x: initialX,
+          y: initialY,
+          size: 45 + Math.random() * 35,
+          opacity: 0.35 + Math.random() * 0.25,
+        });
+      }
+    });
 
     function animate() {
       if (!ctx || !canvas) return;
 
-      ctx.fillStyle = 'rgba(10, 10, 30, 0.3)';
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-      // Draw stars
+      // Draw stars (static, no animation)
       stars.forEach((star) => {
-        ctx.fillStyle = 'white';
+        ctx.fillStyle = `rgba(255, 255, 255, ${star.opacity})`;
         ctx.beginPath();
         ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
         ctx.fill();
-
-        star.x += star.vx;
-        star.y += star.vy;
-
-        if (star.x < 0) star.x = canvas.width;
-        if (star.x > canvas.width) star.x = 0;
-        if (star.y < 0) star.y = canvas.height;
-        if (star.y > canvas.height) star.y = 0;
       });
 
-      // Draw cowboys (simple silhouettes)
+      // Draw cowboys (static positions)
       cowboys.forEach((cowboy) => {
-        ctx.fillStyle = 'rgba(50, 30, 20, 0.8)';
-        
-        // Horse body
-        ctx.fillRect(cowboy.x, cowboy.y + cowboy.size / 2, cowboy.size * 1.5, cowboy.size / 2);
-        
-        // Horse head
-        ctx.fillRect(cowboy.x + cowboy.size * 1.5, cowboy.y + cowboy.size / 3, cowboy.size / 3, cowboy.size / 2);
-        
-        // Cowboy body
-        ctx.fillRect(cowboy.x + cowboy.size / 2, cowboy.y, cowboy.size / 3, cowboy.size / 2);
-        
-        // Cowboy hat
-        ctx.fillRect(cowboy.x + cowboy.size / 3, cowboy.y - cowboy.size / 4, cowboy.size / 2, cowboy.size / 6);
-
-        cowboy.x += cowboy.vx;
-
-        if (cowboy.x > canvas.width) {
-          cowboy.x = -cowboy.size * 2;
-          cowboy.y = canvas.height - 150 - Math.random() * 100;
+        if (horseyImage.complete) {
+          ctx.globalAlpha = cowboy.opacity;
+          ctx.drawImage(
+            horseyImage,
+            cowboy.x,
+            cowboy.y,
+            cowboy.size,
+            cowboy.size * (horseyImage.height / horseyImage.width)
+          );
+          ctx.globalAlpha = 1;
         }
       });
 
@@ -102,91 +110,87 @@ function LandingPage() {
 
   return (
     <div className="landing-page">
-      <canvas ref={canvasRef} className="starry-background" />
+      <canvas ref={canvasRef} className="background-canvas" />
       
-      <div className="content">
+      <main className="main">
+        <div className="page-header">
+          <div className="logo">CheaterBuster</div>
+          <div className="header-actions">
+            <button className="nav-cta">Head to Dashboard</button>
+          </div>
+        </div>
+
         <section className="hero">
-          <div className="hero-text">
-            <h1 className="hero-line line-1">CheaterBuster for Meetings.</h1>
-            <h1 className="hero-line line-2">Welcome to a new era of trust</h1>
-          </div>
-          
-          <button className="glass-button">
-            <span>Get Started</span>
-          </button>
-        </section>
-
-        <section className="demo-section">
-          <h2>See It In Action</h2>
-          <div className="video-container">
-            <div className="video-placeholder">
-              <p>Demo Video Coming Soon</p>
-              <span className="play-icon">▶</span>
-            </div>
+          <div className="hero-content">
+            <h1>The world's fastest educational monitoring</h1>
+            
+            <p className="hero-text">
+              CheaterBuster brings you the <span className="highlight">fastest monitoring solution</span> available for educational institutions. 
+              Monitor student devices in real-time with exceptional speed and reliability.
+            </p>
+            
+            <p className="hero-text">
+              Our <span className="highlight">distributed architecture</span> unlocks unlimited monitoring capacity, 
+              bringing enterprise performance to educational institutions. We offer a range of deployment options to cover 
+              all of your security and compliance requirements.
+            </p>
           </div>
         </section>
 
-        <section className="features-section">
-          <h2>Features</h2>
-          <div className="features-grid">
-            <div className="feature-tile tile-1">
-              <div className="feature-icon">🔍</div>
-              <h3>Real-Time Detection</h3>
-              <p>Monitor meetings in real-time for suspicious behavior and unauthorized participants.</p>
-            </div>
-            <div className="feature-tile tile-2">
-              <div className="feature-icon">🛡️</div>
-              <h3>Advanced Security</h3>
-              <p>Enterprise-grade encryption and security protocols to protect your meetings.</p>
-            </div>
-            <div className="feature-tile tile-3">
-              <div className="feature-icon">📊</div>
-              <h3>Detailed Analytics</h3>
-              <p>Get comprehensive reports and insights on meeting integrity and participant behavior.</p>
-            </div>
-            <div className="feature-tile tile-4">
-              <div className="feature-icon">⚡</div>
-              <h3>Instant Alerts</h3>
-              <p>Receive immediate notifications when potential security threats are detected.</p>
-            </div>
+        <section className="features">
+          <div className="feature-item">
+            <div className="feature-symbol">◆</div>
+            <h3>Real-time monitoring</h3>
+            <p>Monitor all connected devices instantly with millisecond latency</p>
+          </div>
+          <div className="feature-item">
+            <div className="feature-symbol">◇</div>
+            <h3>Enterprise security</h3>
+            <p>Built-in security and compliance features for educational institutions</p>
+          </div>
+          <div className="feature-item">
+            <div className="feature-symbol">◈</div>
+            <h3>Zero-config deployment</h3>
+            <p>Deploy across your institution in minutes with automatic discovery</p>
+          </div>
+          <div className="feature-item">
+            <div className="feature-symbol">◉</div>
+            <h3>Advanced analytics</h3>
+            <p>Deep insights into device usage patterns and behavior analysis</p>
+          </div>
+          <div className="feature-item">
+            <div className="feature-symbol">◊</div>
+            <h3>Multi-platform support</h3>
+            <p>Works seamlessly across Windows, macOS, Linux, iOS, and Android</p>
+          </div>
+          <div className="feature-item">
+            <div className="feature-symbol">○</div>
+            <h3>Scalable architecture</h3>
+            <p>From 10 to 100,000+ devices with consistent performance</p>
           </div>
         </section>
 
-        <footer className="footer">
-          <div className="footer-content">
-            <div className="footer-section">
-              <h4>CheaterBuster</h4>
-              <p>Building trust in digital meetings</p>
-            </div>
-            <div className="footer-section">
-              <h4>Product</h4>
-              <ul>
-                <li>Features</li>
-                <li>Pricing</li>
-                <li>Demo</li>
-              </ul>
-            </div>
-            <div className="footer-section">
-              <h4>Company</h4>
-              <ul>
-                <li>About Us</li>
-                <li>Contact</li>
-                <li>Careers</li>
-              </ul>
-            </div>
-            <div className="footer-section">
-              <h4>Legal</h4>
-              <ul>
-                <li>Privacy Policy</li>
-                <li>Terms of Service</li>
-                <li>Security</li>
-              </ul>
-            </div>
-          </div>
-          <div className="footer-bottom">
-            <p>&copy; 2025 CheaterBuster. All rights reserved.</p>
-          </div>
-        </footer>
+      </main>
+
+      <div className="desert-scene">
+        <div className="desert-ground"></div>
+        <div className="cactus cactus-1">🌵</div>
+        <div className="cactus cactus-2">🌵</div>
+        <div className="cactus cactus-3">🌵</div>
+        <div className="cactus cactus-4">🌵</div>
+        <div className="cactus cactus-5">🌵</div>
+        <div className="cactus cactus-6">🌵</div>
+        <div className="cactus cactus-7">🌵</div>
+        <img src={capybaraImg} alt="capybara" className="capybara capybara-1" />
+        <img src={capybaraImg} alt="capybara" className="capybara capybara-2" />
+        <img src={capybaraImg} alt="capybara" className="capybara capybara-3" />
+      </div>
+
+      <div className="aliens-background">
+        <div className="alien alien-1">👽</div>
+        <div className="alien alien-2">👽</div>
+        <div className="alien alien-3">👽</div>
+        <div className="alien alien-4">👽</div>
       </div>
     </div>
   );
