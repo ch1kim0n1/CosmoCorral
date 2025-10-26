@@ -1,0 +1,25 @@
+{
+  "anomalies": [
+    {
+      "threshold": 85.0,
+      "timestamp": "2025-10-26T10:22:35.867013Z",
+      "type": "high_memory",
+      "value": 98.28468322753906
+    },
+    {
+      "threshold": 0.3,
+      "timestamp": "2025-10-26T10:22:35.897705100Z",
+      "type": "low_focus",
+      "value": 0.20000000298023224
+    },
+    {
+      "emotion": "anxious",
+      "sentiment": -0.607373833656311,
+      "timestamp": "2025-10-26T10:22:35.897707700Z",
+      "type": "negative_emotion"
+    }
+  ],
+  "anomaly_count": 3,
+  "session_id": "eb004ea8-4b72-4353-af53-556a8e763899",
+  "timestamp": "2025-10-26T10:22:35.899833900+00:00"
+}

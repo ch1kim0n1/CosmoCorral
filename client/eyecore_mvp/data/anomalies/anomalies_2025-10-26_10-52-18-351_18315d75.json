@@ -1,0 +1,19 @@
+{
+  "anomalies": [
+    {
+      "threshold": 0.3,
+      "timestamp": "2025-10-26T10:52:18.348639700Z",
+      "type": "low_focus",
+      "value": 0.029999999329447746
+    },
+    {
+      "emotion": "stressed",
+      "sentiment": -0.8584870100021362,
+      "timestamp": "2025-10-26T10:52:18.348660500Z",
+      "type": "negative_emotion"
+    }
+  ],
+  "anomaly_count": 2,
+  "session_id": "18315d75-056c-4489-97ae-a44fa276f14f",
+  "timestamp": "2025-10-26T10:52:18.351084+00:00"
+}

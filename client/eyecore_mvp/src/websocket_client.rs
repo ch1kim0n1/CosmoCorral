@@ -15,7 +15,7 @@ const RECONNECT_DELAY: Duration = Duration::from_secs(5);
 pub struct WebSocketClient {
     server_url: String,
     device_id: String,
-    access_token: Option<String>,
+    access_token: Arc<RwLock<Option<String>>>,
 }
 
 impl WebSocketClient {
@@ -23,7 +23,7 @@ impl WebSocketClient {
         Self {
             server_url: SERVER_URL.to_string(),
             device_id,
-            access_token: None,
+            access_token: Arc::new(RwLock::new(None)),
         }
     }
 
@@ -58,17 +58,45 @@ impl WebSocketClient {
 
         let (mut write, mut read) = ws_stream.split();
 
-        // First, create a device if we don't have an access code
-        // For now, we'll skip authentication and send directly
-        // In production, you'd need to get an access_code from the teacher
-        
-        info!("⚠️  No authentication - sending data without token");
-        info!("   To properly authenticate:");
-        info!("   1. Teacher creates device via dashboard/API");
-        info!("   2. Student uses access_code to authenticate");
-        info!("   3. Server returns token for data packages");
+        // Send authentication request
+        let access_code = env::var("ACCESS_CODE").unwrap_or_else(|_| "W9RFCDJG36".to_string());
 
-        // Handle incoming messages
+        let auth_payload = json!({
+            "method": "Authenticate",
+            "data": {
+                "access_code": access_code
+            }
+        });
+
+        if let Err(e) = write.send(Message::Text(auth_payload.to_string())).await {
+            error!("Failed to send authentication payload: {}", e);
+            return Err(Box::new(e));
+        }
+        info!("✅ Authentication request sent");
+
+        // Wait for authentication response and extract token
+        if let Some(Ok(Message::Text(text))) = read.next().await {
+            if let Ok(response) = serde_json::from_str::<serde_json::Value>(&text) {
+                info!("📥 Server response: {}", response);
+                
+                if response.get("status") == Some(&json!("success")) {
+                    if let Some(token) = response.get("data").and_then(|d| d.get("token")).and_then(|t| t.as_str()) {
+                        let mut token_lock = self.access_token.write().await;
+                        *token_lock = Some(token.to_string());
+                        info!("✅ Token received and stored: {}", token);
+                    } else {
+                        error!("Authentication response missing token.");
+                    }
+                } else {
+                    error!("Authentication failed: {}", response);
+                }
+            }
+        }
+
+        // Clone the access_token Arc for the read task
+        let access_token_clone = Arc::clone(&self.access_token);
+
+        // Handle incoming messages in background
         let read_handle = tokio::spawn(async move {
             while let Some(msg) = read.next().await {
                 match msg {
@@ -90,21 +118,6 @@ impl WebSocketClient {
             }
         });
 
-        let access_code = env::var("ACCESS_CODE").unwrap_or_else(|_| "W9RFCDJG36".to_string());
-
-        let auth_payload = json!({
-            "method": "Authenticate",
-            "data": {
-                "access_code": access_code
-            }
-        });
-
-        if let Err(e) = write.send(Message::Text(auth_payload.to_string())).await {
-            error!("Failed to send authentication payload: {}", e);
-            return Err(Box::new(e));
-        }
-        info!("✅ Authentication request sent");
-
         // Send data periodically
         let mut interval = tokio::time::interval(Duration::from_secs(5));
         loop {
@@ -113,17 +126,21 @@ impl WebSocketClient {
             // Get the latest collected data
             let data_guard = data_receiver.read().await;
             if let Some(data) = data_guard.as_ref() {
-                // Send the EyeCoreData directly as the "data" field
-                // The server's pipeline expects the full activity package
-                let mut package = json!({
-                    "method": "Package",
-                    "data": data,
-                });
-
-                // Add token if we have one
-                if let Some(ref token) = self.access_token {
-                    package["token"] = json!(token);
+                // Convert data to JSON value so we can add token field
+                let mut data_json = serde_json::to_value(data).unwrap();
+                
+                // Add token to the data object if we have one
+                let token_guard = self.access_token.read().await;
+                if let Some(ref token) = *token_guard {
+                    data_json["token"] = json!(token);
                 }
+                drop(token_guard); // Release lock
+
+                // Send the full package with data containing token
+                let package = json!({
+                    "method": "Package",
+                    "data": data_json,
+                });
 
                 match write.send(Message::Text(package.to_string())).await {
                     Ok(_) => {

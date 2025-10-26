@@ -1,0 +1,386 @@
+{
+  "data": {
+    "camera_data": {
+      "dominant_emotion": "focused",
+      "emotion_confidence": 0.5567527413368225,
+      "enabled": true,
+      "face_detected": false,
+      "facial_emotions": [
+        "focused",
+        "tired",
+        "engaged"
+      ],
+      "gaze_direction": "center",
+      "posture_score": 0.12737774848937988,
+      "timestamp": "2025-10-26T10:48:23.234338800Z"
+    },
+    "file_metadata": {
+      "avg_file_size_bytes": 4941071,
+      "enabled": true,
+      "file_close_events": 77,
+      "file_open_events": 89,
+      "file_sizes_bytes": [
+        7437487,
+        2879100,
+        4506627
+      ],
+      "file_types_accessed": [
+        ".xlsx",
+        ".py"
+      ],
+      "modification_events": 31,
+      "project_switch_count": 3,
+      "timestamp": "2025-10-26T10:48:23.234401600Z",
+      "work_type_inferred": "admin"
+    },
+    "focus_metrics": {
+      "context_switches": 6,
+      "focus_level": 0.3100000023841858,
+      "productive_app_time": 199,
+      "timestamp": "2025-10-26T10:48:23.234327300Z"
+    },
+    "input_metrics": {
+      "idle_duration_seconds": 16,
+      "keyboard_events": 16,
+      "mouse_clicks": 9,
+      "timestamp": "2025-10-26T10:48:23.234325800Z"
+    },
+    "keystroke_dynamics": {
+      "avg_key_hold_time_ms": 131.52401733398438,
+      "avg_key_interval_ms": 122.8803939819336,
+      "enabled": true,
+      "error_correction_rate": 0.11410912871360779,
+      "fatigue_indicator": 0.5659055113792419,
+      "key_press_variance": 0.6741400957107544,
+      "stress_indicator": 0.6478505730628967,
+      "timestamp": "2025-10-26T10:48:23.234342700Z",
+      "total_keystrokes": 3518,
+      "typing_speed_wpm": 107.55560302734375
+    },
+    "mouse_dynamics": {
+      "acceleration_avg": 157.9449462890625,
+      "click_pattern_regularity": 0.9155845046043396,
+      "fatigue_indicator": 0.8708858489990234,
+      "focus_indicator": 0.5888298749923706,
+      "hesitation_count": 170,
+      "movement_speed_avg": 958.4046630859375,
+      "movement_speed_variance": 0.041463226079940796,
+      "path_smoothness": 0.05472034215927124,
+      "timestamp": "2025-10-26T10:48:23.234480800Z",
+      "total_distance_px": 287200
+    },
+    "network_activity_metadata": {
+      "active_connections": 40,
+      "activity_context": "updates",
+      "bandwidth_usage_mbps": 0.7366459965705872,
+      "bytes_received": 411072,
+      "bytes_sent": 325574,
+      "connection_stability": 0.932630717754364,
+      "latency_avg_ms": 55.891780853271484,
+      "packet_loss_rate": 0.040177322924137115,
+      "timestamp": "2025-10-26T10:48:23.234481900Z",
+      "traffic_type": "gaming"
+    },
+    "network_metrics": {
+      "active_connections": 40,
+      "bytes_received": 411072,
+      "bytes_sent": 325574,
+      "timestamp": "2025-10-26T10:48:23.234327100Z"
+    },
+    "process_data": {
+      "active_process": "HWND(200192)",
+      "active_window_title": "main.py - rowdyhack-25 - Visual Studio Code",
+      "process_count": 332,
+      "timestamp": "2025-10-26T10:48:23.233014800Z"
+    },
+    "screen_interactions": {
+      "click_count": 129,
+      "double_click_count": 10,
+      "interaction_speed": 198.8359375,
+      "mouse_travel_distance_px": 1015639,
+      "right_click_count": 30,
+      "screen_region_heatmap": [
+        [
+          0,
+          0,
+          56
+        ],
+        [
+          0,
+          2,
+          31
+        ],
+        [
+          3,
+          0,
+          70
+        ],
+        [
+          2,
+          0,
+          48
+        ],
+        [
+          0,
+          1,
+          25
+        ],
+        [
+          0,
+          0,
+          33
+        ],
+        [
+          2,
+          1,
+          24
+        ],
+        [
+          3,
+          3,
+          81
+        ],
+        [
+          3,
+          0,
+          65
+        ],
+        [
+          2,
+          3,
+          20
+        ],
+        [
+          0,
+          3,
+          27
+        ],
+        [
+          3,
+          0,
+          95
+        ],
+        [
+          0,
+          0,
+          9
+        ],
+        [
+          1,
+          1,
+          19
+        ],
+        [
+          3,
+          0,
+          3
+        ],
+        [
+          2,
+          0,
+          92
+        ],
+        [
+          3,
+          2,
+          81
+        ],
+        [
+          1,
+          0,
+          74
+        ],
+        [
+          1,
+          1,
+          1
+        ],
+        [
+          2,
+          0,
+          27
+        ],
+        [
+          3,
+          0,
+          24
+        ],
+        [
+          1,
+          1,
+          88
+        ],
+        [
+          0,
+          0,
+          36
+        ],
+        [
+          1,
+          3,
+          51
+        ],
+        [
+          3,
+          2,
+          25
+        ],
+        [
+          3,
+          2,
+          17
+        ],
+        [
+          2,
+          2,
+          94
+        ],
+        [
+          3,
+          2,
+          19
+        ],
+        [
+          0,
+          2,
+          93
+        ],
+        [
+          1,
+          1,
+          7
+        ],
+        [
+          2,
+          1,
+          7
+        ],
+        [
+          1,
+          3,
+          84
+        ],
+        [
+          0,
+          3,
+          22
+        ],
+        [
+          0,
+          0,
+          59
+        ],
+        [
+          1,
+          1,
+          16
+        ],
+        [
+          2,
+          0,
+          2
+        ],
+        [
+          0,
+          3,
+          51
+        ],
+        [
+          1,
+          1,
+          29
+        ],
+        [
+          3,
+          3,
+          30
+        ],
+        [
+          2,
+          3,
+          48
+        ],
+        [
+          3,
+          1,
+          72
+        ]
+      ],
+      "scroll_events": 346,
+      "timestamp": "2025-10-26T10:48:23.234397500Z",
+      "ui_element_types": [
+        "input",
+        "link",
+        "sidebar",
+        "form",
+        "dropdown",
+        "modal",
+        "sidebar",
+        "form",
+        "icon",
+        "tab",
+        "dropdown",
+        "button",
+        "sidebar",
+        "modal",
+        "textbox",
+        "navbar",
+        "link",
+        "button",
+        "navbar",
+        "button",
+        "dialog",
+        "dropdown"
+      ],
+      "workflow_friction_score": 0.9008539319038391
+    },
+    "session_id": "9d8070fc-9a08-4ef0-9667-0fa47b176ecb",
+    "system_events": {
+      "active_session_duration_seconds": 2874,
+      "break_duration_seconds": 0,
+      "daily_rhythm_score": 0.36692309379577637,
+      "event_subtype": "keyboard",
+      "event_type": "unlock",
+      "session_end": null,
+      "session_start": "2025-10-26T10:48:23.234402900Z",
+      "timestamp": "2025-10-26T10:48:23.234402900Z"
+    },
+    "system_metrics": {
+      "cpu_usage": 24.25118637084961,
+      "disk_usage": 66.29266357421875,
+      "memory_usage": 9.494918823242188,
+      "timestamp": "2025-10-26T10:48:23.199815900Z"
+    },
+    "timestamp": "2025-10-26T10:48:23.182491600Z",
+    "voice_data": {
+      "emotion_detected": "calm",
+      "enabled": true,
+      "sentiment_score": 0.5186982154846191,
+      "silence_duration_ms": 4723,
+      "speaking_duration_ms": 7882,
+      "timestamp": "2025-10-26T10:48:23.234331300Z",
+      "vocal_tone_score": 0.714982807636261,
+      "volume_level": 0.480498731136322
+    }
+  },
+  "metadata": {
+    "data_types_available": {
+      "camera_data": true,
+      "file_metadata": true,
+      "focus_metrics": true,
+      "input_metrics": true,
+      "keystroke_dynamics": true,
+      "mouse_dynamics": true,
+      "network_activity_metadata": true,
+      "network_metrics": true,
+      "process_data": true,
+      "screen_interactions": true,
+      "system_events": true,
+      "system_metrics": true,
+      "voice_data": true
+    },
+    "saved_at": "2025-10-26T10:48:23.235347800+00:00",
+    "session_id": "9d8070fc-9a08-4ef0-9667-0fa47b176ecb",
+    "timestamp": "2025-10-26T10:48:23.182491600+00:00"
+  }
+}
