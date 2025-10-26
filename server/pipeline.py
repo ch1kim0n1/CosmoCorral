@@ -387,9 +387,19 @@ class RulesEngine:
 class GeminiAnalyzer:
     """Analyzes flagged packages using Gemini API."""
 
-    def __init__(self, api_key: str):
-        genai.configure(api_key=api_key)
-        self.model = genai.GenerativeModel("gemini-1.5-flash")
+    def __init__(self, api_key: Optional[str] = None):
+        self.api_available = False
+        if api_key and api_key != "API_IS_NOT_PROVIDED":
+            try:
+                genai.configure(api_key=api_key)
+                self.model = genai.GenerativeModel("gemini-1.5-flash")
+                self.api_available = True
+                logger.info("✅ Gemini API configured successfully")
+            except Exception as e:
+                logger.warning(f"⚠️ Failed to configure Gemini API: {e}. Using fallback analysis.")
+                self.api_available = False
+        else:
+            logger.warning("⚠️ GEMINI_API_KEY not provided. Using fallback analysis.")
 
     async def analyze(
         self,
@@ -397,7 +407,11 @@ class GeminiAnalyzer:
         anomalies: List[Dict[str, Any]],
         triggered_rules: List[Dict[str, Any]],
     ) -> Dict[str, Any]:
-        """Analyze flagged activity using Gemini."""
+        """Analyze flagged activity using Gemini or fallback logic."""
+
+        # If API is not available, use fallback analysis
+        if not self.api_available:
+            return self._fallback_analysis(package, anomalies, triggered_rules)
 
         # Build prompt
         anomalies_text = "\n".join(
@@ -469,6 +483,75 @@ Respond ONLY with valid JSON (no markdown, no extra text):
                 "analyzed_at": datetime.utcnow().isoformat(),
             }
 
+    def _fallback_analysis(
+        self,
+        package: Dict[str, Any],
+        anomalies: List[Dict[str, Any]],
+        triggered_rules: List[Dict[str, Any]],
+    ) -> Dict[str, Any]:
+        """Simple rule-based analysis when Gemini API is not available."""
+        
+        # Determine suspected activity based on anomalies and rules
+        high_severity_count = sum(1 for a in anomalies if a.get('severity') == 'critical')
+        alert_count = sum(1 for r in triggered_rules if r.get('severity') == 'alert')
+        
+        # Simple heuristic analysis
+        suspected_activity = "none"
+        confidence = 0.0
+        why_suspected = "API IS NOT PROVIDED - Using basic rule-based detection"
+        evidence = []
+        recommendation = "Review student activity manually"
+        
+        # Check for high network usage
+        network_bytes = package.get('network_activity', {}).get('bytes_sent', 0)
+        if network_bytes > 5 * 1024 * 1024:  # 5MB
+            suspected_activity = "network_exfiltration_attempt"
+            confidence = 0.6
+            evidence.append(f"High network upload: {network_bytes / 1024 / 1024:.2f} MB")
+        
+        # Check for excessive app switching
+        app_switches = package.get('process_data', {}).get('app_switches', 0)
+        if app_switches > 10:
+            suspected_activity = "tab_switching_excessive"
+            confidence = 0.5
+            evidence.append(f"Excessive app switches: {app_switches}")
+        
+        # Check for low focus with high activity
+        focus_score = package.get('focus_metrics', {}).get('focus_score', 0.5)
+        if focus_score < 0.3 and high_severity_count > 0:
+            suspected_activity = "unauthorized_resource_access"
+            confidence = 0.4
+            evidence.append(f"Low focus score: {focus_score:.2f}")
+        
+        # Check CPU/Memory spikes
+        cpu_usage = package.get('system_metrics', {}).get('cpu_usage', 0)
+        memory_usage = package.get('system_metrics', {}).get('memory_usage', 0)
+        if cpu_usage > 90 or memory_usage > 85:
+            if suspected_activity == "none":
+                suspected_activity = "technical_issue"
+                confidence = 0.3
+            evidence.append(f"Resource spike - CPU: {cpu_usage}%, Memory: {memory_usage}%")
+        
+        # Add anomaly descriptions to evidence
+        for anomaly in anomalies[:3]:  # Top 3 anomalies
+            evidence.append(anomaly.get('reason', 'Unknown anomaly'))
+        
+        return {
+            "suspected_activity": suspected_activity,
+            "confidence": confidence,
+            "why_suspected": why_suspected,
+            "evidence": evidence if evidence else ["No significant anomalies detected"],
+            "recommendation": recommendation,
+            "alternative_explanations": [
+                "Normal exam behavior",
+                "Technical system issue",
+                "Background processes"
+            ],
+            "tokens_used": 0,
+            "model_version": "fallback-rule-based",
+            "analyzed_at": datetime.utcnow().isoformat(),
+        }
+
 
 # ============================================================================
 # MAIN PIPELINE
@@ -496,14 +579,14 @@ class MonitoringPipeline:
         Returns: FlaggedReport if flagged, None otherwise
         """
 
-        session_id = package["session_id"]
-        device_id = package["device_id"]
-        student_id = package["student_id"]
-        timestamp = package["timestamp"]
+        session_id = package.get("session_id", "unknown")
+        device_id = package.get("device_id", session_id)  # Fall back to session_id
+        student_id = package.get("student_id", f"student-{session_id[:8]}")  # Generate from session
+        timestamp = package.get("timestamp", datetime.utcnow().isoformat())
 
         # 1. Normalize & validate (already done by client)
         logger.info(
-            f"Processing package from {student_id} on device {device_id}"
+            f"Processing package from {student_id} on device {device_id[:16]}..."
         )
 
         # 2. Store raw package
@@ -603,8 +686,6 @@ def get_pipeline() -> MonitoringPipeline:
     if _pipeline_instance is None:
         import os
 
-        gemini_key = os.getenv("GEMINI_API_KEY")
-        if not gemini_key:
-            raise ValueError("GEMINI_API_KEY environment variable not set")
+        gemini_key = os.getenv("GEMINI_API_KEY", "API_IS_NOT_PROVIDED")
         _pipeline_instance = MonitoringPipeline(gemini_key)
     return _pipeline_instance
