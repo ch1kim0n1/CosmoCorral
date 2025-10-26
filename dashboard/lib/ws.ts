@@ -51,6 +51,10 @@ export async function getAllDevices() {
   return await sendRequest({ method: "GetAllDevices" })
 }
 
+export async function getDevice(device_id: string) {
+  return await sendRequest({ method: "GetDevice", data: { device_id } })
+}
+
 export async function createDevice(name: string) {
   return await sendRequest({ method: "CreateDevice", data: { name } })
 }
