@@ -71,8 +71,10 @@ async def handler(ws):
                         token = data.get("token")
                         print("Received package with token:", token)
                         if token in device_manager.devices:
-                            analyzed = analyze(data)
-                            response = {"status": "success", "data": analyzed} if analyzed else {"status": "error", "message": "Analysis returned no result"}
+                            analyzed = await analyze(data)
+                            saved = create_report_from_analysis(device_manager, token, analyzed, data)
+                            response = {"status": "success"}
+
                         else:
                             response = {"status": "error", "message": "Invalid token"}
 

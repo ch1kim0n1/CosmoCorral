@@ -134,4 +134,41 @@ class Devices:
             except Exception:
                 pass
         return True
+    
+    def create_report_from_analysis(devices, token: str, analysis: dict, package: dict) -> dict:
+        sess = devices.devices.get(token)
+        if not sess:
+            return {"created": False, "error": "Invalid token"}
+    
+        device_id = sess.get("device_id")
+        if not device_id:
+            return {"created": False, "error": "Unknown device"}
+    
+        if not analysis or not analysis.get("suspicious"):
+            return {"created": False, "reason": "Not suspicious"}
+    
+        cats = analysis.get("categories") or {}
+        max_name, max_score = None, -1.0
+        for name, vals in cats.items():
+            try:
+                s = float(vals.get("score") or 0.0)
+            except Exception:
+                s = 0.0
+            if s > max_score:
+                max_name, max_score = name, s
+    
+        d = Device.get_or_none(Device.id == _ensure_uuid(device_id))
+        if not d:
+            return {"created": False, "error": "Device not found"}
+    
+        screen_shot_id = package.get("screen_shot_id") or (package.get("data", {}) or {}).get("screen_shot_id")
+    
+        r = Report.create(
+            device=d,
+            reason=max_name or "suspicious_activity",
+            message=analysis.get("message") or "",
+            screen_shot_id=screen_shot_id,
+            data=analysis,
+        )
+        return {"created": True, "report_id": str(r.id)}
 
