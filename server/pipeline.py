@@ -579,14 +579,14 @@ class MonitoringPipeline:
         Returns: FlaggedReport if flagged, None otherwise
         """
 
-        session_id = package["session_id"]
-        device_id = package["device_id"]
-        student_id = package["student_id"]
-        timestamp = package["timestamp"]
+        session_id = package.get("session_id", "unknown")
+        device_id = package.get("device_id", session_id)  # Fall back to session_id
+        student_id = package.get("student_id", f"student-{session_id[:8]}")  # Generate from session
+        timestamp = package.get("timestamp", datetime.utcnow().isoformat())
 
         # 1. Normalize & validate (already done by client)
         logger.info(
-            f"Processing package from {student_id} on device {device_id}"
+            f"Processing package from {student_id} on device {device_id[:16]}..."
         )
 
         # 2. Store raw package

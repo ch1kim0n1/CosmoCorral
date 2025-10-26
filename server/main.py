@@ -122,11 +122,23 @@ async def handler(ws, path=None):
                 elif method == "Package":
                     # MAIN PIPELINE: Process student activity package
                     token = data.get("token")
+                    activity_package = data  # The data IS the activity package
+                    device_id = activity_package.get("session_id", "unknown")  # Use session_id as device_id
+                    
+                    # Allow packages with either token OR activity_package data (for testing)
                     if token and device_manager.devices.get(token):
-                        activity_package = data.get("data")
-                        logger.debug(f"Received activity package from student {activity_package.get('student_id')}")
-
-                        # Process through pipeline
+                        # Authenticated with token
+                        logger.debug(f"Received activity package from authenticated student")
+                    elif activity_package.get("session_id"):
+                        # Test mode: accept packages with session_id
+                        logger.info(f"📦 Received test package from session: {device_id[:16]}...")
+                    else:
+                        response = {"status": "error", "message": "Invalid token or missing session_id"}
+                        await ws.send(json.dumps(response))
+                        continue
+                    
+                    # Process through pipeline
+                    if activity_package:
                         flagged_report = await pipeline.process_package(
                             activity_package,
                             professor_broadcast_callback=broadcast_to_professors,
