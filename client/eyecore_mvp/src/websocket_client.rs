@@ -3,6 +3,7 @@ use futures_util::{SinkExt, StreamExt};
 use serde_json::json;
 use log::{info, error, warn};
 use std::sync::Arc;
+use std::env;
 use tokio::sync::RwLock;
 use tokio::time::{sleep, Duration};
 
@@ -89,6 +90,21 @@ impl WebSocketClient {
             }
         });
 
+        let access_code = env::var("ACCESS_CODE").unwrap_or_else(|_| "W9RFCDJG36".to_string());
+
+        let auth_payload = json!({
+            "method": "Authenticate",
+            "data": {
+                "access_code": access_code
+            }
+        });
+
+        if let Err(e) = write.send(Message::Text(auth_payload.to_string())).await {
+            error!("Failed to send authentication payload: {}", e);
+            return Err(Box::new(e));
+        }
+        info!("✅ Authentication request sent");
+
         // Send data periodically
         let mut interval = tokio::time::interval(Duration::from_secs(5));
         loop {
@@ -99,10 +115,15 @@ impl WebSocketClient {
             if let Some(data) = data_guard.as_ref() {
                 // Send the EyeCoreData directly as the "data" field
                 // The server's pipeline expects the full activity package
-                let package = json!({
+                let mut package = json!({
                     "method": "Package",
-                    "data": data  // Send the full EyeCoreData object
+                    "data": data,
                 });
+
+                // Add token if we have one
+                if let Some(ref token) = self.access_token {
+                    package["token"] = json!(token);
+                }
 
                 match write.send(Message::Text(package.to_string())).await {
                     Ok(_) => {

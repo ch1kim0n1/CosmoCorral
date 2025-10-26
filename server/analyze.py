@@ -1,2 +1,2 @@
-def analyze():
-    pass
+def analyze(x):
+    print ("Analyzing value:", x)

@@ -1,0 +1,11 @@
+{
+  "active_process": "HWND(132572)",
+  "active_window_title": "cd \"C:\\Users\\chiki\\OneDrive\\Desktop\\GitHib Repo\\rowdyhack-25\\client\\eyecore_mvp\"; $env:RUST_LOG=\"info\"; .\\target\\release\\eyecore_mvp.exe 2>&1 | Select-Object -First 150",
+  "cpu_usage": 10.609155654907227,
+  "focus_level": 0.07999999821186066,
+  "memory_usage": 17.39231300354004,
+  "recording_started_at": "2025-10-26T09:42:25.080392300+00:00",
+  "session_id": "33bbd864-6a18-45ee-897a-d13c714f393c",
+  "timestamp": "2025-10-26T09:42:24.995787900+00:00",
+  "voice_enabled": true
+}

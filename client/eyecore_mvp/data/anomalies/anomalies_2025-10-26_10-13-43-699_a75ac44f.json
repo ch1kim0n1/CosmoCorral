@@ -1,0 +1,19 @@
+{
+  "anomalies": [
+    {
+      "threshold": 85.0,
+      "timestamp": "2025-10-26T10:13:43.658399900Z",
+      "type": "high_memory",
+      "value": 86.541748046875
+    },
+    {
+      "threshold": 0.3,
+      "timestamp": "2025-10-26T10:13:43.697333800Z",
+      "type": "low_focus",
+      "value": 0.17000000178813934
+    }
+  ],
+  "anomaly_count": 2,
+  "session_id": "a75ac44f-5970-498d-93b7-b4d25c25a26b",
+  "timestamp": "2025-10-26T10:13:43.699153100+00:00"
+}

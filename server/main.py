@@ -59,6 +59,7 @@ async def handler(ws):
 
                 case "Authenticate":
                     access_code = data.get("access_code")
+                    print("Authenticating with access code:", access_code)
                     token = device_manager.authenticate(ws, access_code)
                     if token:
                         response = {"status": "success", "data": {"token": token}}
